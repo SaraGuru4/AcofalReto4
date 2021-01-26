@@ -70,7 +70,8 @@ function login() {
         method: 'POST', // or 'POST'
         body: JSON.stringify(data), // data can be `string` or {object}!
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'DataType': 'json',
         } //input data
     })
         .then(res => res.json()).then(result => {

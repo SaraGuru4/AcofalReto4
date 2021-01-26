@@ -6,7 +6,7 @@
 	
 	$response = array();
 //Lista de productos
-	$response['list'] = $producto->getAllProductos();
+	$response['list'] = $producto->getAllProductos();   
 	
 	echo json_encode( $response );
 	

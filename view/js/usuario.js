@@ -109,6 +109,7 @@ function loggedVerify() {
             console.log(result);
 
             var usuario = result.user;
+            var tiendas = result.tienda[0];
 
             if (result.error === "no error") {
                 $("#perfil").show();
@@ -120,7 +121,7 @@ function loggedVerify() {
                 if (usuario.admin === 0) {
                     zonaAdministrador(usuario);
                 } else {
-                    zonaAdminTienda(usuario);
+                    zonaAdminTienda(usuario, tiendas);
                     $("#btnVerUsuarios").click(function () {
                         verUsuarios(usuario);
                         //Botónes nav
@@ -231,9 +232,9 @@ function zonaAdministrador(usuario) {
 
 }
 
-function zonaAdminTienda(usuario) {
+function zonaAdminTienda(usuario, tiendas) {
     var usuarioDatos = "";
-
+    console.log(tiendas);
 
     if (usuario.admin == 1) {
         usuarioDatos = `<div class='botonesAcciones'>
@@ -271,7 +272,7 @@ function zonaAdminTienda(usuario) {
 		   <li><u>Apellido</u>: ${usuario.apellidos}</li>
 		   <li><u>Correo electrónico</u>: ${usuario.correo}</li>
 		   <li><u>Contraseña actual</u>: ${usuario.password}</li>
-		   <li><u>Administrador</u>: ${usuario.admin}, eres administrador de la tienda </li>
+		   <li><u>Administrador</u>: ${usuario.admin}, eres administrador de la tienda &nbsp ${tiendas.nombreTienda}</li>
 		 </ul>
 	   </div>
 	 </div>`;
@@ -323,12 +324,71 @@ function zonaAdminTienda(usuario) {
     $("#verproductos").click(function () {
         $(".modificartienda, #formNuevaTienda, #zonaUsuario, .eliminartienda").hide();
         $("#productos").show();
-        verProductos(usuario);
+        verProductos(tiendas);
 
     })
 }
 
 
+function verProductos() {
+    var url = "../../controller/cProductos.php";
+
+    fetch(url, {
+
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+        })
+        .then(res => res.json()).then(result => {
+
+            var myHtml = "";
+            var usuarios = result.list;
+
+            for (let i = 0; i < usuarios.length; i++) {
+
+                if (usuario.admin == 0) {
+                    myHtml += "<div class='col-md-12' >" +
+                        "<div class='card  box-shadow' name='cardUsuario' id='card'>" +
+                        "<div class='card-body'  id='datosusuariocard'>" +
+                        "<p class='card-text '><u>Id</u>: " + usuarios[i].idUsuario + "</p>" +
+                        "<b><p class='card-text ' ><u>Nombre</u>: " + usuarios[i].nombreUsuario + "</p></b><br>" +
+                        "<p class='card-text '><u>Apellido</u>: " + usuarios[i].apellidos + "</p>" +
+                        "<p class='card-text '><u>Correo electrónico</u>: " + usuarios[i].correo + "</p>" +
+                        "<p class='card-text '><u>Contraseña</u>: " + usuarios[i].password + "</p>" +
+                        "<p class='card-text '><u>Administrador</u>: Tipo " + usuarios[i].admin + "</p>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>"
+                } else if (usuario.admin == 1) {
+                    myHtml += "<div class='col-md-12' >" +
+                        "<div class='card  box-shadow' name='cardUsuario' id='card'>" +
+                        "<div class='card-body' id='datosusuariocard'>" +
+                        "<p class='card-text' ><u>Id</u>: " + usuarios[i].idUsuario + "</p>" +
+                        "<b><p class='card-text'><u>Nombre</u>: " + usuarios[i].nombreUsuario + "</p></b><br>" +
+                        "<p class='card-text '><u>Apellido</u>: " + usuarios[i].apellidos + "</p>" +
+                        "<p class='card-text '><u>Correo electrónico</u>: " + usuarios[i].correo + "</p>" +
+                        "<p class='card-text '><u>Contraseña</u>: " + usuarios[i].password + "</p>" +
+                        "<p class='card-text '><u>Administrador</u>: Tipo " + usuarios[i].admin + "</p>" +
+                        "<div class='accionesUsuario'>" +
+                        "<button class='btn btn-danger borrarUser' data-id=" + usuarios[i].idUsuario + "><i class='fas fa-trash'></i></button>" +
+                        "<button class='btn btn-warning updateUser' data-id=" + usuarios[i].idUsuario + " data-nombre=" + usuarios[i].nombreUsuario +
+                        " data-apellido=" + usuarios[i].apellidos + " data-email=" + usuarios[i].correo + " data-contrasena=" + usuarios[i].password + " data-administrador=" + usuarios[i].admin + "><i class='fas fa-pen'></i></button>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>"
+                }
+
+            }
+
+
+        })
+        .catch(error => console.error('Error status:', error));
+
+
+}
 
 
 function loadTipoTienda(id) {
@@ -441,7 +501,7 @@ function updateShop(idTienda) {
         .then(res => res.json()).then(result => {
 
             var tienda = result.list;
-
+            console.log(tienda);
             formulario = " <h1 class='text-center'>" + tienda[0].nombreTienda + "</h1>\
 			<div class='underline'> </div>\
 			<form>\
@@ -465,9 +525,7 @@ function updateShop(idTienda) {
 			 </div>\
 			 <div class='form_row'>\
                     <label for='name'>Tipo tienda: <span class='text-danger'>*</span></label>\
-                    <select name='tipo' id='tipotiendaUpdate'>\
-                        <option value='0'>Selecciona el tipo de tienda</option>\
-                    </select>\
+                    <input type='text' class='form-control' data-id='" + tienda[0].objEscaparate.idTipo + "'  value='" + tienda[0].objEscaparate.nombre + "' id='tipoTiendaUpdate' placeholder='Tipo tienda' disabled>\
                 </div>\
 		  <div class='form-group'>\
 		     <div class='col-lg-6 p-3 text-center' id='containerImagen'>\
@@ -490,6 +548,8 @@ function updateShop(idTienda) {
             $("#telefonoTiendaUpdate").val(tienda[0].telefono);
             $("#tipoTiendaUpdate").val(tienda[0].objEscaparate.nombre);
             $("#textoTiendaUpdate").val(tienda[0].texto);
+
+
 
 
             //Update tienda imagen

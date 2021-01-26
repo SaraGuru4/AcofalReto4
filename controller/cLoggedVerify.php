@@ -1,5 +1,6 @@
 <?php
 	require_once '../model/usuarioModel.php';
+	require_once '../model/tiendaModel.php';
 	
 	session_start();
 	
@@ -8,8 +9,9 @@
 	if ( ( isset( $_SESSION[ 'correo' ] ) ) && ( isset( $_SESSION[ 'admin' ] ) ) ) {
 		
 		$user = new usuarioModel();
+		$tienda= new tiendaModel();
 		
-		
+
 		$user->setCorreo( $_SESSION[ 'correo' ] );
 		$user->setAdmin( $_SESSION[ 'admin' ] );
 		
@@ -18,8 +20,10 @@
 		$user->setNombreUsuario( $_SESSION[ 'nombreUsuario' ] );
 		$user->setApellidos( $_SESSION[ 'apellidos' ] );
 		$user->setPassword( $_SESSION[ 'password' ] );
-		
+		$tienda->setIdTienda($_SESSION[ 'admin' ]);
+
 		$response[ 'user' ] = $user->objVars();
+		$response ['tienda']=$tienda->getById();
 		$response[ 'error' ] = "no error";
 		
 	} else {

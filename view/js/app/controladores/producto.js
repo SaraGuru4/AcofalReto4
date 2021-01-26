@@ -10,36 +10,32 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     }, function errorCallback(response) {
         alert(response.error);
     });
-
-
+    //Muestra el formulario de insertar producto
     $scope.idProducto2= "";
-    $scope.idTienda2 = "";
     jQuery(document).ready(function($){
         $(document).ready(function() {
-            //Recogemos los datos de la tienda
-            $scope.idTienda = location.search.substring(1, location.search.length);
             $('.mi-selector').select2();
             $('.sel').change(function(){
                 //Recogemos la id del producto
                 $scope.idProducto = $('.sel').val();
-                verInsert($scope.idTienda,$scope.idProducto);
-                
+                verInsert($scope.idProducto);  
             });
                 
         });
     });
-
-    
-
-
-    //Con la idTienda y el idProducto hacemos el formulario de stock
-    //Insertar en stock.
-    function verInsert(tienda,producto){
-        alert(tienda);
+        //Insertar en stock.
+    function verInsert(producto){
         $('#idProducto2').val(producto);
-        $('#idTienda2').val(tienda);
+        $('#idTienda2').val(location.search.substring(1, location.search.length));
         $('.insertarStock').css("display","flex");
-        alert($scope.idProducto2);
     }
+    function insesrtarProducto(){
+        //Meter aqui los valores del formulario y hacer un post a insertar
+    }
+
+    //Hacer una lista de tus productos y modificar y delete
+
+
+    //Cuando acabe esto ir a admin y mirar bien y poner lo de añadir producto
 
 }]);
