@@ -1,0 +1,1 @@
+const miApp = angular.module("miApp", []);

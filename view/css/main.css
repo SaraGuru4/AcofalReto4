@@ -1,0 +1,329 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.background-top {
+    height: 50px;
+    width: 100%;
+    background-color: black;
+}
+
+.background-top .imagenes {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 50px;
+}
+
+.background-top img {
+    height: 50px;
+    width: 75px;
+    background-color: transparent;
+    padding: 0.5em;
+    object-fit: cover;
+}
+
+body {
+    background: white;
+    font-family: 'Raleway', sans-serif;
+    overflow-x: hidden;
+}
+
+/*Logo menú*/
+
+.menu {
+    height: 120px;
+    background-color: white;
+    width: 100%;
+}
+
+.menu .log-box img {
+    margin: 0 30px;
+    width: 150px;
+}
+
+/*Menú principal*/
+
+.menu .list-container {
+    position: relative;
+    display: flex;
+}
+
+.menu .list-container .lists {
+    position: relative;
+    display: flex;
+    margin-left: 30px;
+    transition: 0.5s;
+}
+
+/*Login*/
+
+.menu .list-container .login {
+    position: relative;
+    display: flex;
+    margin-left: 400px;
+    transition: 0.5s;
+}
+
+.login li i {
+    margin-right: 10px;
+}
+
+#logout {
+    display: none;
+}
+
+
+
+.menu .list-container .lists li,
+.menu .list-container .login li {
+    list-style: none;
+    padding: 0.6em;
+}
+
+#perfil {
+    display: none;
+}
+
+.menu .list-container .lists li a {
+    color: #666666;
+    font-size: 0.8em;
+    text-decoration: none;
+    padding-bottom: 1em;
+}
+
+#usuario {
+    margin-top: 5px;
+    margin-left: 70px;
+    color: #666666;
+    font-size: 0.8em;
+    text-decoration: none;
+    padding-bottom: 1em;
+}
+
+.menu .list-container .login li a {
+    color: #0255A5;
+    font-weight: 600;
+    font-size: 0.8em;
+    text-decoration: none;
+    padding-bottom: 1em;
+}
+
+.menu .list-container .lists li a:hover {
+    border-bottom: 3px solid #666666;
+}
+
+.menu .list-container .login li a:hover {
+    border-bottom: 3px solid #0255A5;
+}
+
+div.barra {
+    border: 0.1px solid grey;
+    height: 25px;
+    margin-top: 8px;
+}
+
+/*Menu lateral, que va a estar oculto en pantalla grande*/
+
+.sidemenu {
+    display: none;
+}
+
+/*botón para desplegar menú lateral*/
+
+#mainbox {
+    display: none;
+}
+
+/*Menú sticky*/
+
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+/*Go-top*/
+
+.go-top {
+    position: fixed;
+    bottom: 30px;
+    left: 93%;
+    background-color: gray;
+    color: gray;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: white;
+    /*Al principio no se verá, cuando bajemos 500px saldrá*/
+    display: none;
+    transition: all 0.3s;
+    line-height: 20px;
+    opacity: 0.5;
+    padding: 0.5em;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 9999999;
+}
+
+.go-top i {
+    font-size: 18px;
+    color: black;
+}
+
+/*Pie de texto*/
+
+#pietxt {
+    width: 100%;
+    padding: 24px 0;
+    background: #b63224;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+}
+
+/*Footer*/
+
+#footer {
+    background-color: #a1815e !important;
+}
+
+.inner {
+    width: 100%;
+    height: auto;
+    max-width: 1210px;
+    padding: 0 20px;
+    position: relative;
+    margin: 0 auto;
+    padding-bottom: 0;
+    overflow: hidden;
+    padding: 100px;
+}
+
+.copyright {
+    float: none;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+#footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+footer img {
+    height: 23px;
+    width: auto;
+}
+
+@media screen and (max-width: 990px) {
+
+    /*Menu Lateral*/
+    .sidemenu {
+        /*El width aplicamos en js al pulsar el botón de OpenMenu*/
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: #f2f2f2;
+        z-index: 1;
+        padding-top: 100px;
+        display: block;
+        z-index: 9999;
+        overflow-y: scroll;
+        height: 100vh;
+    }
+
+    /*Container de los enlaces*/
+
+    .enlaces {
+
+        width: 90%;
+        margin: 0 auto;
+        background-color: white;
+        padding: 20px;
+        height: 80vh;
+    }
+
+
+    .sidemenu .enlaces a {
+        padding: 1rem 1.25rem;
+        text-decoration: none;
+        font-size: 17px;
+        display: block;
+        color: #495057;
+        margin-top: -3px;
+        border-bottom: 0.5px solid #f2f2f2;
+        width: 100%;
+        text-align: start;
+    }
+
+    .sidemenu .enlaces a:hover {
+
+
+        color: black;
+        background-color: whitesmoke;
+        border-width: 100%;
+
+    }
+
+    .sidemenu .enlaces .active {
+
+
+        color: #fff;
+        background-color: #b63224;
+    }
+
+
+    /*Cuando se haga hover en el btón activo para que no cambie de color al blanco y se mantega en azul*/
+    .sidemenu .enlaces .active:hover {
+
+
+        color: #fff;
+        background-color: #b63224;
+    }
+
+    /*Botón cerrar menu lateral*/
+    .sidemenu .closebtn {
+        position: absolute;
+        top: 5px;
+        right: 0;
+        font-size: 36px;
+        color: black !important;
+
+    }
+
+    .sidemenu .closebtn:hover {
+        font-size: 36px;
+        color: red !important;
+        text-decoration: none;
+    }
+
+    /*Botón para abrir menú lateral*/
+    #mainbox {
+        font-size: 18px;
+        cursor: pointer;
+        display: block;
+        margin: 20px 0 20px 40px;
+        position: absolute;
+        z-index: 999;
+    }
+
+    .menu .log-box img {
+        display: none;
+    }
+
+    /*Lista de menú display none*/
+    .menu .list-container {
+        display: none;
+    }
+
+    #perfilsidebar{
+
+        display: none;
+    }
+}

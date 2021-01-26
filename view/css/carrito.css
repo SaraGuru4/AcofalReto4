@@ -1,0 +1,119 @@
+/* GÉNERICOS */
+
+.img-button {
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+/* ESTILOS COMPARTIDOS */
+
+.carrito, .carrito::after {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.remove, .pay {
+    background-color: #f6bf26;
+}
+
+.carrito, .producto > span {
+    color: #fff;
+}
+
+#shopping-final-price, .pay {
+    margin-top: 1rem;
+}
+
+/* CARRITO */
+
+.carrito {
+    position: fixed;
+    z-index: 20;
+    right: 1rem;
+    bottom: -1rem;
+    width: fit-content;
+    max-height: 0;
+    background-color: rgb(32, 32, 32);
+    padding: 0.5rem;
+    transition: all 1s ease;
+}
+
+.carrito::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: 35px;
+    background: url('../img/carrito/shopping-cart.png') no-repeat center center rgb(32, 32, 32);
+    background-size: 35px;
+    height: 50px;
+    width: 50px;
+}
+
+.carrito:hover {
+    bottom: 0;
+    max-height: 100vh;
+}
+
+/* TIENDAS CARRITO */
+
+.shop {
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+/* PRODUCTOS CARRITO */
+
+.productosCarrito {
+    overflow-y: scroll;
+    max-height: 50vh;
+    margin: 0.5rem 0;
+}
+
+.producto {
+    display: grid;
+    grid-template-columns: 100px 70px 80px 80px 40px;
+    grid-gap: 10px;
+    margin: 5px 1rem;
+    align-items: center;
+}
+
+.producto > span {
+    text-align: center;
+    vertical-align: center;
+}
+
+.producto-img {
+    width: 70px;
+    height: 50px;
+    box-shadow: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 70px 50px;
+    border-radius: 0.25rem;
+}
+
+.producto-price {
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    color: #fff;
+    width: 80px;
+}
+
+.remove {
+    padding: 5px;
+    box-shadow: -1px 2px 8px black;
+}
+
+/* PIE DEL CARRITO */
+
+#shopping-final-price {
+    text-align: right;
+    padding-right: 1.7rem;
+}
+
+.pay {
+    padding: 0.1rem 0;
+    text-align: center;
+}

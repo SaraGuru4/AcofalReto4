@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html id="pagIndex" ng-app='miApp'>
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--Logo y titulo en la pestaña-->
+  <link rel="icon" href="view/img/index/logo2.jpg" type="image/png">
+  <title>Ayuntamiento de Falces</title>
+
+  <!--Bootstrap CSS-->
+  <link rel="stylesheet" href="../reto4/view/css/bootstrap.min.css">
+
+
+  <!--Nuestro css-->
+  <link rel="stylesheet" href="view/css/index.css">
+  <link rel="stylesheet" href="view/css/main.css">
+  <link rel="stylesheet" href="view/css/login.css">
+
+
+  <!--Font Awesome-->
+  <script src="../reto4/view/js/fontAwesome.js"></script>
+
+  <!--Librería Owl Carousel ccs-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+    crossorigin="anonymous" />
+
+</head>
+
+<body>
+  <div ng-controller="miControlador">
+    <header id="header">
+      <div class="background-top">
+        <div class="imagenes">
+          <img src="view/img/index/top1.jpg" alt="">
+          <img src="view/img/index/top2.jpg" alt="">
+          <img src="view/img/index/top3.jpg" alt="">
+        </div>
+
+      </div>
+      <!--Menu -->
+      <div class="menu">
+
+        <!--Logo -->
+        <div class="log-box">
+          <img src="view/img/index/logo.jpg" alt="" width="150px" id="logo"></span>
+        </div>
+
+        <div class="list-container">
+
+          <div class="lists" id="list">
+            <li><a href="index.html">HOME</a></li>
+            <li> <a href="#noticias" id="noticia">NOTICIAS</a></li>
+            <li> <a href="view/pages/escaparate.html">ESCAPARATE LOCAL</a></li>
+            <li> <a href="view/pages/videos.html" id="vid">VÍDEOS</a></li>
+            <li> <a href="view/pages/contacto.html">CONTACTO</a></li>
+            <li> <a href="view/pages/usuario.html" id="perfil">PERFIL</a></li>
+            <li>
+              <div id="usuario">
+                </h2>
+            </li>
+          </div>
+          <div class="login" id="list2">
+            <li><a href="#" id="registrate" onclick="abrirLoginIndex()">REGÍSTRATE</a></li>
+            <div class="barra"></div>
+
+            <li> <a href="#" class="botonLogin" id="btnlogin" onclick="abrirLoginIndex()"><i
+                  class="fas fa-user"></i>LOGIN</a></li>
+
+            <li> <a href="#" class=" botonLogout" id="logout"><i class="fas fa-sign-out-alt"></i></i>LOGOUT</a></li>
+
+            <section id="loginmodal">
+              <div id="fade" class="overlay1"></div>
+              <div id="light" class="modal">
+                <a href="#" onclick="cerrarLoginIndex()" class="closelogin">&times;</a>
+                <div class="container" id="container">
+                  <div class="form-container sign-up-container" id="formregistro">
+                    <form action="#">
+                      <h1>Crea una cuenta</h1>
+                      <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                      </div>
+                      <input type="text" placeholder="Nombre" id="nombreRegistro" />
+                      <input type="text" placeholder="Email" id="emailRegistro" />
+                      <input type="password" id="passwordRegistro" placeholder="Password" />
+                      <div id="cambiarIcono" class="cambiarIconoLogin2">
+                        <i class="fas fa-eye" onclick="mostrarContrasena()"></i>
+                      </div>
+                      <button id="register">Registrarse</button>
+                    </form>
+                  </div>
+                  <div class="form-container sign-in-container">
+                    <form action="#">
+                      <h1>Iniciar sesión</h1>
+                      <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                      </div>
+                      <input type="correo" id="email2" placeholder="Correo electrónico" />
+                      <input type="password" id="password2" placeholder="Contraseña" />
+                      <br>
+                      <button id="login">Iniciar sesión</button>
+                    </form>
+                  </div>
+                  <div class="overlay-container">
+                    <div class="overlay">
+                      <div class="overlay-panel overlay-left">
+                        <h1>Bienvenido de nuevo!</h1>
+                        <p>Para mantenerse conectado con nosotros, ingrese su información personal</p>
+                        <button class="ghost" id="signIn">Iniciar sesión</button>
+                      </div>
+                      <div class="overlay-panel overlay-right">
+                        <h1>Hola!</h1>
+                        <p>Ingrese sus datos personales y comience un nuevo viaje con nosotros</p>
+                        <button class="ghost" id="signUp">Registrarse</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!--Botón para abrir el menú lateral-->
+        <div id="mainbox" onclick="openMenuIndex()">&#9776; &nbsp; MENÚ</div>
+      </div>
+      <!--Menu Lateral-->
+
+      <div id="menu" class="sidemenu">
+
+        <div class="enlaces">
+          <a href="index.html" class="active"><i class="fas fa-home"></i>&nbsp;Home</a>
+
+          <a href="#noticiassection" onclick="closeMenuIndex()"><i class="fas fa-newspaper"></i>&nbsp;Noticias</a>
+
+          <a href="view/pages/escaparate.html" onclick="closeMenuIndex()"><i class="fas fa-hotel"></i>&nbsp; Escaparate
+            local </a>
+
+          <a href="view/pages/videos.html" onclick="closeMenuIndex()"><i class="fas fa-video"></i>&nbsp;Vídeos </a>
+
+          <a href="#" onclick="closeMenuIndex()"><i class="fas fa-users"></i>&nbsp;Ciudadanía </a>
+          <a href="view/pages/contacto.html" onclick="closeMenuIndex()"><i
+              class="fas fa-address-book"></i>&nbsp;Contacto </a>
+          <a href="../pages/usuario.html" onclick="closeMenuPerfil()" id="perfilsidebar"><i
+              class="fas fa-user"></i>&nbsp;Perfil
+          </a>
+          <a href="#" onclick="abrirLoginIndex()"><i class="fas fa-user"></i> &nbsp;Login</a>
+        </div>
+        <a href="#" class="closebtn" onclick="closeMenuIndex()">&times;</a>
+
+      </div>
+
+      <!--Imagen-->
+      <!-- <div class="img-header"></div> -->
+      <!--Video-->
+      <div class="video position-relative" id="videoDiv">
+        <video  id="video" autoplay loop muted>
+          <source src="view/Videos/VIDEO CAMPAÑA COMERCIO FALCES prproj.mp4" type="video/mp4" />
+          <div>
+            <a href="index.html" class="d-block">
+              <img src="view/img/index/logo.jpg" alt="">
+            </a>
+          </div>
+        </video>
+        <div class="fade-video w-100"></div>
+      </div>
+    </header>
+
+
+    <!--Bonos-->
+    <section class="jumbotron" id="bonossection">
+      <div class="row justify-content-center ">
+        <h2 class="titulo">Destacamos</h2>
+      </div>
+      <div class="linea"></div>
+      <div class="owl-carousel owl-theme">
+        <div class="item">
+          <img src="view/img/index/top1.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="view/img/index/top2.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="view/img/index/top3.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="view/img/index/top1.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="view/img/index/top2.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="view/img/index/top3.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="view/img/index/top1.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="view/img/index/top2.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="view/img/index/top3.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="view/img/index/top1.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="view/img/index/top2.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="view/img/index/top3.jpg" alt="">
+        </div>
+      </div>
+    </section>
+
+    <!--Fin section bonos-->
+
+    <!--Cominezo las 3 Noticias-->
+    <section class="noticias" id="noticiassection" ng-show="noticias==='si'">
+      <div class="row justify-content-center ">
+        <h2 class="titulo"> Últimas Noticias</h2>
+      </div>
+      <div class="linea"></div>
+      <div class="album">
+        <div class="container">
+          <div class="row" id="noticias">
+            <!-- Insertar las ultimas 3 noticias desde JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Go top-->
+    <div class="go-top">
+      <span><i class="fas fa-arrow-up"></i></span>
+    </div>
+    <!--Go top fin-->
+
+    <!--Pie de texto-->
+    <div id="pietxt">
+      AYUNTAMIENTO DE FALCES &nbsp; · &nbsp; PLAZA DE LOS FUEROS, 11 &nbsp; · &nbsp; 31370 FALCES (NAVARRA) &nbsp;
+      · &nbsp; T: 948 734 072 &nbsp; · &nbsp; E-MAIL: <a href="mailto:ayto@falces.org" target="_blank"
+        style="color: #fff;">AYTO@FALCES.ORG</a>
+    </div>
+    <!--Footer-->
+    <footer id="footer" class="footer footer-dark footer-footer-classic">
+      <div class="container">
+        <div class="inner">
+
+          <!-- Text -->
+          <p class="copyright subpixel">
+            <a href="http://www.falces.org/aviso-legal/">Aviso Legal</a> &nbsp; · &nbsp; <a
+              href="http://www.falces.org/politica-de-cookies/">Política de cookies</a> &nbsp; · &nbsp;
+            ¡Síguenos! &nbsp; <a href="http://instagram.com/ayuntamientofalces" target="_blank"><img
+                src="http://www.falces.org/2020/wp-content/uploads/2020/02/instablack.png"></a> &nbsp;
+            <a href="https://www.facebook.com/FalcesalDia/" target="_blank"><img
+                src="http://www.falces.org/2020/wp-content/uploads/2020/02/faceblack.png"></a>
+          </p>
+
+        </div>
+      </div>
+    </footer>
+    <!--Fin footer-->
+
+    <!-- JQUERY -->
+    <script src="view/js/jquery-3.5.1.min.js"></script>
+
+    <!-- POPPER -->
+
+    <script src="view/js/popper.min.js"></script>
+    <!-- BOOTSTRAP JS -->
+
+    <script src="view/js/bootstrap.min.js"></script>
+
+    <!--Librería Owl Carousel js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+      integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+      crossorigin="anonymous"></script>
+
+    <!-- Nuestro JavaScript -->
+    <script src="view/js/main.js"></script>
+    <script src="view/js/index.js"></script>
+    <script src="view/js/login.js"></script>
+    <script src="view/js/registro.js"></script>
+
+
+  </div>
+</body>
+
+</html>

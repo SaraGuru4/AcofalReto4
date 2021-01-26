@@ -1,0 +1,95 @@
+.tittle {
+    background: #efefef;
+    color: #4b4b4b;
+    height: 100px;
+    padding: 20px;
+}
+H1{
+   color: #4b4b4b;
+}
+.parte1{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.parte1 .imagen img{
+    width: 80vh;
+    height: 60vh;
+}
+.parte1 .texto1{
+    width: 80%;
+    padding: 40px;
+    margin-top: 30px;
+    font-size: large;
+    text-align: justify;
+    line-height : 40px;
+    text-indent: 50px;
+}
+.parte2 .texto1{
+    width: 80%;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: large;
+    text-align: justify;
+    line-height : 40px;
+    text-indent: 50px;
+}
+.videosPag{
+    justify-content: space-around;
+    margin:40px;
+    padding: 20px;
+}
+.videosPag video{
+    border:4px #4b4b4b solid;
+    width: 98% !important;
+}
+.parte2{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.parte2 .videoAjo video{
+    width: 700px;
+}
+.parte1 .imagen3 img{
+    width: 80vh;
+    height: 60vh;
+}
+.parte4{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.parte4 .texto1{
+    width: 80%;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: large;
+    text-align: justify;
+    line-height : 40px;
+    text-indent: 50px;
+}
+.parte4 .imagen4 img{
+    width: 80vh;
+    height: 60vh;
+}
+
+.foto img{
+    transition:all .5s ease-in-out;
+    width: 100%;
+    height: 100%;
+    border:4px #4b4b4b solid;
+}
+.foto img:hover{
+    filter: saturate(180%);
+    -webkit-transform:scale(1.17);
+    transform:scale(1.17);
+    border:4px #4b4b4b solid;
+}
+.foto{
+    width:calc( ( 100% / 4 ) - 5rem );
+    height: 250px;
+}

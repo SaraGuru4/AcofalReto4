@@ -1,0 +1,87 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.principal {
+  margin: 20px 40px 20px 40px;
+}
+
+.tittle {
+  background: #efefef;
+  color: #4b4b4b;
+  height: 100px;
+  padding: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #4b4b4b;
+  transition: all .5s ease-in-out;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.card {
+  transition: all .5s ease-in-out;
+  border-radius: 0;
+  background-color: rgb(226, 226, 226);
+  text-align: center;
+}
+
+/*Flecha de cada card escparate*/
+/* #flecha{
+  background-color:#da2713;
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+#flecha::after{
+  content: '';
+  position: absolute;
+  bottom: -45%;
+  left: 50%;
+  border: 10px solid transparent;
+  margin: -10px 0 0 -20px;
+  width: 0; 
+  height: 0; 
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #da2713;
+} */
+
+
+.imagen {
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+}
+
+.imagen .lupa {
+  transition: all .5s ease-in-out;
+  display: none;
+  position: absolute;
+  bottom: 30%;
+  right: 35%;
+}
+
+.card img {
+  border-radius: 0;
+  transition: all .5s ease-in-out;
+}
+
+.card:hover {
+  background-color: #da2713;
+}
+
+.card:hover img {
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+  filter: grayscale(80%);
+}
+
+.card:hover .lupa {
+  display: block;
+}

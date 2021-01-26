@@ -1,0 +1,313 @@
+/*Botones en el navbar*/
+
+.botonesAcciones {
+    text-align: start;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+/*Datos ahref nav*/
+
+.volveraDatos {
+    display: none;
+}
+
+/*Lupa buscar usuario*/
+
+#btnBuscarUsuario {
+    display: none;
+    margin-left: 200px;
+}
+/*Filtro que busca los usuarios*/
+#divFiltro {
+    display: none;
+    padding: 5px;
+    margin: 10px auto;
+    width: 70%;
+}
+
+/*Cerrar filtro*/
+
+.cerrarfiltro {
+    font-size: 60px;
+    color: black;
+    margin-left: 800px;
+}
+
+/*Da color rojo al botón de cerra filtro*/
+.cerrarfiltro:hover {
+    color: red;
+    text-decoration: none;
+}
+
+/*Colores azules a los botones del nav*/
+.botonesAcciones a {
+    color: #0255A5;
+    font-weight: 600;
+    font-size: 1em;
+    text-decoration: none;
+    padding-bottom: 1em;
+    margin-left: 30px;
+}
+/*Al hacer hover en los botones del nav*/
+.botonesAcciones a:hover {
+    border-bottom: 3px solid #0255A5;
+}
+
+/*header del container de datos de usuario*/
+.header {
+    text-align: center;
+    height: 600px;
+    padding: 12px;
+    background-color: white;
+    width: 70%;
+    margin: 0 auto;
+    border: 2px solid black;
+}
+
+.header h1 {
+    color: black;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/*imagen usuario*/
+.avatar {
+    height: 140px !important;
+    width: 140px !important;
+    border-radius: 50%;
+}
+
+.nombreUsuario {
+    font-size: 18px;
+    margin-top: 14px;
+}
+
+.datosUsuario {
+    list-style: none;
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.datosUsuario li {
+    font-size: 0.5em;
+    font-weight: 600;
+    margin: 20px;
+}
+
+/* Apartado de usuarios Usuarios*/
+/*Div general de usuarios*/
+#usuarios {
+    width: 100%;
+    margin: auto;
+    /*Color de  la clase jumbotron en Bootstrap 4 */
+    background-color: #e9ecef;
+    height: auto;
+}
+/*Card de cada usuario*/
+#usuarios #card {
+    height: 100px;
+    width: 100%;
+    background-color: white;
+    margin-top: 20px;
+}
+
+.card-body {
+    display: flex;
+}
+
+.card-body p {
+    margin: 20px;
+}
+
+.accionesUsuario {
+    margin-left: 100px;
+    display: flex;
+    text-align: center;
+}
+
+.card-body button {
+    margin: 10px;
+    padding: 10px;
+    height: 40px;
+}
+
+.card-body button i {
+    font-size: 20px;
+}
+
+/*Formulario Update*/
+
+input {
+    line-height: normal;
+}
+
+#formUpdate, #formUpdateDatosPersonales {
+    border: solid 3px #474544;
+    width: 95%;
+    margin: 60px auto;
+    position: relative;
+    display: none;
+}
+
+#formUpdate h1, #formUpdateDatosPersonales h1 {
+    text-align: center;
+    color: black;
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 40px;
+}
+
+form {
+    padding: 37.5px;
+    margin: 50px 0;
+}
+
+.underline {
+    border-bottom: solid 2px #474544;
+    margin: 2em auto;
+    width: 150px
+}
+
+.icon {
+    display: block;
+    fill: #474544;
+    height: 50px;
+    margin: 0 auto;
+    width: 50px;
+}
+
+/*Input de la izquierda el id y el input de la derecha el admin*/
+
+.adminForm {
+    float: right;
+    width: 45%;
+}
+
+.idForm {
+    float: left;
+    width: 45%;
+}
+
+/*No queremos actualizar el admin ni el id, ponemos el input más oscuro*/
+
+input[id='admin_input'], input[id='id_input'], input[id='id_inputpersonal'], input[id='admin_inputpersonal'] {
+    opacity: 0.5;
+    border: none;
+    border-bottom: solid 2px #474544;
+    color: #474544;
+    font-size: 1.000em;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin: 0em 0 1.875em 0;
+    padding: 0 0 0.875em 0;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+
+input[type='text'], [type='email'] {
+    background: none;
+    border: none;
+    border-bottom: solid 2px #474544;
+    color: #474544;
+    font-size: 1.000em;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin: 0em 0 1.875em 0;
+    padding: 0 0 0.875em 0;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+
+input[type='text']:focus, [type='email']:focus, [type='number']:focus {
+    outline: none;
+    padding: 0 0 0.875em 0;
+}
+
+.passwordForm, .nombre, .apellidoForm, .correoForm {
+    width: 100%;
+}
+
+.submit {
+    margin-left: 560px;
+    margin-top: 70px;
+}
+
+/*Boton cancelar update form*/
+
+#cancelarUpdate, #cancelarInsertTienda {
+    background: none;
+    border: solid 2px #474544;
+    color: #474544;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 0.875em;
+    font-weight: bold;
+    outline: none;
+    padding: 20px 25px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+/*botón  aceptar update form y el de datos generales */
+
+#aceptarUpdate, #aceptarPersonal, #aceptarinsertTienda {
+    background: none;
+    border: solid 2px #474544;
+    color: #474544;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 0.875em;
+    font-weight: bold;
+    outline: none;
+    padding: 20px 25px;
+    width: 240px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    margin: 10px;
+}
+
+#aceptarUpdate:hover, #aceptarPersonal:hover, #aceptarinsertTienda:hover {
+    background: green;
+    color: #F2F3EB;
+}
+
+#cancelarUpdate:hover, #cancelarInsertTienda:hover {
+    background: red;
+    color: #F2F3EB;
+}
+
+/*ACTUALIZAR TIENDA FORMULARIO e Insertar*/
+
+#formNuevaTienda, #añadirForm {
+    border: solid 3px #474544;
+    width: 95%;
+    margin: 5px auto;
+    position: relative;
+    display: none;
+    
+}
+
+#fotoPerfil {
+    height: 200px;
+    width: 200px;
+    margin: 2px solid black;
+
+}
+
+/*Combo box*/
+.modificartienda, .eliminartienda{
+
+    text-align: center;
+}

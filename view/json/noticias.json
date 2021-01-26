@@ -1,0 +1,27 @@
+[
+    {
+        "id":0,
+        "titulo": "Aceites ecológicos Aranda (Navarra), plata en el concurso internacional Ecotrama",
+        "imagen": "view/img/index/noticia1_index.jpg",
+        "texto": "Ecotrama, organizado por Ecovalia, se celebra cada año en Granada para descubrir los mejores aceites ecológicos de la última cosecha. Aranda, en su primera participación y con olivos jóvenes (a más edad mayor calidad) ha conseguido un Ecotrama de plata.",
+        "fecha": "4h",
+        "tipo": "Noticia"
+    },
+    {
+        "id":1,
+        "titulo": "Falces, con las fiestas en el corazón",
+        "imagen": "view/img/index/noticia2_index.jpg",
+        "texto": "Este año está marcado por la pandemia del COVID-19. Un virus que nos ha obligado a despedir, sin previo aviso, a falcesinas y falcesinos. El Coronavirus parecía lejano, pero la realidad ha dejado patente que el COVID-19 ha zarandeado de lleno los planes, las costumbres y el día a día de nuestro pueblo.  Por todas las personas que se han ido, por los profesionales sanitarios, por todos nosotros, el Pleno municipal acordó por unanimidad la cancelación de las Fiestas Patronales en honor a la Virgen de Nieva. Así, se adhirió a las recomendaciones establecidas por el Gobierno de Navarra y la Federación Navarra de Municipios y Concejos.",
+        "fecha": "24h",
+        "tipo": "Covid-19"
+    },
+    {
+        "id":2,
+        "titulo": "VI Pilón Trail Acofalces.",
+        "imagen": "view/img/index/noticia3_index.jpg",
+        "texto": "La sexta edición de la carrera de montaña Pilón Trail Acofalces se celebrará el domingo 4 de agosto a las 09:30 horas en la localidad de Falces (Navarra). La prueba tendrá un trazado de 16 kilómetros con salida y llegada en la Plaza de los Fueros de Falces. El recorrido transcurre por senderos de Falces con un desnivel acumulado de 1.200 metros. Para esta sexta edición, habrá una segunda distancia más corta de 9 km con un desnivel de 600 metros acumulados.En la carrera podrán participar mayores de 16 años que lo deseen, hasta un máximo previsto de 400 corredores (250 en la prueba larga y 150 en la prueba corta). ",
+        "fecha": "3h",
+        "tipo": "Noticia"
+    }
+  
+]

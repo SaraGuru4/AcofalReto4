@@ -1,0 +1,49 @@
+#flecha{
+    background-color: #b63224;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    
+}
+
+#flecha::after, #flecha1::after{
+    content: '';
+    position: absolute;
+    bottom: -45%;
+    left: 50%;
+    border: 10px solid transparent;
+    margin: -10px 0 0 -20px;
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #b63224;
+}
+
+#flecha h4, #flecha1 h4{
+
+font-size: 40px;
+color: white;
+font-weight: 600;
+
+}
+/*Primera flecha, esta tiene el margin top en 35, la otra en 5*/
+#flecha1{
+    background-color: #b63224;
+    position: relative;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+.botoncomentarioenviar {
+
+    padding: 15px;
+    background-color: #b63224;
+    color: white;
+    border: 2px solid black;
+}
+.botoncomentarioenviar:hover{
+
+    background-color: #e62914;
+}
+

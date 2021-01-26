@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html id="pagTienda" ng-app='miApp'>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Logo y titulo en la pestaña-->
+    <link rel="icon" href="../img/logo2.jpg" type="image/png">
+    <title>Ayuntamiento de Falces</title>
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="../css/t1-bootstrap.min.css">
+    <!--Nuestro css-->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/tienda4.css">
+
+</head>
+
+<body ng-controller="miControlador">
+    <header id="header">
+        <!-- Main Nav -->
+
+        <!-- Banner -->
+        <div class="site-blocks-cover" style="background-image: url('../img/tienda/otros/tienda2/hero_1.jpg');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 mx-auto order-lg-2 align-self-center">
+                        <div class="site-block-cover-content text-center">
+                            <h2 class="sub-title">Medicina efectiva, Nuevas medicinas diarias.</h2>
+                            <h1>Tu farmacia de confianza</h1>
+                            <p>
+                                <a href="#shop" class="btn btn-primary px-5 py-3">Shop Now</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site-section">
+            <div class="container">
+                <div class="row align-items-stretch section-overlap">
+                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                        <div class="banner-wrap bg-primary h-100">
+                            <a href="#shop" class="h-100">
+                                <h5>Envío <br> Gratuito</h5>
+                                <p>
+                                    En todos los pedidos
+                                    <strong>Superiores a 50€ te lo enviamos gratis.</strong>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                        <div class="banner-wrap h-100">
+                            <a href="#shop" class="h-100">
+                                <h5>Temporada <br> Descuentos al 50%</h5>
+                                <p>
+                                    Durante este mes
+                                    <strong>Muchos de nuestros productos con descuento.</strong>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                        <div class="banner-wrap bg-warning h-100">
+                            <a href="#shop" class="h-100">
+                                <h5>Regala <br> Una tarjeta de regalo</h5>
+                                <p>
+                                    Si no sabes que regalar
+                                    <strong>Compra una de nuestras tarjeta regalo.</strong>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Shop -->
+
+        <div ng-controller="carrito">
+            <div id="shop"></div>
+            <h2 ng-show="stock.length > 0" id="productos">Productos</h2>
+    
+            <div ng-show="stock.length > 0" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner c2">
+                    <div class="carousel-item" ng-class="{'active': $first}" ng-repeat="tab in stock">
+                        <div class="row productos p-4 m-3">
+                            <div class="card" ng-repeat="producto in tab">
+                                <div class="imagen"
+                                    style="background-image: url('../img/productos/{{producto.objProducto.foto}}');"></div>
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <h5 class="titulo">{{producto.objProducto.nombreProducto}}</h5>
+                                    <p class="texto">{{producto.objProducto.descripcion}} </p>
+                                    <p class="texto">Precio: <del ng-hide="producto.descuento == 0">{{producto.precio}}
+                                            €</del> <span ng-show="producto.descuento == 0">{{producto.precio}} €</span></p>
+                                    <p class="texto" ng-hide="producto.descuento == 0">Descuento: {{producto.descuento}}%
+                                    </p>
+                                    <p class="texto" ng-hide="producto.descuento == 0">Precio Final:
+                                        {{ producto.precio - ( producto.precio * ( producto.descuento / 100 ) ) }} €</p>
+                                    <p class="texto">Unidades restantes: {{producto.cantidad}}</p>
+                                    <button class="btn btn-primary"
+                                        ng-click="addToCart(producto, tienda[0].nombreTienda)">Añadir al carrito</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Carrito -->
+            <div class="carrito" ng-hide="carrito.length === 0">
+            </div>
+        </div>
+        <!-- Testimonials -->
+        <div class="container">
+            <div class="row">
+                <div class="title-section text-center col-12">
+                    <h2 class="text-uppercase">Testimonials</h2>
+                </div>
+            </div>
+            <div class=" row ">
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card h-100 border-0">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <img src="../img/tienda/otros/tienda2/person_4.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                                <p>“Te pones 10 goticas magicas debajo de la lengua,
+                                    cada cuatro horas durante 2 semanas y
+                                    milagrosamente cura el coronavirus.
+                                    Made in Venezuela.”</p>
+                            <p>— Andrew Neel</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card h-100 border-0">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <img src="../img/tienda/otros/tienda2/person_1.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                                <p>“Te pones 10 goticas magicas debajo de la lengua,
+                                    cada cuatro horas durante 2 semanas y
+                                    milagrosamente cura el coronavirus.
+                                    Made in Venezuela.”</p>
+                            <p>— Kelly Holmes</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card h-100 border-0">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <img src="../img/tienda/otros/tienda2/person_3.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                                <p>“Te pones 10 goticas magicas debajo de la lengua,
+                                    cada cuatro horas durante 2 semanas y
+                                    milagrosamente cura el coronavirus.
+                                    Made in Venezuela.”</p>
+                            <p>— Austin Morando</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner 2 -->
+        <div class="site-section bg-secondary bg-image" style="background-image: url('view/img/bg_2.jpg');">
+            <div class="container">
+                <div class="row align-items-stretch">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('view/img/bg_1.jpg');">
+                            <div class="banner-1-inner align-self-center">
+                                <h2>Pharma Products</h2>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem
+                                    odio voluptatem.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('view/img/bg_2.jpg');">
+                            <div class="banner-1-inner ml-auto  align-self-center">
+                                <h2>Rated by Experts</h2>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem
+                                    odio voluptatem.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Pie de texto-->
+        <div id="pietxt">
+            AYUNTAMIENTO DE FALCES &nbsp; · &nbsp; PLAZA DE LOS FUEROS, 11 &nbsp; · &nbsp; 31370 FALCES (NAVARRA) &nbsp;
+            · &nbsp; T: 948 734 072 &nbsp; · &nbsp; E-MAIL: <a href="mailto:ayto@falces.org" target="_blank"
+                style="color: #fff;">AYTO@FALCES.ORG</a>
+        </div>
+
+        <!--Footer-->
+        <footer id="footer" class="footer footer-dark footer-footer-classic">
+            <div class=" container">
+                <div class="inner">
+                    <!-- Text -->
+                    <p class="copyright subpixel">
+                        <a href="http://www.falces.org/aviso-legal/">Aviso Legal</a> &nbsp; · &nbsp; <a
+                            href="http://www.falces.org/politica-de-cookies/">Política de cookies</a> &nbsp; · &nbsp;
+                        ¡Síguenos! &nbsp; <a href="http://instagram.com/ayuntamientofalces" target="_blank"><img
+                                src="http://www.falces.org/2020/wp-content/uploads/2020/02/instablack.png"></a> &nbsp;
+                        <a href="https://www.facebook.com/FalcesalDia/" target="_blank"><img
+                                src="http://www.falces.org/2020/wp-content/uploads/2020/02/faceblack.png"></a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <!--Fin footer-->
+
+
+        <!-- JQUERY -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- POPPER -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+            </script>
+        <!-- BOOTSTRAP JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+            </script>
+        <!-- Nuestro JavaScript -->
+        <script src="view/js/angular.min.js" type="text/javascript"></script>
+        <script src="view/js/script.js" type="text/javascript"></script>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous">
+            </script>
+</body>
+</html>

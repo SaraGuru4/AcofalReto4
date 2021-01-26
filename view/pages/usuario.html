@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html id="pagIndex">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Logo y titulo en la pestaña-->
+    <link rel="icon" href="view/img/logo2.jpg" type="image/png">
+    <title>Ayuntamiento de Falces</title>
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- CSS Librería AOS-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!--Nuestro css-->
+
+    <link rel="stylesheet" href="../../view/css/main.css">
+    <link rel="stylesheet" href="../../view/css/usuario.css">
+
+
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/4ef80493b3.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <header id="header">
+        <div class="background-top">
+            <div class="imagenes">
+                <img src="../img/index/top1.jpg" alt="">
+                <img src="../img/index/top2.jpg" alt="">
+                <img src="../img/index/top3.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="botonesAcciones">
+            <a href='../../index.html' class="volverindex"><i class="fas fa-home"></i>&nbsp;Volver a home</a>
+            <a href='#' class='volveraDatos' onclick="volveraDatosPersonales()"><i
+                    class="fas fa-user-circle"></i>&nbsp;Datos personales</a>
+            <a href='#comentarios' id='btnVerComentarios' onclick="verComentarios()"><i
+                    class="fas fa-comments"></i>&nbsp;Comentarios</a>
+            <a href='#usuarios' id='btnVerUsuarios'><i class="fas fa-users"></i>&nbsp;Usuarios</a>
+            <a href='#usuarios' id='btnUpdateUser'><i class="fas fa-pen-alt"></i>&nbsp;Actualizar mis datos</a>
+            <a href='#buscar' id='btnBuscarUsuario'><i class="fas fa-search"></i>&nbsp;Buscar Usuario</a>
+            <a href="#" class=" botonLogout" id="logout"><i class="fas fa-sign-out-alt"></i></i>&nbsp;LOGOUT</a>
+        </div>
+
+        <!--Filtro para buscar usuarios-->
+        <div id="divFiltro">
+            <a href="#" class="cerrarfiltro" onclick="cerrarFiltro()">&times;</a>
+
+            <input type="text" id="filtro" placeholder="Buscar Usuarios por nombre o apellido"
+                onkeyup="buscarUsuarios()">
+
+        </div>
+
+        <!--Botón para abrir el menú lateral-->
+        <div id="mainbox" onclick="openMenuPerfil()">&#9776; &nbsp; MENÚ</div>
+        <div id="menu" style="overflow: scroll;" class="sidemenu">
+            <!--Botón para volver al index-->
+            <a href="../../index.html"><i class="fas fa-home"></i>&nbsp;Home</a>
+            <hr>
+            <a href="../../index.html#noticiassection" onclick="closeMenuPerfil()"><i
+                    class="fas fa-newspaper"></i>&nbsp;Noticias</a>
+            <hr>
+            <a href="#ayuntamiento" onclick="closeMenuPerfil()"><i class="fas fa-hotel"></i>&nbsp; Ayuntamiento </a>
+            <hr>
+            <a href="#videossection" onclick="closeMenuPerfil()"><i class="fas fa-video"></i>&nbsp;Vídeos </a>
+            <hr>
+            <a href="#ciudadnia" onclick="closeMenuPerfil()"><i class="fas fa-users"></i>&nbsp;Ciudadanía </a>
+            <hr>
+            <a href="../pages/contacto.html" onclick="closeMenuPerfil()"><i
+                    class="fas fa-address-book"></i>&nbsp;Contacto
+            </a>
+            <hr>
+            <a href="#historia" onclick="closeMenuPerfil()"><i class="fas fa-address-book"></i>&nbsp;Historia </a>
+            <hr>
+            <a href="#" class="closebtn" onclick="closeMenuPerfil()">&times;</a>
+
+        </div>
+
+        <!--Zona administrador-->
+        <div class="row justify-content-center text-center mt-3 jumbotron" id="zonaUsuario">
+
+        </div>
+        <!-- Fin Zona administrador-->
+
+        <br><br>
+        <!--Lista de usuarios-->
+        <div class="row justify-content-center text-center mt-3 " id="usuarios">
+
+        </div>
+        <!-- Fin Lista de usuarios-->
+
+
+        <!-- Form Update usuario-->
+
+        <div id="formUpdate">
+            <h1 id="formUpdateUsuario"></h1>
+            <div class="underline">
+            </div>
+            <form action="#" method="post" id="contact_form">
+                <div class="idForm">
+                    <label for="name">Id:</label>
+                    <input type="" placeholder="Id" name="name" id="id_input" disabled>
+                </div>
+                <div class="adminForm">
+                    <label for="name">Administrador:</label>
+                    <input type="" name="name" id="admin_input" disabled>
+                </div>
+                <div class="nombre">
+                    <label for="email">Nombre de usuario:</label>
+                    <input type="text" placeholder="Nombre" name="email" id="nombre_input" required>
+                </div>
+                <div class="apellidoForm">
+                    <label for="name">Apellido:</label>
+                    <input type="text" placeholder="Apellido" name="name" id="apellido_input" required>
+                </div>
+                <div class="correoForm">
+                    <label for="name">Correo electrónico:</label>
+                    <input type="text" placeholder="Correo electrónico" name="name" id="correo_input" required>
+                </div>
+                <div class="passwordForm">
+                    <label for="name">Contraseña:</label>
+                    <input type="text" placeholder="Contraseña" name="name" id="password_input" required>
+                </div>
+
+
+
+                <div class="submit">
+                    <input type="reset" value="Cancelar modificación" onclick="volveraUsuarios()" id="cancelarUpdate">
+                    <input value="Aceptar modificación" id="aceptarUpdate" />
+                </div>
+            </form><!-- // End form -->
+        </div> <!-- Fin Form Update usuario-->
+
+
+        <!--Form Datos usuario-->
+
+        <div id="formUpdateDatosPersonales">
+            <h1 id="datosusuarioform"></h1>
+            <div class="underline">
+            </div>
+            <form action="#" method="post" id="contact_form">
+                <div class="idForm">
+                    <label for="name">Id:</label>
+                    <input type="" placeholder="Id" name="name" id="id_inputpersonal" disabled>
+                </div>
+                <div class="adminForm">
+                    <label for="name">Administrador:</label>
+                    <input type="" name="name" id="admin_inputpersonal" disabled>
+                </div>
+                <div class="nombre">
+                    <label for="email">Nombre de usuario:</label>
+                    <input type="text" placeholder="Nombre" name="email" id="nombre_inputpersonal" required>
+                </div>
+                <div class="apellidoForm">
+                    <label for="name">Apellido:</label>
+                    <input type="text" placeholder="Apellido" name="name" id="apellido_inputpersonal" required>
+                </div>
+                <div class="correoForm">
+                    <label for="name">Correo electrónico:</label>
+                    <input type="text" placeholder="Correo electrónico" name="name" id="correo_inputpersonal" required>
+                </div>
+                <div class="passwordForm">
+                    <label for="name">Contraseña:</label>
+                    <input type="text" placeholder="Contraseña" name="name" id="password_inputpersonal" required>
+                </div>
+
+                <div class="submit">
+                    <input type="reset" value="Cancelar modificación" onclick="volveraDatosPersonales()"
+                        id="cancelarUpdate">
+                    <input value="Aceptar modificación" id="aceptarPersonal" />
+                </div>
+            </form><!-- // End form -->
+        </div>
+        <!--Fin Form Datos usuario-->
+
+
+        <!--Formulario para insertar una tienda   ADMIN 1-->
+        <div id="formNuevaTienda">
+            <h1 class='text-center'>NUEVA TIENDA</h1>
+            <div class="underline"> </div>
+            <form class='m-2'>
+                <div class="form_row">
+                    <label for="name">Nombre: <span class="text-danger">*</span></label>
+                    <input type="text" placeholder="Nombre" name="name" id="nombreTienda">
+                </div>
+
+                <div class="form_row">
+                    <label for="name">Dirección: <span class="text-danger">*</span></label>
+                    <input type="text" placeholder="Dirección" name="name" id="direccionTienda">
+                </div>
+
+                <div class="form_row">
+                    <label for="name">Teléfono: <span class="text-danger">*</span></label>
+                    <input type="number"  class="form-control" placeholder="Teléfono" name="tipo" id="telefonoTienda"
+                    min="600000000" max="999999999">
+                </div>
+                <br>
+                <div class="form_row">
+                    <label for="name">Texto tienda: <span class="text-danger">*</span></label>
+                    <input type="text" placeholder="Texto tienda" name="texto" id="textoTienda">
+                </div>
+
+                <div class="form_row">
+                    <label for="name">Tipo tienda: <span class="text-danger">*</span></label>
+                    <select name="tipo" id="tipotiendaInsert">
+                        <option value="0">Selecciona el tipo de tienda</option>
+                        <!-- Tipo de tienda -->
+                    </select>
+                </div>
+
+                <div class="col-lg-6 p-3 text-center" id="containerImagen">
+                    <label>Imagen de perfil</label><br>
+                    <input type="file" name="imagen" id="imagenInsert" accept=".png,.jpeg,.jpg,.gif">
+                    <label type="file" for="imagen" class="btn text-white col-lg-5 col-md-4 col-sm-4 col-4"
+                        id="btnSubirArchivo">Subir imagen <i class="fas fa-upload text-white"></i></label>
+                </div>
+                <div class="col-lg-6 p-3 text-center">
+                    <img src="../img/index/default.jpg" id="fotoPerfilInsert">
+                </div>
+
+
+                <div class="submit">
+                    <input type="" value="Cancelar " onclick="volveraDatosPersonales()" id="cancelarInsertTienda">
+                    <input value="Insertar " id="aceptarinsertTienda" />
+                </div>
+            </form>
+
+        </div>
+        <!--Formulario para insertar una tienda  Fin  ADMIN 1-->
+
+
+        <!--Select tiendas para modificar -->
+
+        <div class="modificartienda">
+            <h2>Elige una tienda para modificar</h2>
+            <select id='cmbShopsModify'>
+
+                <!-- fill with the shops-->
+
+            </select>
+        </div>
+
+        <!--Select tiendas modificar fin -->
+
+
+        <div class="eliminartienda">
+            <h1>Elige una tienda para eliminar </h1>
+                
+            <select id='cmbShopsDelete'>
+
+                <!-- fill with the shops-->
+
+            </select>
+           &nbsp; &nbsp; &nbsp; <button class="btn btn-danger" id="deleteshop">Confirmar eliminación</button>
+        </div>
+
+
+        <!--Formulario para modificar tienda-->
+        <div id="añadirForm">
+
+
+        </div>
+
+
+
+
+
+        <!--Sección de comentarios -->
+
+        <div class="row justify-content-center text-center mt-3" id="comentarios">
+
+
+        </div>
+        <!-- Fin Sección de comentarios -->
+
+
+        <!--Go top-->
+        <div class="go-top">
+            <span><i class="fas fa-arrow-up"></i></span>
+        </div>
+        <!--Go top fin-->
+
+        <!--Pie de texto-->
+        <div id="pietxt">
+            AYUNTAMIENTO DE FALCES &nbsp; · &nbsp; PLAZA DE LOS FUEROS, 11 &nbsp; · &nbsp; 31370 FALCES
+            (NAVARRA)
+            &nbsp;
+            · &nbsp; T: 948 734 072 &nbsp; · &nbsp; E-MAIL: <a href="mailto:ayto@falces.org" target="_blank"
+                style="color: #fff;">AYTO@FALCES.ORG</a>
+        </div>
+
+        <!--Footer-->
+        <footer id="footer" class="footer footer-dark footer-footer-classic" ng-show="footer==='si'">
+            <div class="container">
+                <div class="inner">
+
+                    <!-- Text -->
+                    <p class="copyright subpixel">
+                        <a href="http://www.falces.org/aviso-legal/">Aviso Legal</a> &nbsp; · &nbsp; <a
+                            href="http://www.falces.org/politica-de-cookies/">Política de cookies</a> &nbsp; ·
+                        &nbsp;
+                        ¡Síguenos! &nbsp; <a href="http://instagram.com/ayuntamientofalces" target="_blank"><img
+                                src="http://www.falces.org/2020/wp-content/uploads/2020/02/instablack.png"></a>
+                        &nbsp;
+                        <a href="https://www.facebook.com/FalcesalDia/" target="_blank"><img
+                                src="http://www.falces.org/2020/wp-content/uploads/2020/02/faceblack.png"></a>
+                    </p>
+
+
+                </div>
+            </div>
+        </footer>
+        <!--Fin footer-->
+
+
+
+
+        <!-- JQUERY -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- POPPER -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+            </script>
+        <!-- BOOTSTRAP JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+            </script>
+
+        <!-- AOS JS -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+        <!-- Nuestro JavaScript -->
+        <script src="../js/main.js"></script>
+        <script src="../js/usuario.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+a,a:hover{
+    text-decoration: none;
+    color: #4b4b4b;
+}
+.principal{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 20px;
+    justify-content: center;
+}
+.tittle{
+    background: #efefef;
+    color: #4b4b4b;
+    height: 100px;
+    padding: 20px;
+}
+.nombreTienda{
+    color:#da2713;
+    font: bold 90% monospace;
+    font-family: "Segoe UI";
+    font-size: x-large;
+}
+.tipotienda{
+    display: block;
+    margin: 0 auto;
+    grid-column-start: 1;
+    grid-column-end: 2;
+
+}
+.listaTiendas img{
+    width: 10rem;
+    max-height: 8rem;
+    transition:all .5s ease-in-out;
+    border: 2px #4b4b4b solid;
+    background-color: #4b4b4b;
+    display: block;
+    margin: 20px auto;
+}
+li:hover img{
+border-radius:50%;
+-webkit-border-radius:50%;
+box-shadow: 0px 0px 10px 10px #da2713;
+-webkit-box-shadow: 0px 0px 10px 10px #da2713;
+transform: rotate(360deg);
+-webkit-transform: rotate(360deg);
+}
+ul, li{
+    list-style: none;
+    padding: 5px;
+}
+.listaTiendas{
+    margin-top: 40px !important;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+li{
+    background: #faf8f8;
+    border: #4b4b4b 2px solid;
+    transition:all .5s ease-in-out;
+    width: 300px;
+    height: 300px;
+}
+li:hover{
+    box-shadow: 0px 0px 10px 10px  #da2713;
+    -webkit-box-shadow: 0px 0px 10px 10px  #da2713;
+    background: #efefef;
+}
+li p, .nombreTienda{
+    margin-left: 30px;
+}
