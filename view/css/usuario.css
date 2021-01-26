@@ -311,3 +311,10 @@ input[type='text']:focus, [type='email']:focus, [type='number']:focus {
 
     text-align: center;
 }
+
+/*Productos*/
+
+#productos{
+
+    display: none;
+}

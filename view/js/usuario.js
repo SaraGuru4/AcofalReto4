@@ -320,11 +320,13 @@ function zonaAdminTienda(usuario) {
 
     //ACCIONES DEL ADMINISTRADOR QUE NO SEA NI EL 0 NI EL 1
 
-      $("#verproductos").click(function () {
-          
-      })
-}
+    $("#verproductos").click(function () {
+        $(".modificartienda, #formNuevaTienda, #zonaUsuario, .eliminartienda").hide();
+        $("#productos").show();
+        verProductos(usuario);
 
+    })
+}
 
 
 
