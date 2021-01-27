@@ -36,7 +36,7 @@
 
 <body ng-controller="miControlador">
     <div class="productos">
-        <h2>PRODUCTOS</h2>
+        <h2>TODOS LOS PRODUCTOS</h2>
         <select class='mi-selector sel' name='productos'>
             <option value=''>Selecciona un Producto</option>
             <option  ng-repeat="item in productos" ng-value='item.idProducto'>{{item.nombreProducto}}</option>
@@ -56,6 +56,19 @@
                 </form>
             </div>
         </div>
+        <h2>TUS PRODUCTOS</h2>
+        <select class='mi-selector sel' name='productos'>
+            <option value=''>Selecciona un Producto</option>
+            <option  ng-repeat="item in productosTienda" ng-value='item.idProducto'>{{item.nombreProducto}}</option>
+        </select>
+        <form action="#">
+            Id Producto<input type="text" ng-model="idProducto2" id="idProducto2" class="lectura" disabled></br>
+            Precio<input type="number" ng-model="precio" id="precio"></br>
+            Descuento<input type="number" ng-model="descuento" id="descuento"></br>
+            Cantidad<input type="number"ng-model="cantidad" id="cantidad"></br>
+            <input type="button-green" value="Modificar" ng-click="modificarStock()">
+            <input type="reset" value="Eliminar" ng-click="eliminarStock()">
+        </form>
     </div>
 
     

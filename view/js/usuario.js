@@ -106,11 +106,11 @@ function loggedVerify() {
     var url = "../../controller/cLoggedVerify.php";
 
     fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        } //input data
-    })
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            } //input data
+        })
         .then(res => res.json()).then(result => {
 
             console.log(result);
@@ -238,8 +238,8 @@ function zonaAdministrador(usuario) {
     $(".modificartienda").hide();
     $(".eliminartienda").hide()
 
-
 }
+
 
 function zonaAdminTienda(usuario, tiendas) {
     var usuarioDatos = "";
@@ -299,10 +299,10 @@ function zonaAdminTienda(usuario, tiendas) {
     //-------------------ACCIONES DEL ADMINISTRADOR 1---------------------
 
     $("#insertarproductos").click(function () {
-        
-      $("#zonaUsuario").hide();
-      $("#formNuevoPorducto").show();
-      insertProducto();
+
+        $("#zonaUsuario").hide();
+        $("#formNuevoPorducto").show();
+        insertProducto();
     })
 
     //Mostrar formulario para actualizar insertar la tienda
@@ -362,7 +362,7 @@ function insertProducto() {
     var url = "../../controller/cProductos.php";
 
     permitirInsertProducto = true;
-    if (nombre == "" || direccion == "" || descripcion == "" ) {
+    if (nombre == "" || direccion == "" || descripcion == "") {
 
         permitirInsertTienda = false;
         alert("Campos vacios, no se ha podido insertar el nuevo producto");
@@ -384,12 +384,12 @@ function insertProducto() {
 
             //Llamada fetch
             fetch(url, {
-                method: 'POST', // or 'POST'
-                body: JSON.stringify(data), // data can be `string` or {object}!
-                headers: {
-                    'Content-Type': 'application/json'
-                } // input data
-            })
+                    method: 'POST', // or 'POST'
+                    body: JSON.stringify(data), // data can be `string` or {object}!
+                    headers: {
+                        'Content-Type': 'application/json'
+                    } // input data
+                })
                 .then(res => res.json()).then(result => {
                     location.reload();
                     alert("Tienda insertada correctamente");
@@ -402,22 +402,19 @@ function insertProducto() {
         }
 
     }
-
 }
-
-
 
 function verProductos() {
     var url = "../../controller/cProductos.php";
 
     fetch(url, {
 
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json'
-        }
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
 
-    })
+        })
         .then(res => res.json()).then(result => {
 
             var myHtml = "";
@@ -435,7 +432,7 @@ function verProductos() {
                     "<p class='card-text nombre'><b>Id del producto: </b>" + productos[i].idProducto + "</p>" +
                     "<p class='card-text nombre'><b>Nombre: </b>" + productos[i].nombreProducto + "</p>" +
                     "<p class='card-text tipo'> <b>Tipo: </b>" + productos[i].tipo + "</p>" +
-                    "<button class='btn btn-cont modifyProduct'>Modificar <i class='fas fa-pen-alt'></i></button>" +
+                    "<button class='btn btn-cont modifyProduct'  data-id='" + productos[i].idProducto + "'  data-nombre='" + productos[i].nombreProducto + "'   data-tipo='" + productos[i].tipo + "'  data-foto='" + productos[i].foto + "' >Modificar <i class='fas fa-pen-alt'></i></button>" +
                     "<button class='btn btn-cont deleteProduct' data-id='" + productos[i].idProducto + "'>Eliminar <i class='fa fa-trash-alt'></i></button>" +
                     "</div>" +
                     "</div>" +
@@ -455,11 +452,26 @@ function verProductos() {
                 deleteProducto(idProducto);
             })
 
+            $(".modifyProduct").click(function () {
+
+                $("#zonaUsuario").hide();
+
+
+                $('#idproductoUpdate').val(this.dataset.id);
+                $('#nombreProductoUpdate').val(this.dataset.nombre);
+                $('#tipoProductoUpdate').val(this.dataset.tipo);
+                $('#apellido_input').val(this.dataset.apellido);
+                $('#fotoProductoUpdate').val(this.dataset.foto);
+
+                updateProducto();
+
+            })
         })
         .catch(error => console.error('Error status:', error));
 
 
 }
+
 function deleteProducto(idProducto) {
     var url = "../../controller/cDeleteProducto.php";
     var data = {
@@ -467,12 +479,12 @@ function deleteProducto(idProducto) {
     };
 
     fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: {
-            'Content-Type': 'application/json'
-        } // input data
-    })
+            method: 'POST',
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            } // input data
+        })
 
         .then(res => res.json()).then(result => {
 
@@ -483,17 +495,17 @@ function deleteProducto(idProducto) {
         .catch(error => console.error('Error status:', error));
 }
 
-
-
 function loadTipoTienda(id) {
     fetch('../../controller/cTipoTiendas.php', {
-        method: 'GET'
-    }).then(result => result.json())
+            method: 'GET'
+        }).then(result => result.json())
         .then(response => {
+
             Array.from(response.answer).forEach(tipoTienda => {
-                let option = `<option value=${tipoTienda.idTipo}>${tipoTienda.nombre}</option>`;
+                let option = `<option value=${tipoTienda.nombre}>${tipoTienda.nombre}</option>`;
                 $(id).html((i, prevHtml) => {
                     return prevHtml + option;
+
                 });
             })
         })
@@ -504,8 +516,8 @@ function loadShops() {
     var url = "../../controller/cTiendas.php";
 
     fetch(url, {
-        method: 'GET',
-    })
+            method: 'GET',
+        })
         .then(res => res.json()).then(result => {
 
             console.log(result.list);
@@ -534,12 +546,12 @@ function loadShops() {
 
             });
 
-             $("#cmbShopsDelete").change(function () {
+            $("#cmbShopsDelete").change(function () {
 
                 var idTienda = $(this).val();;
                 deleteShop(idTienda);
 
-            }) 
+            })
 
         })
         .catch(error => console.error('Error status:', error));
@@ -556,12 +568,12 @@ function deleteShop(idTienda) {
         };
 
         fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            } // input data
-        })
+                method: 'POST',
+                body: JSON.stringify(data), // data can be `string` or {object}!
+                headers: {
+                    'Content-Type': 'application/json'
+                } // input data
+            })
 
             .then(res => res.json()).then(result => {
 
@@ -585,12 +597,12 @@ function updateShop(idTienda) {
     };
 
     fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         .then(res => res.json()).then(result => {
 
             var tienda = result.list;
@@ -691,12 +703,12 @@ function executeUpdateShop(idTienda) {
     }
 
     fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: {
-            'Content-Type': 'application/json'
-        } // input data
-    })
+            method: 'POST',
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            } // input data
+        })
 
         .then(res => res.json()).then(result => {
 
@@ -715,13 +727,13 @@ function insertarTienda() {
     var nombre = $("#nombreTienda").val();
     var direccion = $("#direccionTienda").val();
     var telefono = $("#telefonoTienda").val();
-    //  var tipo = $("#tipotiendaInsert").val();
+    var tipo = $("#tipotiendaInsert").val();
     var texto = $("#textoTienda").val();
     var imagen = filename;
     var url = "../../controller/cTiendas.php";
 
     permitirInsertTienda = true;
-    if (nombre == "" || direccion == "" || telefono == "" || texto == "" || imagen == "") {
+    if (nombre == "" || direccion == "" || telefono == "" || texto == "" || tipo == "" || imagen == "") {
 
         permitirInsertTienda = false;
         alert("Campos vacios, no se ha podido insertar la nueva tienda");
@@ -736,7 +748,7 @@ function insertarTienda() {
                 'direccion': direccion,
                 'telefono': telefono,
                 'texto': texto,
-                //   'tipo': tipo,
+                'tipo': tipo,
                 'imagen': imagen,
                 'filename': filename,
                 'savedFileBase64': savedFileBase64,
@@ -744,12 +756,12 @@ function insertarTienda() {
 
             //Llamada fetch
             fetch(url, {
-                method: 'POST', // or 'POST'
-                body: JSON.stringify(data), // data can be `string` or {object}!
-                headers: {
-                    'Content-Type': 'application/json'
-                } // input data
-            })
+                    method: 'POST', // or 'POST'
+                    body: JSON.stringify(data), // data can be `string` or {object}!
+                    headers: {
+                        'Content-Type': 'application/json'
+                    } // input data
+                })
                 .then(res => res.json()).then(result => {
                     location.reload();
                     alert("Tienda insertada correctamente");
@@ -790,6 +802,7 @@ function changeImgInsertUpdate() {
     }
 
 }
+
 function changeImgInsertProducto() {
 
     var file = $('#imagenInsertProducto')[0].files[0];
@@ -843,6 +856,33 @@ function changeImgUpdate() {
 
 }
 
+function changeImgInsert() {
+
+    var file = $('#imagenInsert')[0].files[0];
+
+    filename = file.name.toLowerCase();
+    filesize = file.size;
+
+    var reader = new FileReader();
+
+    console.log(file)
+    reader.onloadend = function () {
+        savedFileBase64 = reader.result;
+        $('#fotoPerfilInsert').attr('src', savedFileBase64);
+    }
+
+    if (file) {
+
+        reader.readAsDataURL(file);
+
+    } else {
+
+        $('#fotoPerfilInsert').attr('src', '');
+
+    }
+
+}
+
 /*Función para buscar usuarios en el filtro*/
 function buscarUsuarios() {
 
@@ -877,12 +917,12 @@ function verUsuarios(usuario) {
 
     fetch(url, {
 
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json'
-        }
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
 
-    })
+        })
         .then(res => res.json()).then(result => {
 
             var myHtml = "";
@@ -976,12 +1016,12 @@ function verComentarios(usuario) {
 
     fetch(url, {
 
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json'
-        }
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
 
-    })
+        })
         .then(res => res.json()).then(result => {
 
             var myHtml = "";
@@ -1048,12 +1088,12 @@ function execUpdatepersonal() {
     }
 
     fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: {
-            'Content-Type': 'application/json'
-        } // input data
-    })
+            method: 'POST',
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            } // input data
+        })
 
         .then(res => res.json()).then(result => {
 
@@ -1085,12 +1125,12 @@ function execUpdate() {
     }
 
     fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: {
-            'Content-Type': 'application/json'
-        } // input data
-    })
+            method: 'POST',
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            } // input data
+        })
 
         .then(res => res.json()).then(result => {
 
@@ -1113,12 +1153,12 @@ function borrarComentario(idComentario) {
     if (confirm("¿Estás seguro de que deseas eliminar este comentario?")) {
 
         fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            } //input data
-        })
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                } //input data
+            })
             .then(res => res.json()).then(result => {
 
                 alert(result.error);
@@ -1142,12 +1182,12 @@ function borrarUsuario(idUsuario) {
 
 
         fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            } //input data
-        })
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                } //input data
+            })
             .then(res => res.json()).then(result => {
 
                 alert(result.error);
@@ -1163,11 +1203,11 @@ function borrarUsuario(idUsuario) {
 function logout() {
     var url = "../../controller/cLogout.php";
     fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        } //input data
-    })
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            } //input data
+        })
         .then(res => res.json()).then(result => {
 
             console.log(result.error);

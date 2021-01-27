@@ -141,6 +141,7 @@
 		$direccion =  $this->getDireccion();
 		$telefono = $this->getTelefono();
 		$texto = $this->getTexto();
+		$tipo = $this->getNombre();
 		$imagen = $this->getFoto();
 
 		$sql = "CALL spInsertTienda('$nombre','$direccion','$telefono','$imagen','$texto')";

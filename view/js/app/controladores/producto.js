@@ -1,6 +1,7 @@
 miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     //Traer los datos de los productos
     $scope.productos = [];
+    $scope.productosTienda = [];
     $http({
         method: 'GET',
         url: '../../controller/cProductos.php'
@@ -23,6 +24,16 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                 
         });
     });
+    //Trae los datos de los productos de esa tienda
+    $http({
+        method: 'GET',
+        url: '../../controller/cUpdateStock.php'
+    }).then(function successCallback(response) {
+        $scope.productosTienda = response.data.list;
+        console.log(response.data.list)
+    }, function errorCallback(response) {
+        alert(response.error);
+    });
     //Insertar en stock.
     function verInsert(producto){
         $('#idProducto2').val(producto);
@@ -38,7 +49,6 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         var descuento= $scope.descuento;
         var cantidad= $scope.cantidad;
         var data={idProducto:idProducto,idTienda:idTienda,precio:precio,descuento:descuento,cantidad:cantidad};
-        alert(idProducto+"..."+precio);
 
          $http({
            method: 'POST',
@@ -52,17 +62,18 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
            }, function errorCallback(response) {
                 alert("Algo ha fallado al procesar el insert!");
            });
+           $scope.quitar();
         }
 
     //Borra los campos del formulario
-/*     $scope.quitar =function(){
+     $scope.quitar =function(){
         $scope.idProducto2="";
         $scope.idTienda2="";
         $scope.precio="";
         $scope.descuento= "";
         $scope.cantidad= "";
-        //$('.insertar').css("display","none");
-    } */
+        $('.insertar').css("display","none");
+    } 
 
     //Hacer una lista de tus productos y modificar y delete
 

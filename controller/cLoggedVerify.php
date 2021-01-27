@@ -29,6 +29,7 @@
 	} else {
 		$response[ 'error' ] = "no user logged";
 	}
-	echo json_encode( $response );
 	
+	$response['version'] = phpversion();
+	echo json_encode( $response );
 	unset( $response );

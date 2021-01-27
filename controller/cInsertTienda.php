@@ -1,6 +1,6 @@
 <?php
 
-include_once ("../model/productoModel.php");
+include_once ("../model/tiendaModel.php");
 
 $data=json_decode(file_get_contents("php://input"),true);
 
@@ -8,22 +8,23 @@ $nombre=$data['nombre'];
 $direccion=$data['direccion'];
 $descripcion=$data['descripcion'];
 $imagen=$data['imagen'];
-
+$tipo=$data['tipo'];
 $filename=$data['filename'];
 $savedFileBase64=$data['savedFileBase64'];
 
-$nuevoProducto=new productoModel();
+$nuevaTienda=new tiendaModel();
 
 
-$nuevoProducto->setNombreProducto($nombre);
-$nuevoProducto->setDireccion($direccion);
-$nuevoProducto->setDescripcion($descripcion);
+$nuevaTienda->setNombreProducto($nombre);
+$nuevaTienda->setDireccion($direccion);
+$nuevaTienda->setDescripcion($descripcion);
+$nuevaTienda->setNombre($tipo);
 
 $nuevoProducto->setFoto($imagen);
 
 $response=array();
 
-$response['error']=$nuevaTienda->insertProducto(); 
+$response['error']=$nuevaTienda->insertTienda(); 
 
 if($savedFileBase64 != ""){
 
