@@ -27,9 +27,8 @@
 		$response[ 'error' ] = "no error";
 		
 	} else {
-		$response[ 'error' ] = "not logged";
+		$response[ 'error' ] = "no user logged";
 	}
 	
-	$response['version'] = phpversion();
 	echo json_encode( $response );
 	unset( $response );

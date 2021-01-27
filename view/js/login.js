@@ -78,9 +78,9 @@ function login() {
 
         // Actualiza la página solo en caso de que el mensaje sea no error
         if (result.error === 'no error') {
-            document.getElementById("email2").value = "";
+            /*document.getElementById("email2").value = "";
             document.getElementById("password2").value = "";
-            location.reload();
+            location.reload();*/
 
         } else {
             alert(result.error);
