@@ -59,8 +59,7 @@
 			$success = false;
 			
 			if ( $row = mysqli_fetch_array( $result, MYSQLI_ASSOC ) ) {
-				$success = $row;
-				if ( $this->password === $row[ 'password' ] ) {
+				if ( $this->password == $row[ 'password' ] ) {
 					$this->admin = $row[ 'admin' ];
 					$this->nombreUsuario = $row[ 'nombreUsuario' ];
 					$this->apellidos = $row[ 'apellidos' ];

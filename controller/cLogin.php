@@ -37,7 +37,6 @@
 	}
 	
 	$response['user'] = $user->objVars();
-	$response['isValid'] = $isValid;
 	
 	echo json_encode( $response );
 	
