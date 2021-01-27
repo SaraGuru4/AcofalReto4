@@ -89,6 +89,29 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         $('.update').css("display","flex");
         $('.update').css("flex-direction","column");
     }
+    //Actualiza el producto cantidad precio y descuento
+    $scope.modificarStock=function(idStock){
+        var idStock= idStock;
+        var precio = $("#precio3").val();
+        var descuento= $("#descuento3").val();
+        var cantidad = $('#cantidad3').val();
+        var data={idStock:idStock,precio:precio,descuento:descuento,cantidad:cantidad};
+        $http({
+            method: 'POST',
+            url: '../../controller/cUpdateStock.php',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            dataType: 'JSON'
+            }).then(function successCallback(response) {
+                 alert(response.data.error);
+                 console.log(response.data.error);
+                 window.location.reload(true);
+            }, function errorCallback(response) {
+                 alert("Algo ha fallado al procesar el insert!");
+                 console.log(response.data.error);
+        });
+        $scope.quitar();
+    } 
 
     //Trae los datos de los productos de esa tienda (Stock)
     $scope.insertarStock=function(){
@@ -109,8 +132,10 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
            }).then(function successCallback(response) {
                 alert(response.data.error);
                 console.log(response.data.error);
+                window.location.reload(true);
            }, function errorCallback(response) {
                 alert("Algo ha fallado al procesar el insert!");
+                console.log(response.data.error);
            });
            $scope.quitar();
         }
@@ -132,7 +157,7 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
            }, function errorCallback(response) {
                 alert("Algo ha fallado al procesar el delete!");
            });
-           //$scope.quitar();
+           $scope.quitar();
         }
 
 

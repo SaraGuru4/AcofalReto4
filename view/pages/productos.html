@@ -74,8 +74,8 @@
                 Precio<input type="number" ng-model="precio3" id="precio3" ng-value="{{item.precio}}"></br>
                 Descuento<input type="number" ng-model="descuento3" id="descuento3" ng-value="{{item.descuento}}"></br>
                 Cantidad<input type="number"ng-model="cantidad3" id="cantidad3" ng-value="{{item.cantidad}}"></br>
-                <input type="button-green" value="Modificar" ng-click="modificarStock()">
-                <input type="button-elim" value="Eliminar" ng-click="eliminarStock()">
+                <input type="button-green" value="Modificar" ng-click="modificarStock(item.idStock)">
+                <input type="button-elim" value="Eliminar" ng-click="eliminarStock(item.idStock)">
                 <input type="reset" value="Cancelar" ng-click="quitar()">
             </form>
             </div>

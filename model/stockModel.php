@@ -104,6 +104,25 @@
 				return $sql . "Error al insertar";
 			}
 		}
+		public function updateStock() {
+		    $this->OpenConnect();
+		    
+		    $idStock = $this->getIdStock();
+		    $precio = $this->getPrecio();
+		    $descuento = $this->getDescuento();
+		    $cantidad = $this->getCantidad();
+		    
+		    $sql = "CALL spUpdateStock($idStock,$precio,$descuento,$cantidad)";
+		    
+		    if ( $this->link->query( $sql ) ) {
+		        $returnString = "Producto actualizado correctamente";
+		        $this->CloseConnect();
+		        return $returnString;
+		    } else {
+		        $this->CloseConnect();
+		        return $sql . "Error al actualizar";
+		    }
+		}
 		public function deleteStock(){
 			$this->OpenConnect();
 			
