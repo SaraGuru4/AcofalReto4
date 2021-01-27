@@ -130,14 +130,12 @@
 			
 			$sql = "CALL spDeleteStock($idStock)";
 			
-			if ( $this->link->query( $sql ) ) {
-				$returnString = "Producto eliminado correctamente";
-				$this->CloseConnect();
-				return $returnString;
-			} else {
-				$this->CloseConnect();
-				return $sql . "Error al eliminar";
-			}
+			$returnString =  "Error al eliminar";
+			
+			if ( $this->link->query( $sql ) ) $returnString = "Producto eliminado correctamente";
+			
+			$this->CloseConnect();
+			return $returnString;
 		}
 		//Update ver datos
 		public function getStockByIdStock() {

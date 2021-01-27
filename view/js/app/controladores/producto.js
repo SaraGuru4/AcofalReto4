@@ -3,6 +3,7 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     $scope.productos = [];
     $scope.productosTienda = [];
     $scope.update = [];
+
     $http({
         method: 'GET',
         url: '../../controller/cProductos.php'
@@ -15,151 +16,158 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
 
 
     //Trae los datos de los productos de esa tienda (Falta php) Revisar
-    var idTienda= location.search.substring(1, location.search.length);
-    var data={idTienda:idTienda};
+    var idTienda = location.search.substring(1, location.search.length);
+    var data = {idTienda: idTienda};
     $http({
         method: 'POST',
         url: '../../controller/cStockByIdTienda.php',
         data: JSON.stringify(data),
         contentType: 'application/json',
         dataType: 'JSON'
-        }).then(function successCallback(response) {
-            $scope.productosTienda = response.data.list;
-            console.log(response.data.list);
-        }, function errorCallback(response) {
-             alert(response.error);
+    }).then(function successCallback(response) {
+        $scope.productosTienda = response.data.list;
+        console.log(response.data.list);
+    }, function errorCallback(response) {
+        alert(response.error);
     });
     //Borra los campos del formulario
-     $scope.quitar =function(){
-        $scope.idProducto2="";
-        $scope.idTienda2="";
-        $scope.precio="";
-        $scope.descuento= "";
-        $scope.cantidad= "";
-        $('.insertar').css("display","none");
-        $scope.idProducto3="";
-        $scope.idTienda3="";
-        $scope.precio3="";
-        $scope.descuento3= "";
-        $scope.cantidad3= "";
-        $('.update').css("display","none");
+    $scope.quitar = function () {
+        $scope.idProducto2 = "";
+        $scope.idTienda2 = "";
+        $scope.precio = "";
+        $scope.descuento = "";
+        $scope.cantidad = "";
+        $('.insertar').css("display", "none");
+        $scope.idProducto3 = "";
+        $scope.idTienda3 = "";
+        $scope.precio3 = "";
+        $scope.descuento3 = "";
+        $scope.cantidad3 = "";
+        $('.update').css("display", "none");
     }
     //Muestra el formulario de insertar producto y el de Update
-    jQuery(document).ready(function($){
-        $(document).ready(function() {
+    jQuery(document).ready(function ($) {
+        $(document).ready(function () {
             $('.mi-selector').select2();
             //Insert
-            $('.sel').change(function(){
+            $('.sel').change(function () {
                 //Recogemos la id del producto
                 $scope.idProducto = $('.sel').val();
-                verInsert($scope.idProducto);  
+                verInsert($scope.idProducto);
             });
             //Update
-            $('.sel2').change(function(){
+            $('.sel2').change(function () {
                 //Recogemos la id de la tienda
                 $scope.idStock = $('.sel2').val();
-                verUpdate($scope.idStock);  
+                verUpdate($scope.idStock);
             });
-                
+
         });
     });
+
     //Insertar en stock.
-    function verInsert(producto){
+    function verInsert(producto) {
         $('#idProducto2').val(producto);
         $('#idTienda2').val(location.search.substring(1, location.search.length));
-        $('.insertar').css("display","flex");
-        $('.insertar').css("flex-direction","column");
+        $('.insertar').css("display", "flex");
+        $('.insertar').css("flex-direction", "column");
     }
 
     //Mostramos el formulario update (Mirar si rellenar con Angular o con val())
-    function verUpdate(idStock){
-        var data={idStock:idStock};
+    function verUpdate(idStock) {
+        var data = {idStock: idStock};
         $http({
             method: 'POST',
             url: '../../controller/cStockByIdStock.php',
             data: JSON.stringify(data),
             contentType: 'application/json',
             dataType: 'JSON'
-            }).then(function successCallback(response) {
-                $scope.update = response.data.list;
-                console.log(response.data.list);
-            }, function errorCallback(response) {
-                alert(response.error);
+        }).then(function successCallback(response) {
+            $scope.update = response.data.list;
+            console.log(response.data.list);
+        }, function errorCallback(response) {
+            alert(response.error);
         });
-        $('.update').css("display","flex");
-        $('.update').css("flex-direction","column");
+        $('.update').css("display", "flex");
+        $('.update').css("flex-direction", "column");
     }
+
     //Actualiza el producto cantidad precio y descuento
-    $scope.modificarStock=function(idStock){
-        var idStock= idStock;
+    $scope.modificarStock = function (idStock) {
+        var idStock = idStock;
         var precio = $("#precio3").val();
-        var descuento= $("#descuento3").val();
+        var descuento = $("#descuento3").val();
         var cantidad = $('#cantidad3').val();
-        var data={idStock:idStock,precio:precio,descuento:descuento,cantidad:cantidad};
+        var data = {idStock: idStock, precio: precio, descuento: descuento, cantidad: cantidad};
         $http({
             method: 'POST',
             url: '../../controller/cUpdateStock.php',
             data: JSON.stringify(data),
             contentType: 'application/json',
             dataType: 'JSON'
-            }).then(function successCallback(response) {
-                 alert(response.data.error);
-                 console.log(response.data.error);
-                 window.location.reload(true);
-            }, function errorCallback(response) {
-                 alert("Algo ha fallado al procesar el insert!");
-                 console.log(response.data.error);
+        }).then(function successCallback(response) {
+            alert(response.data.error);
+            console.log(response.data.error);
+            window.location.reload(true);
+        }, function errorCallback(response) {
+            alert("Algo ha fallado al procesar el insert!");
+            console.log(response.data.error);
         });
         $scope.quitar();
-    } 
+    }
 
     //Trae los datos de los productos de esa tienda (Stock)
-    $scope.insertarStock=function(){
+    $scope.insertarStock = function () {
         //Meter aqui los valores del formulario y hacer un post a insertar
-        var idProducto=$('#idProducto2').val();
-        var idTienda=$('#idTienda2').val();
-        var precio =$scope.precio;//$('#precio').val();
-        var descuento= $scope.descuento;
-        var cantidad= $scope.cantidad;
-        var data={idProducto:idProducto,idTienda:idTienda,precio:precio,descuento:descuento,cantidad:cantidad};
+        var idProducto = $('#idProducto2').val();
+        var idTienda = $('#idTienda2').val();
+        var precio = $scope.precio;//$('#precio').val();
+        var descuento = $scope.descuento;
+        var cantidad = $scope.cantidad;
+        var data = {
+            idProducto: idProducto,
+            idTienda: idTienda,
+            precio: precio,
+            descuento: descuento,
+            cantidad: cantidad
+        };
 
-         $http({
-           method: 'POST',
-           url: '../../controller/cInsertStock.php',
-           data: JSON.stringify(data),
-           contentType: 'application/json',
-           dataType: 'JSON'
-           }).then(function successCallback(response) {
-                alert(response.data.error);
-                console.log(response.data.error);
-                window.location.reload(true);
-           }, function errorCallback(response) {
-                alert("Algo ha fallado al procesar el insert!");
-                console.log(response.data.error);
-           });
-           $scope.quitar();
-        }
+        $http({
+            method: 'POST',
+            url: '../../controller/cInsertStock.php',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            dataType: 'JSON'
+        }).then(function successCallback(response) {
+            alert(response.data.error);
+            console.log(response.data.error);
+            window.location.reload(true);
+        }, function errorCallback(response) {
+            alert("Algo ha fallado al procesar el insert!");
+            console.log(response.data.error);
+        });
+        $scope.quitar();
+    }
 
 
     //Eliminar Stock/Producto en tienda
-    $scope.eliminarStock = function(idStock){
-        var data={idStock:idStock};
+    $scope.eliminarStock = function (idStock) {
+        var data = {idStock: idStock};
         alert(idStock);
-         $http({
-           method: 'POST',
-           url: '../../controller/cDeleteStock.php',
-           data: JSON.stringify(data),
-           contentType: 'application/json',
-           dataType: 'JSON'
-           }).then(function successCallback(response) {
-                alert(response.data.error);
-                console.log(response.data.error);
-           }, function errorCallback(response) {
-                alert("Algo ha fallado al procesar el delete!");
-           });
-           $scope.quitar();
-        }
-
+        $http({
+            method: 'POST',
+            url: '../../controller/cDeleteStock.php',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            dataType: 'JSON'
+        }).then(function successCallback(response) {
+            alert(response.data.error);
+            console.log(response.data.error);
+        }, function errorCallback(response) {
+            alert("Algo ha fallado al procesar el delete!");
+        });
+        $scope.quitar();
+    }
 
     //Cuando acabe esto ir a admin y mirar bien y poner lo de añadir producto
 

@@ -24,7 +24,6 @@
     <!-- Angular JS -->
     <script src="../js/angular.min.js" type="text/javascript"></script>
 
-
     <!--Buscador-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
 
@@ -37,13 +36,13 @@
 <body ng-controller="miControlador">
       
     <div class="productos">
-        <h2>TODOS LOS PRODUCTOS</h2>
+        <h2>TODOS LOS PRODUCTOS </h2>
         <select class='mi-selector sel' name='productos'>
             <option value=''>Selecciona un Producto para incluir en tu tienda</option>
             <option  ng-repeat="item in productos" ng-value='item.idProducto'>{{item.nombreProducto}}</option>
         </select>
         <div class="insertar">
-            <h2>INSERTAR PRODUCTO EN TIENDA</h2>
+            <h2>INSERTAR PRODUCTO EN TIENDA {{idProducto2}}</h2>
             <div class="insertarStock">
                 
                 <form action="#">
@@ -112,7 +111,8 @@
         </footer>
         <!--Fin footer-->
 
-
+    <!-- JS -->
+    <script src="../js/login.js"></script>
 
 </body>
 </html>

@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    //Ocultar administración de productos
+    $('.deleteProducto, .updateProducto, .adminProductos').hide();
 
     loggedVerify();
     //Login(Botón del modal)
@@ -36,19 +38,29 @@ function loggedVerify() {
 
             document.getElementById("usuario").innerHTML = "Hola, " + usuario.nombreUsuario;
 
+            const idTienda = location.search.substring(1, location.search.length);
+
+
+            //Si es el administrador de tienda puede ver el botón de administración de la tienda
+            if ((usuario.admin !== idTienda || idTienda === '') && usuario.admin !== "1") $('.adminProductos').show();
+
+            //Si es admin 0 ó 1 redirecciona al index.html si intentan entrar en las páginas especificadas
+            if ( ["0", "1"].includes(usuario.admin) && location.href.match(/(factura\.html|productos\.html)/i) !== null) location.href = '../../index.html';
 
             if (usuario.admin == 0) {
                 console.log("Bienvenido de nuevo, " + usuario.nombreUsuario);
             } else if (usuario.admin == 1) {
-                console.log("Hola de nuevo, " + usuario.nombreUsuario + " eres administrador número " +
-                    usuario.admin + ". Eres administrador de la tiendas");
-
+                console.log("Hola de nuevo, " + usuario.nombreUsuario + " eres administrador número " + usuario.admin + ". Eres administrador de la tiendas");
+                $('.deleteProducto, .updateProducto').show();
             } else {
-                console.log("Hola de nuevo, " + usuario.nombreUsuario + " eres administrador número " +
+                console.log("Hola de nuevo, " + usuario.nombreUsuario + " eres administrador de la tienda número " +
                     usuario.admin)
             }
 
 
+        } else {
+            if (location.href.match(/(factura\.html|productos\.html)/i) !== null) location.href = '../../index.html';
+            $('.addToCart').prop('disabled', true).removeClass( 'btn-primary' ).addClass( 'btn-outline-primary' )
         }
     })
         .catch(error => console.error('Error status:', error));
@@ -57,7 +69,10 @@ function loggedVerify() {
 
 function login() {
 
-    var url = "controller/cLogin.php";
+    var url;
+
+    location.href.match(/\/view/i) !== null ? url = "../../controller/cLogin.php" : url = "controller/cLogin.php";
+
     correo = $("#email2").val();
     password = $("#password2").val();
 
@@ -91,7 +106,9 @@ function login() {
 }
 
 function logout() {
-    var url = "controller/cLogout.php";
+    var url;
+
+    location.href.match(/\/view/i) !== null ? url = "../../controller/cLogout.php" : url = "controller/cLogout.php";
     fetch(url, {
         method: 'GET',
         headers: {

@@ -47,23 +47,6 @@ miApp.controller("carrito", function ($scope, $http) {
 
     updateTotal();
 
-    const estructuraProductoEjemplo = JSON.stringify([
-        {
-            id: 1,
-            nombre: "Aurelio el panadero",
-            productos: [
-                {
-                    "id": 1,
-                    "nombre": "Tarjeta Extra Inútil",
-                    "foto": "../img/carrito/pay.png",
-                    "precio": 10,
-                    "stock": 5,
-                    "cantidad": 2
-                }
-            ]
-        }
-    ]);
-
     $scope.addToCart = (producto, nombreTienda) => {
         // Los productos se agregarán al carrito con este formato
         const nProducto = {

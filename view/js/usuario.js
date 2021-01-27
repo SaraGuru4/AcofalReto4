@@ -115,10 +115,11 @@ function loggedVerify() {
 
         console.log(result);
 
-        var usuario = result.user;
-        var tiendas = result.tienda[0];
+        if (result.error == "no error") {
 
-        if (result.error === "no error") {
+            var usuario = result.user;
+            var tiendas = result.tienda[0];
+
             $("#perfil").show();
             $(".botonLogout").show();
             $(".botonLogin").hide();
@@ -207,7 +208,8 @@ function loggedVerify() {
             //	mostrarVentas();
 
         } else {
-            window.location.href = "../../index.html";
+            console.log(result.error)
+            location.href = "../../index.html";
         }
     })
         .catch(error => console.error('Error status:', error));

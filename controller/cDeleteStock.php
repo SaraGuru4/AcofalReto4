@@ -1,18 +1,18 @@
 <?php
 
-include_once ("../model/stockModel.php");
+include_once( "../model/stockModel.php" );
 
-$data=json_decode(file_get_contents("php://input"),true);
+$data = json_decode( file_get_contents( "php://input" ), true );
 
-$idStock=$data['idStock'];
+$idStock = $data[ 'idStock' ];
 
-$stock=new stockModel();
+$stock = new stockModel();
 
-$stock->setIdStock($idStock);
+$stock->setIdStock( $idStock );
 
-$response=array();
-$response['error']=$stock->deleteStock();
+$response = array();
+$response[ 'error' ] = $stock->deleteStock();
 
-echo json_encode($response);
+echo json_encode( $response );
 
-unset ($stock);
+unset ( $stock );

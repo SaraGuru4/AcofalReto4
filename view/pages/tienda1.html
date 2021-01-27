@@ -244,6 +244,10 @@
                 </div>
             </div>
         </div>
+
+        <div class="text-center adminProductos mt-5">
+            <a href="productos.html?{{idTienda}}" class="btn btn-primary">Administrar Productos</a>
+        </div>
             <!-- Nombre Tienda  -->
 
             <h1 class="nom-tienda" ng-repeat="item in tienda">{{item.nombreTienda}}</h1>
@@ -485,8 +489,11 @@
                                 <p class="texto" ng-hide="producto.descuento == 0">Precio Final:
                                     {{ producto.precio - ( producto.precio * ( producto.descuento / 100 ) ) }} €</p>
                                 <p class="texto">Unidades restantes: {{producto.cantidad}}</p>
-                                <button class="btn btn-primary"
+                                <button class="btn btn-primary addToCart"
                                     ng-click="addToCart(producto, tienda[0].nombreTienda)">Añadir al carrito</button>
+                            </div>
+                            <div class="buttons d-flex justify-content-around">
+                                <button class="deleteProducto btn btn-danger w-100" ng-click="deleteProducto(producto.idStock)">Eliminar</button>
                             </div>
                         </div>
                     </div>
