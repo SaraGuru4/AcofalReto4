@@ -4,7 +4,7 @@
 		public $host = 'localhost';
 		public $userbbdd = 'grupo1ze';
 		public $passbbdd = 'Grup0-A-@';
-		public $ddbbname = 'acofal';
+		public $ddbbname = 'grupo1ze_acofal';
 	}
 
 
