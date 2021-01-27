@@ -136,14 +136,16 @@
 	{
 		$this->OpenConnect();
 
+		$idUsuario = $this->getIdUsuario();
 		$nombre = $this->getNombreTienda();
 		$direccion =  $this->getDireccion();
 		$telefono = $this->getTelefono();
 		$texto = $this->getTexto();
-		$tipo = $this->getNombre();
+		$tipo = $this->getIdTipo();
 		$imagen = $this->getFoto();
+		$tipoWeb = $this->getTipoWeb();
 
-		$sql = "CALL spInsertTienda('$nombre','$direccion','$telefono','$imagen','$texto')";
+		$sql = "CALL spInsertTienda( '$idUsuario', '$nombre','$direccion','$telefono', '$imagen', '$texto', '$tipo', '$tipoWeb')";
 
 		if ($this->link->query($sql)) {
 			$returnString = "Tienda insertada correctamente";

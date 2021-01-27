@@ -10,8 +10,10 @@
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="../css/bootstrap.min.css"></script>
     <!--Nuestro css-->
-    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/videos.css">
+    
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/login.css">
 
     <script src="../js/jquery-3.5.1.min.js"></script>
@@ -133,6 +135,38 @@
             </section>
           </div>
         </div>
+    </div>
+    <!--Botón para abrir el menú lateral-->
+    <div id="mainbox" onclick="openMenuIndex()">&#9776; &nbsp; MENÚ</div>
+</div>
+<!--Menu Lateral-->
+
+<div id="menu" class="sidemenu">
+
+  <div class="enlaces">
+    <a href="../../index.html" class="active"><i class="fas fa-home"></i>&nbsp;Home</a>
+
+    <a href="#noticiassection" onclick="closeMenuIndex()"><i class="fas fa-newspaper"></i>&nbsp;Noticias</a>
+
+    <a href="escaparate.html" onclick="closeMenuIndex()"><i class="fas fa-hotel"></i>&nbsp; Escaparate
+      local </a>
+
+    <a href="videos.html" onclick="closeMenuIndex()"><i class="fas fa-video"></i>&nbsp;Vídeos </a>
+
+    <a href="#" onclick="closeMenuIndex()"><i class="fas fa-users"></i>&nbsp;Ciudadanía </a>
+    <a href="contacto.html" onclick="closeMenuIndex()"><i
+        class="fas fa-address-book"></i>&nbsp;Contacto </a>
+
+    <a href="usuario.html" onclick="closeMenuIndex()"  class="perfilsidebar"><i
+        class="fas fa-user"></i>&nbsp;Perfil </a>
+
+    <a href="#" onclick="abrirLoginIndex()" class="loginsidebar"><i class="fas fa-sign-in-alt"></i> &nbsp;Login</a>
+    
+    <a href="#" onclick="logout()" class="logoutsidebar"><i class="fas fa-sign-out-alt"></i> &nbsp;Logout</a>
+  </div>
+  <a href="#" class="closebtn" onclick="closeMenuIndex()">&times;</a>
+
+</div>
     <div class="tittle">
         <h1 class="text-center"><span><img src="../img/logos/acofalces.jpg" alt="" width="70px" height="70px" style="border-radius: 10px;border: 1px black solid;"></span> 
             Acofalces
@@ -360,4 +394,10 @@ Se trata de una carrera taurina con vaquillas, que se celebra a las 9 horas dura
 </footer>
 <!--Fin footer-->
 
+<script src="../js/login.js"></script>
+<script src="../js/registro.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/index.js"></script>
+
 </body>
+</html>

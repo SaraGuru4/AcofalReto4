@@ -40,7 +40,7 @@ a,a:hover{
     display: block;
     margin: 20px auto;
 }
-li:hover img{
+.listaTiendas li:hover img{
 border-radius:50%;
 -webkit-border-radius:50%;
 box-shadow: 0px 0px 10px 10px #da2713;
@@ -48,7 +48,7 @@ box-shadow: 0px 0px 10px 10px #da2713;
 transform: rotate(360deg);
 -webkit-transform: rotate(360deg);
 }
-ul, li{
+.listaTiendas ul, li{
     list-style: none;
     padding: 5px;
 }
@@ -59,18 +59,18 @@ ul, li{
     display: grid;
     grid-template-columns: repeat(3,1fr);
 }
-li{
+.listaTiendas li{
     background: #faf8f8;
     border: #4b4b4b 2px solid;
     transition:all .5s ease-in-out;
     width: 300px;
     height: 300px;
 }
-li:hover{
+.listaTiendas li:hover{
     box-shadow: 0px 0px 10px 10px  #da2713;
     -webkit-box-shadow: 0px 0px 10px 10px  #da2713;
     background: #efefef;
 }
-li p, .nombreTienda{
+.listaTiendas li p, .nombreTienda{
     margin-left: 30px;
 }

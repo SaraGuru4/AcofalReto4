@@ -106,110 +106,110 @@ function loggedVerify() {
     var url = "../../controller/cLoggedVerify.php";
 
     fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            } //input data
-        })
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        } //input data
+    })
         .then(res => res.json()).then(result => {
 
-            console.log(result);
+        console.log(result);
 
-            var usuario = result.user;
-            var tiendas = result.tienda[0];
+        var usuario = result.user;
+        var tiendas = result.tienda[0];
 
-            if (result.error === "no error") {
-                $("#perfil").show();
-                $(".botonLogout").show();
-                $(".botonLogin").hide();
-                $("#registrate").hide();
-                $(".barra").hide();
+        if (result.error === "no error") {
+            $("#perfil").show();
+            $(".botonLogout").show();
+            $(".botonLogin").hide();
+            $("#registrate").hide();
+            $(".barra").hide();
 
-                if (usuario.admin === 0) {
-                    zonaAdministrador(usuario);
-                } else {
-                    zonaAdminTienda(usuario, tiendas);
-                    $("#btnVerUsuarios").click(function () {
-                        verUsuarios(usuario);
-                        //Botónes nav
-                        $("#btnVerUsuarios").hide();
-                        $(".volveraDatos").show();
-                        $("#btnVerComentarios").show();
-                        $("#btnBuscarUsuario").show();
-                        $("#btnUpdateUser").show();
-
-                        $("#zonaUsuario").hide();
-                        $("#usuarios").show();
-                        $("#comentarios").hide();
-                        $("#formUpdate").hide();
-                        $("formUpdateDatosPersonales").hide();
-
-                    })
-
-                    //Lupa ver usuarios
-                    $("#btnBuscarUsuario").click(function () {
-                        $("#divFiltro").show();
-                    })
-
-                    $('#btnVerComentarios').click(function () {
-                        //Boton nav comentarios
-                        $("#btnVerComentarios").hide();
-                        $("#btnVerUsuarios").show();
-                        $("#btnBuscarUsuario").hide();
-                        $("#btnUpdateUser").show();
-                        $("#formUpdateDatosPersonales").hide();
-
-                        $(".volveraDatos").show();
-                        $("#zonaUsuario").hide();
-                        $("#usuarios").hide();
-                        $("#comentarios").show();
-                        $("#divFiltro").hide();
-
-                        verComentarios(usuario);
-                    })
-
-                    //Actualizar datos del usuario, botón navbar
-
-                    $("#btnUpdateUser").click(function () {
-                        //Boton nav comentarios
-                        $("#btnVerComentarios").show();
-                        $("#btnVerUsuarios").show();
-                        $("#btnBuscarUsuario").hide();
-                        $("#btnUpdateUser").hide();
-
-                        $("#formUpdateDatosPersonales").show();
-                        $("#formUpdate").hide();
-                        $(".volveraDatos").show();
-                        $("#zonaUsuario").hide();
-                        $("#usuarios").hide();
-                        $("#comentarios").hide();
-                        $("#divFiltro").hide();
-                        $("#productos").hide();
-                        $(".nombreTienda").hide();
-
-
-                        //Metemos los datos de usuario en el form
-                        $("#datosusuarioform").html("Tus datos, " + usuario.nombreUsuario);
-                        $("#id_inputpersonal").val(usuario.idUsuario)
-                        $("#admin_inputpersonal").val(usuario.admin)
-                        $("#nombre_inputpersonal").val(usuario.nombreUsuario)
-                        $("#apellido_inputpersonal").val(usuario.apellidos)
-                        $("#correo_inputpersonal").val(usuario.correo)
-                        $("#password_inputpersonal").val(usuario.password)
-
-                    })
-
-                    //Cuando le demos a aceptar en el formulario de datos personales
-                    $("#aceptarPersonal").click(function () {
-                        execUpdatepersonal();
-                    })
-                }
-                //	mostrarVentas();
-
+            if (usuario.admin === 0) {
+                zonaAdministrador(usuario);
             } else {
-                window.location.href = "../../index.html";
+                zonaAdminTienda(usuario, tiendas);
+                $("#btnVerUsuarios").click(function () {
+                    verUsuarios(usuario);
+                    //Botónes nav
+                    $("#btnVerUsuarios").hide();
+                    $(".volveraDatos").show();
+                    $("#btnVerComentarios").show();
+                    $("#btnBuscarUsuario").show();
+                    $("#btnUpdateUser").show();
+
+                    $("#zonaUsuario").hide();
+                    $("#usuarios").show();
+                    $("#comentarios").hide();
+                    $("#formUpdate").hide();
+                    $("formUpdateDatosPersonales").hide();
+
+                })
+
+                //Lupa ver usuarios
+                $("#btnBuscarUsuario").click(function () {
+                    $("#divFiltro").show();
+                })
+
+                $('#btnVerComentarios').click(function () {
+                    //Boton nav comentarios
+                    $("#btnVerComentarios").hide();
+                    $("#btnVerUsuarios").show();
+                    $("#btnBuscarUsuario").hide();
+                    $("#btnUpdateUser").show();
+                    $("#formUpdateDatosPersonales").hide();
+
+                    $(".volveraDatos").show();
+                    $("#zonaUsuario").hide();
+                    $("#usuarios").hide();
+                    $("#comentarios").show();
+                    $("#divFiltro").hide();
+
+                    verComentarios(usuario);
+                })
+
+                //Actualizar datos del usuario, botón navbar
+
+                $("#btnUpdateUser").click(function () {
+                    //Boton nav comentarios
+                    $("#btnVerComentarios").show();
+                    $("#btnVerUsuarios").show();
+                    $("#btnBuscarUsuario").hide();
+                    $("#btnUpdateUser").hide();
+
+                    $("#formUpdateDatosPersonales").show();
+                    $("#formUpdate").hide();
+                    $(".volveraDatos").show();
+                    $("#zonaUsuario").hide();
+                    $("#usuarios").hide();
+                    $("#comentarios").hide();
+                    $("#divFiltro").hide();
+                    $("#productos").hide();
+                    $(".nombreTienda").hide();
+
+
+                    //Metemos los datos de usuario en el form
+                    $("#datosusuarioform").html("Tus datos, " + usuario.nombreUsuario);
+                    $("#id_inputpersonal").val(usuario.idUsuario)
+                    $("#admin_inputpersonal").val(usuario.admin)
+                    $("#nombre_inputpersonal").val(usuario.nombreUsuario)
+                    $("#apellido_inputpersonal").val(usuario.apellidos)
+                    $("#correo_inputpersonal").val(usuario.correo)
+                    $("#password_inputpersonal").val(usuario.password)
+
+                })
+
+                //Cuando le demos a aceptar en el formulario de datos personales
+                $("#aceptarPersonal").click(function () {
+                    execUpdatepersonal();
+                })
             }
-        })
+            //	mostrarVentas();
+
+        } else {
+            window.location.href = "../../index.html";
+        }
+    })
         .catch(error => console.error('Error status:', error));
 }
 
@@ -310,21 +310,21 @@ function zonaAdminTienda(usuario, tiendas) {
 
         loadTipoTienda("#tipotiendaInsert");
         $("#formNuevaTienda").show();
-        $(".modificartienda, .eliminartienda, #zonaUsuario").hide();
+        $(".modificartienda, .eliminartienda, #zonaUsuario, #formUpdateProducto").hide();
     })
 
     //Modificar tienda
     $("#actualizartienda").click(function () {
 
         $(".modificartienda").show();
-        $("#formNuevaTienda, .eliminartienda, #zonaUsuario").hide();
+        $("#formNuevaTienda, .eliminartienda, #zonaUsuario, #formUpdateProducto").hide();
         loadShops();
 
     })
 
     $("#eliminartienda").click(function () {
         $(".eliminartienda").show();
-        $(".modificartienda, #formNuevaTienda, #zonaUsuario").hide();
+        $(".modificartienda, #formNuevaTienda, #zonaUsuario, #formUpdateProducto").hide();
         loadShops();
     })
 
@@ -373,20 +373,19 @@ function insertProducto() {
 
     //Llamada fetch
     fetch(url, {
-            method: 'POST', // or 'POST'
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            } // input data
-        })
+        method: 'POST', // or 'POST'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        } // input data
+    })
         .then(res => res.json()).then(result => {
-            location.reload();
-            alert("Tienda insertada correctamente");
+        location.reload();
+        alert("Tienda insertada correctamente");
 
-        })
+    })
         .catch(error => console.error('Error status:', error));
 }
-
 
 
 function verProductos() {
@@ -394,73 +393,67 @@ function verProductos() {
 
     fetch(url, {
 
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        }
 
-        })
+    })
         .then(res => res.json()).then(result => {
 
-            var myHtml = "";
-            var productos = result.list;
+        var myHtml = "";
+        var productos = result.list;
 
 
-            for (let i = 0; i < productos.length; i++) {
+        for (let i = 0; i < productos.length; i++) {
 
-                myHtml += "<div class='col-md-3 mb-4 ' >" +
-                    "<div class='card  box-shadow' id='cardProducto'>" +
-                    "<div class='imagenProducto'>" +
-                    "<img class='card-img-top' src='../img/productos/" + productos[i].foto + "'>" +
-                    "</div>" +
-                    "<div class='card-body'>" +
-                    "<p class='card-text nombre'><b>Id del producto: </b>" + productos[i].idProducto + "</p>" +
-                    "<p class='card-text nombre'><b>Nombre: </b>" + productos[i].nombreProducto + "</p>" +
-                    "<p class='card-text tipo'> <b>Tipo: </b>" + productos[i].tipo + "</p>" +
-                    "<button class='btn btn-cont modifyProduct'  data-id='" + productos[i].idProducto + "'  data-nombre='" + productos[i].nombreProducto + "'   data-tipo='" + productos[i].tipo + "'  data-foto='../img/productos/" + productos[i].foto + "' >Modificar <i class='fas fa-pen-alt'></i></button>" +
-                    "<button class='btn btn-cont deleteProduct' data-id='" + productos[i].idProducto + "'>Eliminar <i class='fa fa-trash-alt'></i></button>" +
-                    "</div>" +
-                    "</div>" +
-                    "</div>" +
-                    "</div>" +
-                    "</div>";
+            myHtml += "<div class='col-md-3 mb-4 ' >" +
+                "<div class='card  box-shadow' id='cardProducto'>" +
+                "<div class='imagenProducto'>" +
+                "<img class='card-img-top' src='../img/productos/" + productos[i].foto + "'>" +
+                "</div>" +
+                "<div class='card-body'>" +
+                "<p class='card-text nombre'><b>Id del producto: </b>" + productos[i].idProducto + "</p>" +
+                "<p class='card-text nombre'><b>Nombre: </b>" + productos[i].nombreProducto + "</p>" +
+                "<p class='card-text tipo'> <b>Tipo: </b>" + productos[i].tipo + "</p>" +
+                "<button class='btn btn-cont modifyProduct'  data-id='" + productos[i].idProducto + "'  data-nombre='" + productos[i].nombreProducto + "'   data-tipo='" + productos[i].tipo + "'  data-foto='../img/productos/" + productos[i].foto + "' >Modificar <i class='fas fa-pen-alt'></i></button>" +
+                "<button class='btn btn-cont deleteProduct' data-id='" + productos[i].idProducto + "'>Eliminar <i class='fa fa-trash-alt'></i></button>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>";
 
-            }
+        }
 
-            $("#productos").html(myHtml);
+        $("#productos").html(myHtml);
 
-            //Eliminar producto
+        //Eliminar producto
 
-            $(".deleteProduct").click(function () {
+        $(".deleteProduct").click(function () {
 
-                var idProducto = this.dataset.id;
-                deleteProducto(idProducto);
-            })
-
-            $(".modifyProduct").click(function () {
-
-                $("#zonaUsuario").hide();
-                $("#formUpdateProducto").show();
-
-                $('#idproductoUpdate').val(this.dataset.id);
-                $('#nombreProductoUpdate').val(this.dataset.nombre);
-                $('#tipoProductoUpdate').val(this.dataset.tipo);
-                $('#fotoProductoUpdate').val(this.dataset.foto);
-
-                updateProducto();
-
-            })
+            var idProducto = this.dataset.id;
+            deleteProducto(idProducto);
         })
+
+        $(".modifyProduct").click(function () {
+
+            $("#zonaUsuario").hide();
+            $("#formUpdateProducto").show();
+
+            $('#idproductoUpdate').val(this.dataset.id);
+            $('#nombreProductoUpdate').val(this.dataset.nombre);
+            $('#tipoProductoUpdate').val(this.dataset.tipo);
+            $('#fotoProductoUpdate').val(this.dataset.foto);
+
+            updateProducto();
+
+        })
+    })
         .catch(error => console.error('Error status:', error));
 
 
 }
-
-
-
-
-
-
 
 
 function deleteProducto(idProducto) {
@@ -470,30 +463,30 @@ function deleteProducto(idProducto) {
     };
 
     fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            } // input data
-        })
+        method: 'POST',
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        } // input data
+    })
 
         .then(res => res.json()).then(result => {
 
-            console.log(result.error)
-            window.location.reload();
-            alert("Producto eliminado correctamente");
-        })
+        console.log(result.error)
+        window.location.reload();
+        alert("Producto eliminado correctamente");
+    })
         .catch(error => console.error('Error status:', error));
 }
 
 function loadTipoTienda(id) {
     fetch('../../controller/cTipoTiendas.php', {
-            method: 'GET'
-        }).then(result => result.json())
+        method: 'GET'
+    }).then(result => result.json())
         .then(response => {
 
             Array.from(response.answer).forEach(tipoTienda => {
-                let option = `<option value=${tipoTienda.nombre}>${tipoTienda.nombre}</option>`;
+                let option = `<option value=${tipoTienda.id}>${tipoTienda.nombre}</option>`;
                 $(id).html((i, prevHtml) => {
                     return prevHtml + option;
 
@@ -507,44 +500,45 @@ function loadShops() {
     var url = "../../controller/cTiendas.php";
 
     fetch(url, {
-            method: 'GET',
-        })
+        method: 'GET',
+    })
         .then(res => res.json()).then(result => {
 
-            console.log(result.list);
+        console.log(result.list);
 
-            var tiendas = result.list;
+        var tiendas = result.list;
 
-            var newRow = "";
+        var newRow = "";
 
-            newRow += "<option value='0'>Elige una tienda...</option>";
+        newRow += "<option value='0'>Elige una tienda...</option>";
 
-            for (let i = 0; i < tiendas.length; i++) {
+        for (let i = 0; i < tiendas.length; i++) {
 
-                newRow += "<option value='" + tiendas[i].idTienda + "'>" + tiendas[i].idTienda + " - " + tiendas[i].nombreTienda + "</option>";
-            }
-            document.getElementById("cmbShopsModify").innerHTML = newRow;
-            document.getElementById("cmbShopsDelete").innerHTML = newRow;
+            newRow += "<option value='" + tiendas[i].idTienda + "'>" + tiendas[i].idTienda + " - " + tiendas[i].nombreTienda + "</option>";
+        }
+        document.getElementById("cmbShopsModify").innerHTML = newRow;
+        document.getElementById("cmbShopsDelete").innerHTML = newRow;
 
 
-            $("#cmbShopsModify").change(function () {
+        $("#cmbShopsModify").change(function () {
 
-                var idTienda = $(this).val();
-                updateShop(idTienda);
+            var idTienda = $(this).val();
+            updateShop(idTienda);
 
-                //Mostramos el form de update
-                $("#añadirForm").show();
+            //Mostramos el form de update
+            $("#añadirForm").show();
 
-            });
+        });
 
-            $("#cmbShopsDelete").change(function () {
+        $("#cmbShopsDelete").change(function () {
 
-                var idTienda = $(this).val();;
-                deleteShop(idTienda);
-
-            })
+            var idTienda = $(this).val();
+            ;
+            deleteShop(idTienda);
 
         })
+
+    })
         .catch(error => console.error('Error status:', error));
 
 }
@@ -559,20 +553,20 @@ function deleteShop(idTienda) {
         };
 
         fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data), // data can be `string` or {object}!
-                headers: {
-                    'Content-Type': 'application/json'
-                } // input data
-            })
+            method: 'POST',
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            } // input data
+        })
 
             .then(res => res.json()).then(result => {
 
-                console.log(result.error)
+            console.log(result.error)
 
-                window.location.reload();
-                alert("Tienda eliminada correctamente");
-            })
+            window.location.reload();
+            alert("Tienda eliminada correctamente");
+        })
             .catch(error => console.error('Error status:', error));
 
     })
@@ -588,17 +582,17 @@ function updateShop(idTienda) {
     };
 
     fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
         .then(res => res.json()).then(result => {
 
-            var tienda = result.list;
-            console.log(tienda);
-            formulario = " <h1 class='text-center'>" + tienda[0].nombreTienda + "</h1>\
+        var tienda = result.list;
+        console.log(tienda);
+        formulario = " <h1 class='text-center'>" + tienda[0].nombreTienda + "</h1>\
 			<div class='underline'> </div>\
 			<form>\
 			<div class='form-group'>\
@@ -635,37 +629,37 @@ function updateShop(idTienda) {
 	         <button  id='aceptarupdateTienda' >Modificar tienda</button>\
             </form>";
 
-            $("#añadirForm").html(formulario);
+        $("#añadirForm").html(formulario);
 
-            //Metemos los valores en cada input
-            $("#nombreTiendaUpdate").val(tienda[0].nombreTienda);
-            $("#direccionTiendaUpdate").val(tienda[0].direccion);
-            $("#telefonoTiendaUpdate").val(tienda[0].telefono);
-            $("#tipoTiendaUpdate").val(tienda[0].objEscaparate.nombre);
-            $("#textoTiendaUpdate").val(tienda[0].texto);
-
-
-
-            //Update tienda imagen
-            $("#imagenUpdate").change(changeImgUpdate);
-
-            //Tipos de tienda
-            loadTipoTienda("#tipotiendaUpdate");
-
-            //Al hacer click ejecutamos el update
-            $("#aceptarupdateTienda").click(function () {
-
-                alert(idTienda);
-                idTienda = tienda[0].idTienda;
-                executeUpdateShop(idTienda);
-
-            });
+        //Metemos los valores en cada input
+        $("#nombreTiendaUpdate").val(tienda[0].nombreTienda);
+        $("#direccionTiendaUpdate").val(tienda[0].direccion);
+        $("#telefonoTiendaUpdate").val(tienda[0].telefono);
+        $("#tipoTiendaUpdate").val(tienda[0].objEscaparate.nombre);
+        $("#textoTiendaUpdate").val(tienda[0].texto);
 
 
-        })
+        //Update tienda imagen
+        $("#imagenUpdate").change(changeImgUpdate);
+
+        //Tipos de tienda
+        loadTipoTienda("#tipotiendaUpdate");
+
+        //Al hacer click ejecutamos el update
+        $("#aceptarupdateTienda").click(function () {
+
+            alert(idTienda);
+            idTienda = tienda[0].idTienda;
+            executeUpdateShop(idTienda);
+
+        });
+
+
+    })
         .catch(error => console.error('Error status:', error));
 
 }
+
 /*Modificar tienda*/
 
 function executeUpdateShop(idTienda) {
@@ -694,19 +688,19 @@ function executeUpdateShop(idTienda) {
     }
 
     fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            } // input data
-        })
+        method: 'POST',
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        } // input data
+    })
 
         .then(res => res.json()).then(result => {
 
-            alert("Tienda actualizada correctamente");
-            // window.location.reload();
+        alert("Tienda actualizada correctamente");
+        // window.location.reload();
 
-        })
+    })
         .catch(error => console.error('Error status:', error));
 }
 
@@ -721,7 +715,6 @@ function insertarTienda() {
     var tipo = $("#tipotiendaInsert").val();
     var texto = $("#textoTienda").val();
     var imagen = filename;
-    var url = "../../controller/cTiendas.php";
 
     permitirInsertTienda = true;
     if (nombre == "" || direccion == "" || telefono == "" || texto == "" || tipo == "" || imagen == "") {
@@ -731,7 +724,7 @@ function insertarTienda() {
     } else { //Si no hay datos vacios
 
 
-        if (permitirInsertTienda = true) {
+        if (permitirInsertTienda) {
 
             var url = "../../controller/cInsertTienda.php";
             var data = {
@@ -741,23 +734,23 @@ function insertarTienda() {
                 'texto': texto,
                 'tipo': tipo,
                 'imagen': imagen,
-                'filename': filename,
                 'savedFileBase64': savedFileBase64,
             };
 
             //Llamada fetch
             fetch(url, {
-                    method: 'POST', // or 'POST'
-                    body: JSON.stringify(data), // data can be `string` or {object}!
-                    headers: {
-                        'Content-Type': 'application/json'
-                    } // input data
-                })
+                method: 'POST', // or 'POST'
+                body: JSON.stringify(data), // data can be `string` or {object}!
+                headers: {
+                    'Content-Type': 'application/json'
+                } // input data
+            })
                 .then(res => res.json()).then(result => {
-                    location.reload();
-                    alert("Tienda insertada correctamente");
+                console.log(result)
+                alert("Tienda insertada correctamente");
+                location.reload();
 
-                })
+            })
                 .catch(error => console.error('Error status:', error));
         } else {
 
@@ -819,6 +812,7 @@ function changeImgInsertProducto() {
     }
 
 }
+
 //Cambia la foto de perfil que esta por defecto en el formulario por la introducida por el usuario
 function changeImgUpdate() {
 
@@ -908,95 +902,95 @@ function verUsuarios(usuario) {
 
     fetch(url, {
 
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        }
 
-        })
+    })
         .then(res => res.json()).then(result => {
 
-            var myHtml = "";
-            var usuarios = result.list;
+        var myHtml = "";
+        var usuarios = result.list;
 
-            for (let i = 0; i < usuarios.length; i++) {
+        for (let i = 0; i < usuarios.length; i++) {
 
-                if (usuario.admin == 0) {
-                    myHtml += "<div class='col-md-12' >" +
-                        "<div class='card  box-shadow' name='cardUsuario' id='card'>" +
-                        "<div class='card-body'  id='datosusuariocard'>" +
-                        "<p class='card-text '><u>Id</u>: " + usuarios[i].idUsuario + "</p>" +
-                        "<b><p class='card-text ' ><u>Nombre</u>: " + usuarios[i].nombreUsuario + "</p></b><br>" +
-                        "<p class='card-text '><u>Apellido</u>: " + usuarios[i].apellidos + "</p>" +
-                        "<p class='card-text '><u>Correo electrónico</u>: " + usuarios[i].correo + "</p>" +
-                        "<p class='card-text '><u>Contraseña</u>: " + usuarios[i].password + "</p>" +
-                        "<p class='card-text '><u>Administrador</u>: Tipo " + usuarios[i].admin + "</p>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>"
-                } else if (usuario.admin == 1) {
-                    myHtml += "<div class='col-md-12' >" +
-                        "<div class='card  box-shadow' name='cardUsuario' id='card'>" +
-                        "<div class='card-body' id='datosusuariocard'>" +
-                        "<p class='card-text' ><u>Id</u>: " + usuarios[i].idUsuario + "</p>" +
-                        "<b><p class='card-text'><u>Nombre</u>: " + usuarios[i].nombreUsuario + "</p></b><br>" +
-                        "<p class='card-text '><u>Apellido</u>: " + usuarios[i].apellidos + "</p>" +
-                        "<p class='card-text '><u>Correo electrónico</u>: " + usuarios[i].correo + "</p>" +
-                        "<p class='card-text '><u>Contraseña</u>: " + usuarios[i].password + "</p>" +
-                        "<p class='card-text '><u>Administrador</u>: Tipo " + usuarios[i].admin + "</p>" +
-                        "<div class='accionesUsuario'>" +
-                        "<button class='btn btn-danger borrarUser' data-id=" + usuarios[i].idUsuario + "><i class='fas fa-trash'></i></button>" +
-                        "<button class='btn btn-warning updateUser' data-id=" + usuarios[i].idUsuario + " data-nombre=" + usuarios[i].nombreUsuario +
-                        " data-apellido=" + usuarios[i].apellidos + " data-email=" + usuarios[i].correo + " data-contrasena=" + usuarios[i].password + " data-administrador=" + usuarios[i].admin + "><i class='fas fa-pen'></i></button>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>"
-                }
-
+            if (usuario.admin == 0) {
+                myHtml += "<div class='col-md-12' >" +
+                    "<div class='card  box-shadow' name='cardUsuario' id='card'>" +
+                    "<div class='card-body'  id='datosusuariocard'>" +
+                    "<p class='card-text '><u>Id</u>: " + usuarios[i].idUsuario + "</p>" +
+                    "<b><p class='card-text ' ><u>Nombre</u>: " + usuarios[i].nombreUsuario + "</p></b><br>" +
+                    "<p class='card-text '><u>Apellido</u>: " + usuarios[i].apellidos + "</p>" +
+                    "<p class='card-text '><u>Correo electrónico</u>: " + usuarios[i].correo + "</p>" +
+                    "<p class='card-text '><u>Contraseña</u>: " + usuarios[i].password + "</p>" +
+                    "<p class='card-text '><u>Administrador</u>: Tipo " + usuarios[i].admin + "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            } else if (usuario.admin == 1) {
+                myHtml += "<div class='col-md-12' >" +
+                    "<div class='card  box-shadow' name='cardUsuario' id='card'>" +
+                    "<div class='card-body' id='datosusuariocard'>" +
+                    "<p class='card-text' ><u>Id</u>: " + usuarios[i].idUsuario + "</p>" +
+                    "<b><p class='card-text'><u>Nombre</u>: " + usuarios[i].nombreUsuario + "</p></b><br>" +
+                    "<p class='card-text '><u>Apellido</u>: " + usuarios[i].apellidos + "</p>" +
+                    "<p class='card-text '><u>Correo electrónico</u>: " + usuarios[i].correo + "</p>" +
+                    "<p class='card-text '><u>Contraseña</u>: " + usuarios[i].password + "</p>" +
+                    "<p class='card-text '><u>Administrador</u>: Tipo " + usuarios[i].admin + "</p>" +
+                    "<div class='accionesUsuario'>" +
+                    "<button class='btn btn-danger borrarUser' data-id=" + usuarios[i].idUsuario + "><i class='fas fa-trash'></i></button>" +
+                    "<button class='btn btn-warning updateUser' data-id=" + usuarios[i].idUsuario + " data-nombre=" + usuarios[i].nombreUsuario +
+                    " data-apellido=" + usuarios[i].apellidos + " data-email=" + usuarios[i].correo + " data-contrasena=" + usuarios[i].password + " data-administrador=" + usuarios[i].admin + "><i class='fas fa-pen'></i></button>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
             }
-            //Metemos los cards en los usuarios
-            $("#usuarios").html(myHtml);
 
-            //Acciones delete/update de los usuarios
+        }
+        //Metemos los cards en los usuarios
+        $("#usuarios").html(myHtml);
 
-            $(".borrarUser").click(function () {
-                idUsuario = this.dataset.id;
-                borrarUsuario(idUsuario);
-            })
+        //Acciones delete/update de los usuarios
 
-            //Botón de modificar de cada usuario
-            $(".updateUser").click(function () {
-                $("#formUpdate").show();
-                $("#usuarios").hide();
-                $("#zonaUsuario").hide();
-                $("#btnVerComentarios").show();
-                $("#btnBuscarUsuario").hide();
-                $("#formUpdateDatosPersonales").hide();
+        $(".borrarUser").click(function () {
+            idUsuario = this.dataset.id;
+            borrarUsuario(idUsuario);
+        })
+
+        //Botón de modificar de cada usuario
+        $(".updateUser").click(function () {
+            $("#formUpdate").show();
+            $("#usuarios").hide();
+            $("#zonaUsuario").hide();
+            $("#btnVerComentarios").show();
+            $("#btnBuscarUsuario").hide();
+            $("#formUpdateDatosPersonales").hide();
 
 
-                //Ponemos en cada input del form los datos del usuario
-                $("#formUpdateUsuario").html("Datos del usuario " + this.dataset.nombre);
-                $('#id_input').val(this.dataset.id);
-                $('#admin_input').val(this.dataset.administrador);
-                $('#nombre_input').val(this.dataset.nombre);
-                $('#apellido_input').val(this.dataset.apellido);
-                $('#correo_input').val(this.dataset.email);
-                $('#password_input').val(this.dataset.contrasena);
-
-            })
-
-            //Al hacer click en aceptar del formulario
-
-            $("#aceptarUpdate").click(function () {
-                execUpdate();
-                $("#formUpdate").show();
-                $("#usuarios").hide();
-                $("#zonaUsuario").hide();
-
-            })
+            //Ponemos en cada input del form los datos del usuario
+            $("#formUpdateUsuario").html("Datos del usuario " + this.dataset.nombre);
+            $('#id_input').val(this.dataset.id);
+            $('#admin_input').val(this.dataset.administrador);
+            $('#nombre_input').val(this.dataset.nombre);
+            $('#apellido_input').val(this.dataset.apellido);
+            $('#correo_input').val(this.dataset.email);
+            $('#password_input').val(this.dataset.contrasena);
 
         })
+
+        //Al hacer click en aceptar del formulario
+
+        $("#aceptarUpdate").click(function () {
+            execUpdate();
+            $("#formUpdate").show();
+            $("#usuarios").hide();
+            $("#zonaUsuario").hide();
+
+        })
+
+    })
         .catch(error => console.error('Error status:', error));
 }
 
@@ -1007,52 +1001,52 @@ function verComentarios(usuario) {
 
     fetch(url, {
 
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        }
 
-        })
+    })
         .then(res => res.json()).then(result => {
 
-            var myHtml = "";
-            var comentarios = result.list;
+        var myHtml = "";
+        var comentarios = result.list;
 
-            for (let i = 0; i < comentarios.length; i++) {
+        for (let i = 0; i < comentarios.length; i++) {
 
-                if (usuario.admin == 0) {
-                    myHtml += "<div class='col-md-12  mb-4' >" +
-                        "<div class='card mb-4 box-shadow' id='cardComentario'>" +
-                        "<div class='card-body'>" +
-                        "<p class='card-text '>Título: " + comentarios[i].titulo + "</p>" +
-                        "<b><p class='card-text '>Texto : " + comentarios[i].texto + "</p></b><br>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>"
-                } else if (usuario.admin == 1) {
-                    myHtml += "<div class='col-md-12  mb-4' >" +
-                        "<div class='card mb-4 box-shadow' id='cardComentario'>" +
-                        "<div class='card-body'>" +
-                        "<p class='card-text '>Título: " + comentarios[i].titulo + "</p>" +
-                        "<b><p class='card-text '>Texto: " + comentarios[i].texto + "</p></b><br>" +
-                        "<div class='accionesComentarios'>" +
-                        "<button class='btn btn-danger borrarComentario' data-id=" + comentarios[i].idComentario + "><i class='fas fa-trash'></i></button>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>";
-                }
-
+            if (usuario.admin == 0) {
+                myHtml += "<div class='col-md-12  mb-4' >" +
+                    "<div class='card mb-4 box-shadow' id='cardComentario'>" +
+                    "<div class='card-body'>" +
+                    "<p class='card-text '>Título: " + comentarios[i].titulo + "</p>" +
+                    "<b><p class='card-text '>Texto : " + comentarios[i].texto + "</p></b><br>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            } else if (usuario.admin == 1) {
+                myHtml += "<div class='col-md-12  mb-4' >" +
+                    "<div class='card mb-4 box-shadow' id='cardComentario'>" +
+                    "<div class='card-body'>" +
+                    "<p class='card-text '>Título: " + comentarios[i].titulo + "</p>" +
+                    "<b><p class='card-text '>Texto: " + comentarios[i].texto + "</p></b><br>" +
+                    "<div class='accionesComentarios'>" +
+                    "<button class='btn btn-danger borrarComentario' data-id=" + comentarios[i].idComentario + "><i class='fas fa-trash'></i></button>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
             }
 
-            //Metemos los cards en los comentarios
-            $("#comentarios").html(myHtml);
+        }
 
-            $(".borrarComentario").click(function () {
-                idComentario = this.dataset.id;
-                borrarComentario(idComentario);
-            })
+        //Metemos los cards en los comentarios
+        $("#comentarios").html(myHtml);
+
+        $(".borrarComentario").click(function () {
+            idComentario = this.dataset.id;
+            borrarComentario(idComentario);
         })
+    })
 
         .catch(error => console.error('Error status:', error));
 
@@ -1079,19 +1073,19 @@ function execUpdatepersonal() {
     }
 
     fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            } // input data
-        })
+        method: 'POST',
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        } // input data
+    })
 
         .then(res => res.json()).then(result => {
 
-            alert("Información actualizada correctamente");
-            window.location.reload();
+        alert("Información actualizada correctamente");
+        window.location.reload();
 
-        })
+    })
         .catch(error => console.error('Error status:', error));
 }
 
@@ -1116,19 +1110,19 @@ function execUpdate() {
     }
 
     fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            } // input data
-        })
+        method: 'POST',
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        } // input data
+    })
 
         .then(res => res.json()).then(result => {
 
-            alert("Información actualizada correctamente");
-            window.location.reload();
+        alert("Información actualizada correctamente");
+        window.location.reload();
 
-        })
+    })
         .catch(error => console.error('Error status:', error));
 }
 
@@ -1144,18 +1138,18 @@ function borrarComentario(idComentario) {
     if (confirm("¿Estás seguro de que deseas eliminar este comentario?")) {
 
         fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                } //input data
-            })
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            } //input data
+        })
             .then(res => res.json()).then(result => {
 
-                alert(result.error);
-                location.reload();
+            alert(result.error);
+            location.reload();
 
-            })
+        })
             .catch(error => console.error('Error status:', error));
     }
 }
@@ -1173,19 +1167,19 @@ function borrarUsuario(idUsuario) {
 
 
         fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                } //input data
-            })
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            } //input data
+        })
             .then(res => res.json()).then(result => {
 
-                alert(result.error);
-                location.reload();
+            alert(result.error);
+            location.reload();
 
 
-            })
+        })
             .catch(error => console.error('Error status:', error));
     }
 }
@@ -1194,26 +1188,26 @@ function borrarUsuario(idUsuario) {
 function logout() {
     var url = "../../controller/cLogout.php";
     fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            } //input data
-        })
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        } //input data
+    })
         .then(res => res.json()).then(result => {
 
-            console.log(result.error);
+        console.log(result.error);
 
-            //Acciones
-            $("#perfil").hide();
-            $(".botonLogout").hide();
-            $(".botonLogin").show();
-            $(".perfilsidebar").hide();
+        //Acciones
+        $("#perfil").hide();
+        $(".botonLogout").hide();
+        $(".botonLogin").show();
+        $(".perfilsidebar").hide();
 
 
-            sessionStorage.removeItem("carrito")
-            alert("Has cerrado la sesión, esperamos tenerte de vuelta lo antes posible!");
-            window.location.href = "../../index.html";
+        sessionStorage.removeItem("carrito")
+        alert("Has cerrado la sesión, esperamos tenerte de vuelta lo antes posible!");
+        window.location.href = "../../index.html";
 
-        })
+    })
         .catch(error => console.error('Error status:', error));
 }

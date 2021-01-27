@@ -17,7 +17,14 @@ h2{
 .insertar{
 display:none;
 }
-.insertarStock, .update{
+.update{
+    display: none;
+}
+.update form{
+    margin: 20px;
+    padding: 20px;
+}
+.insertarStock, .updateStock{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,6 +36,24 @@ button{
     margin: 10px;
 }
 .insertarStock input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.updateStock input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.updateStock input[type=number], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -75,7 +100,4 @@ button{
     border-radius: 4px;
     cursor: pointer;
     width:30%;
-}
-.update{
-    display: none;
 }

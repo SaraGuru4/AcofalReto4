@@ -104,4 +104,51 @@
 				return $sql . "Error al insertar";
 			}
 		}
+		public function deleteStock(){
+			$this->OpenConnect();
+			
+			$idStock = $this->getIdStock();
+			
+			$sql = "CALL spDeleteStock($idStock)";
+			
+			if ( $this->link->query( $sql ) ) {
+				$returnString = "Producto eliminado correctamente";
+				$this->CloseConnect();
+				return $returnString;
+			} else {
+				$this->CloseConnect();
+				return $sql . "Error al eliminar";
+			}
+		}
+		//Update ver datos
+		public function getStockByIdStock() {
+		    $this->OpenConnect();
+		    $idStock = $this->getIdStock();
+		    
+		    $sql = "CALL spGetStockByIdStock($idStock)";
+		    $result = $this->link->query( $sql );
+		    
+		    $list = array();
+		    while ( $row = mysqli_fetch_array( $result, MYSQLI_ASSOC ) ) {
+		        $new = new stockModel();
+		        $new->idStock = $row[ 'idStock' ];
+		        $new->idTienda = $row[ 'idTienda' ];
+		        $new->idProducto = $row[ 'idProducto' ];
+		        $new->precio = $row[ 'precio' ];
+		        $new->descuento = $row[ 'descuento' ];
+		        $new->cantidad = $row[ 'cantidad' ];
+		        
+		        //Buscar el objProducto y a�adirlo
+		        $newProducto = new productoModel();
+		        $newProducto->setIdProducto( $row[ 'idProducto' ] );
+		        $newProducto->getProductoById();
+		        $new->objProducto = $newProducto->ObjVars();
+		        
+		        array_push( $list, get_object_vars( $new ) );
+		    }
+		    mysqli_free_result( $result );
+		    $this->CloseConnect();
+		    return $list;
+		}
+		
 	}

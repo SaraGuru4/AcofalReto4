@@ -10,8 +10,8 @@ $(document).ready(function () {
 //Verificamos si el usuario está conectado
 function loggedVerify() {
 
-    let url = "../../controller/cLoggedVerify.php";
-    if (location.href.match(/(reto4\/index.html|reto4\/)/i) !== null) url = "controller/cLoggedVerify.php";
+    let url = "controller/cLoggedVerify.php";
+    if (location.href.match(/(\/view)/i) !== null) url = "../../controller/cLoggedVerify.php";
 
     fetch(url, {
         method: 'GET',
@@ -38,13 +38,13 @@ function loggedVerify() {
 
 
             if (usuario.admin == 0) {
-                alert("Bienvenido de nuevo, " + usuario.nombreUsuario);
+                console.log("Bienvenido de nuevo, " + usuario.nombreUsuario);
             } else if (usuario.admin == 1) {
-                alert("Hola de nuevo, " + usuario.nombreUsuario + " eres administrador número " +
+                console.log("Hola de nuevo, " + usuario.nombreUsuario + " eres administrador número " +
                     usuario.admin + ". Eres administrador de la tiendas");
 
             } else {
-                alert("Hola de nuevo, " + usuario.nombreUsuario + " eres administrador número " +
+                console.log("Hola de nuevo, " + usuario.nombreUsuario + " eres administrador número " +
                     usuario.admin)
             }
 
@@ -78,9 +78,9 @@ function login() {
 
         // Actualiza la página solo en caso de que el mensaje sea no error
         if (result.error === 'no error') {
-            /*document.getElementById("email2").value = "";
+            document.getElementById("email2").value = "";
             document.getElementById("password2").value = "";
-            location.reload();*/
+            location.reload();
 
         } else {
             alert(result.error);

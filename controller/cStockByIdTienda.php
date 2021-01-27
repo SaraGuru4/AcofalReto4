@@ -11,7 +11,7 @@ $stock=new stockModel();
 $stock->setIdTienda($idTienda);
 
 $response=array();
-$response['error']=$stock->getStockByIdTienda();
+$response['list']=$stock->getStockByIdTienda();
 
 echo json_encode($response);
 

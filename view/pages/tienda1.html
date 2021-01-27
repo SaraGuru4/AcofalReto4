@@ -22,6 +22,132 @@
 
 <body ng-controller="miControlador">
     <header id="header">
+        <div class="background-top">
+            <div class="imagenes">
+              <img src="../img/index/top1.jpg" alt="">
+              <img src="../img/index/top2.jpg" alt="">
+              <img src="../img/index/top3.jpg" alt="">
+            </div>
+    
+          </div>
+          <!--Menu -->
+          <div class="menu">
+    
+            <!--Logo -->
+            <div class="log-box">
+              <img src="../img/index/logo.jpg" alt="" width="150px" id="logo"></span>
+            </div>
+    
+            <div class="list-container">
+    
+              <div class="lists" id="list">
+                <li><a href="../../index.html">HOME</a></li>
+                <li> <a href="#noticias" id="noticia">NOTICIAS</a></li>
+                <li> <a href="../pages/escaparate.html">ESCAPARATE LOCAL</a></li>
+                <li> <a href="../pages/videos.html" id="vid">VÍDEOS</a></li>
+                <li> <a href="../pages/contacto.html">CONTACTO</a></li>
+                <li> <a href="../pages/usuario.html" id="perfil">PERFIL</a></li>
+                <li>
+                  <div id="usuario">
+                    </h2>
+                </li>
+              </div>
+              <div class="login" id="list2">
+                <li><a href="#" id="registrate" onclick="abrirLoginIndex()">REGÍSTRATE</a></li>
+                <div class="barra"></div>
+    
+                <li> <a href="#" class="botonLogin" id="btnlogin" onclick="abrirLoginIndex()"><i
+                      class="fas fa-user"></i>LOGIN</a></li>
+    
+                <li> <a href="#" class=" botonLogout" id="logout"><i class="fas fa-sign-out-alt"></i></i>LOGOUT</a></li>
+    
+                <section id="loginmodal">
+                  <div id="fade" class="overlay1"></div>
+                  <div id="light" class="modal">
+                    <a href="#" onclick="cerrarLoginIndex()" class="closelogin">&times;</a>
+                    <div class="container" id="container">
+                      <div class="form-container sign-up-container" id="formregistro">
+                        <form action="#">
+                          <h1>Crea una cuenta</h1>
+                          <div class="social-container">
+                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                          </div>
+                          <input type="text" placeholder="Nombre" id="nombreRegistro" />
+                          <input type="text" placeholder="Email" id="emailRegistro" />
+                          <input type="password" id="passwordRegistro" placeholder="Password" />
+                          <div id="cambiarIcono" class="cambiarIconoLogin2">
+                            <i class="fas fa-eye" onclick="mostrarContrasena()"></i>
+                          </div>
+                          <button id="register">Registrarse</button>
+                        </form>
+                      </div>
+                      <div class="form-container sign-in-container">
+                        <form action="#">
+                          <h1>Iniciar sesión</h1>
+                          <div class="social-container">
+                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                          </div>
+                          <input type="correo" id="email2" placeholder="Correo electrónico" />
+                          <input type="password" id="password2" placeholder="Contraseña" />
+                          <br>
+                          <button id="login">Iniciar sesión</button>
+                        </form>
+                      </div>
+                      <div class="overlay-container">
+                        <div class="overlay">
+                          <div class="overlay-panel overlay-left">
+                            <h1>Bienvenido de nuevo!</h1>
+                            <p>Para mantenerse conectado con nosotros, ingrese su información personal</p>
+                            <button class="ghost" id="signIn">Iniciar sesión</button>
+                          </div>
+                          <div class="overlay-panel overlay-right">
+                            <h1>Hola!</h1>
+                            <p>Ingrese sus datos personales y comience un nuevo viaje con nosotros</p>
+                            <button class="ghost" id="signUp">Registrarse</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+          <!--Botón para abrir el menú lateral-->
+        <div id="mainbox" onclick="openMenuIndex()">&#9776; &nbsp; MENÚ</div>
+    </div>
+    <!--Menu Lateral-->
+
+    <div id="menu" class="sidemenu">
+
+      <div class="enlaces">
+        <a href="../../index.html" class="active"><i class="fas fa-home"></i>&nbsp;Home</a>
+
+        <a href="#noticiassection" onclick="closeMenuIndex()"><i class="fas fa-newspaper"></i>&nbsp;Noticias</a>
+
+        <a href="escaparate.html" onclick="closeMenuIndex()"><i class="fas fa-hotel"></i>&nbsp; Escaparate
+          local </a>
+
+        <a href="videos.html" onclick="closeMenuIndex()"><i class="fas fa-video"></i>&nbsp;Vídeos </a>
+
+        <a href="#" onclick="closeMenuIndex()"><i class="fas fa-users"></i>&nbsp;Ciudadanía </a>
+        <a href="contacto.html" onclick="closeMenuIndex()"><i
+            class="fas fa-address-book"></i>&nbsp;Contacto </a>
+
+        <a href="usuario.html" onclick="closeMenuIndex()"  class="perfilsidebar"><i
+            class="fas fa-user"></i>&nbsp;Perfil </a>
+
+        <a href="#" onclick="abrirLoginIndex()" class="loginsidebar"><i class="fas fa-sign-in-alt"></i> &nbsp;Login</a>
+        
+        <a href="#" onclick="logout()" class="logoutsidebar"><i class="fas fa-sign-out-alt"></i> &nbsp;Logout</a>
+      </div>
+      <a href="#" class="closebtn" onclick="closeMenuIndex()">&times;</a>
+
+    </div>
         <!-- Main Nav -->
         <nav class="main_nav w-100">
             <div class="container mac">
@@ -428,6 +554,8 @@
 
 <script src="../js/login.js"></script>
 <script src="../js/registro.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/index.js"></script>
 
 </body>
 </html>
