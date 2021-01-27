@@ -183,6 +183,45 @@
         <!--Fin Form Datos usuario-->
 
 
+        <!--Formulario para insertar un producto   ADMIN 1-->
+        <div id="formNuevoPorducto">
+            <h1 class='text-center'>NUEVO PRODUCTO</h1>
+            <div class="underline"> </div>
+            <form class='m-2'>
+                <div class="form_row">
+                    <label for="name">Nombre producto: <span class="text-danger">*</span></label>
+                    <input type="text" placeholder="Nombre" name="name" id="nombreProducto">
+                </div>
+
+                <div class="form_row">
+                    <label for="name">Tipo: <span class="text-danger">*</span></label>
+                    <input type="text" placeholder="Dirección" name="name" id="tipoProducto">
+                </div>
+                <div class="form_row">
+                    <label for="name">Descripción: <span class="text-danger">*</span></label>
+                    <input type="text" placeholder="Dirección" name="name" id="descripciónProducto">
+                </div>
+
+                <div class="col-lg-6 p-3 text-center" id="containerImagen">
+                    <label>Imagen de perfil</label><br>
+                    <input type="file" name="imagen" id="imagenInsertProducto" accept=".png,.jpeg,.jpg,.gif">
+                    <label type="file" for="imagen" class="btn text-white col-lg-5 col-md-4 col-sm-4 col-4"
+                        id="btnSubirArchivo">Subir imagen <i class="fas fa-upload text-white"></i></label>
+                </div>
+                <div class="col-lg-6 p-3 text-center">
+                    <img src="../img/index/default.jpg" id="fotoPerfilInsertProducto">
+                </div>
+
+
+                <div class="submit">
+                    <input type="" value="Cancelar " onclick="volveraDatosPersonales()" id="cancelarInsertTienda">
+                    <input value="Insertar " id="aceptarinsertTienda" />
+                </div>
+            </form>
+
+        </div>
+        <!--Formulario para insertar una tienda  Fin  ADMIN 1-->
+
         <!--Formulario para insertar una tienda   ADMIN 1-->
         <div id="formNuevaTienda">
             <h1 class='text-center'>NUEVA TIENDA</h1>
@@ -236,6 +275,7 @@
 
         </div>
         <!--Formulario para insertar una tienda  Fin  ADMIN 1-->
+
 
 
         <!--Select tiendas para modificar -->

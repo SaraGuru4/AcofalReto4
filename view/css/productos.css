@@ -9,15 +9,16 @@ h2{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 30px;
-    padding: 30px;
+    margin: 20px;
 }
 .sel{
     width: 50% !important;
 }
+.insertar{
+display:none;
+}
 .insertarStock{
-    margin: 30px !important;
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
     width: 500px;
@@ -46,7 +47,7 @@ button{
     box-sizing: border-box;
 }
 
-.insertarStock input[type=submit] {
+.insertarStock input[type=button-green] {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;

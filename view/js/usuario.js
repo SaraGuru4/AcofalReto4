@@ -11,6 +11,9 @@ $(document).ready(function () {
     //Insert tienda imagen
     $("#imagenInsert").change(changeImgInsert);
 
+    //Insert producto imagen
+    $("#imagenInsertProducto").change(changeImgInsertProducto);
+
     //Comentarios href a la sección de comentarios
     $('.comments').on('click', function () {
 
@@ -73,6 +76,10 @@ function volveraDatosPersonales() {
     $("#formUpdateDatosPersonales").hide();
     $("#btnUpdateUser").show();
     $("#divFiltro").hide();
+    $("#añadirForm").hide();
+    $("#cmbShopsModify").hide();
+    $(".modificartienda h2").hide();
+
 
 }
 
@@ -99,11 +106,11 @@ function loggedVerify() {
     var url = "../../controller/cLoggedVerify.php";
 
     fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            } //input data
-        })
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        } //input data
+    })
         .then(res => res.json()).then(result => {
 
             console.log(result);
@@ -177,6 +184,8 @@ function loggedVerify() {
                         $("#usuarios").hide();
                         $("#comentarios").hide();
                         $("#divFiltro").hide();
+                        $("#productos").hide();
+                        $(".nombreTienda").hide();
 
 
                         //Metemos los datos de usuario en el form
@@ -237,11 +246,13 @@ function zonaAdminTienda(usuario, tiendas) {
     console.log(tiendas);
 
     if (usuario.admin == 1) {
-        usuarioDatos = `<div class='botonesAcciones'>
+        usuarioDatos = `<div class='botonesAcciones2'>
             <h3>Elija la operación que desea realizar:</h3>
               <button class='btn btn-success' id='insertartienda'>Insertar tienda</button>
               <button class='btn btn-warning' id='actualizartienda'>Actualizar tienda</button>
               <button class='btn btn-danger' id='eliminartienda'>Eliminar tienda</button>
+              <button class='btn btn-primary' id='verproductos'>Ver productos</button>
+              <button class='btn btn-light' id='insertarproductos'>Insertar productos</button>
              </div><div class='col-12'>
             <div class='header'>
               <h1 class='nombreUsuario'>Tu cuenta, ${usuario.nombreUsuario}&nbsp${usuario.nombreUsuario}<h1>
@@ -257,12 +268,9 @@ function zonaAdminTienda(usuario, tiendas) {
            </div>
          </div>`;
     } else {
-        usuarioDatos = `<div class='botonesAcciones'>
-		<h3>Elija la operación que desea realizar:</h3>
-		  <button class='btn btn-warning' id='actualizartienda'>Actualizar tienda</button>
-          <button class='btn btn-danger' id='eliminartienda'>Eliminar tienda</button>
-          <button class='btn btn-primary' id='verproductos'>Ver productos</button>
-		 </div><div class='col-12'>
+
+
+        usuarioDatos = `<div class='col-12'>
 		<div class='header'>
 		  <h1 class='nombreUsuario'>Tu cuenta, ${usuario.nombreUsuario}&nbsp${usuario.nombreUsuario}<h1>
 		  <img src='https://www.w3schools.com/howto/img_avatar.png' class='avatar'>
@@ -272,7 +280,7 @@ function zonaAdminTienda(usuario, tiendas) {
 		   <li><u>Apellido</u>: ${usuario.apellidos}</li>
 		   <li><u>Correo electrónico</u>: ${usuario.correo}</li>
 		   <li><u>Contraseña actual</u>: ${usuario.password}</li>
-		   <li><u>Administrador</u>: ${usuario.admin}, eres administrador de la tienda &nbsp ${tiendas.nombreTienda}</li>
+		   <li><u>Administrador</u>: ${usuario.admin}, eres administrador/a de la tienda ${tiendas.nombreTienda}</li>
 		 </ul>
 	   </div>
 	 </div>`;
@@ -283,7 +291,19 @@ function zonaAdminTienda(usuario, tiendas) {
     $(".modificartienda").hide();
     $(".eliminartienda").hide();
 
+
+    $("#btnVerUsuarios").hide();
+    $("#btnVerComentarios").hide();
+
+
     //-------------------ACCIONES DEL ADMINISTRADOR 1---------------------
+
+    $("#insertarproductos").click(function () {
+        
+      $("#zonaUsuario").hide();
+      $("#formNuevoPorducto").show();
+      insertProducto();
+    })
 
     //Mostrar formulario para actualizar insertar la tienda
     $("#insertartienda").click(function () {
@@ -299,6 +319,7 @@ function zonaAdminTienda(usuario, tiendas) {
         $(".modificartienda").show();
         $("#formNuevaTienda, .eliminartienda, #zonaUsuario").hide();
         loadShops();
+
     })
 
     $("#eliminartienda").click(function () {
@@ -324,10 +345,66 @@ function zonaAdminTienda(usuario, tiendas) {
     $("#verproductos").click(function () {
         $(".modificartienda, #formNuevaTienda, #zonaUsuario, .eliminartienda").hide();
         $("#productos").show();
-        verProductos(tiendas);
+        $("#btnUpdateUser").show();
+
+        //Productos por la id tienda del usuario
+        verProductos();
 
     })
 }
+
+function insertProducto() {
+
+    var nombre = $("#nombreProducto").val();
+    var direccion = $("#tipoProducto").val();
+    var descripcion = $("#descripcionProducto").val();
+    var imagen = filename;
+    var url = "../../controller/cProductos.php";
+
+    permitirInsertProducto = true;
+    if (nombre == "" || direccion == "" || descripcion == "" ) {
+
+        permitirInsertTienda = false;
+        alert("Campos vacios, no se ha podido insertar el nuevo producto");
+    } else { //Si no hay datos vacios
+
+
+        if (permitirInsertProducto = true) {
+
+            var url = "../../controller/cInsertProducto.php";
+            var data = {
+                'nombre': nombre,
+                'direccion': direccion,
+                'descripcion': descripcion,
+                //   'tipo': tipo,
+                'imagen': imagen,
+                'filename': filename,
+                'savedFileBase64': savedFileBase64,
+            };
+
+            //Llamada fetch
+            fetch(url, {
+                method: 'POST', // or 'POST'
+                body: JSON.stringify(data), // data can be `string` or {object}!
+                headers: {
+                    'Content-Type': 'application/json'
+                } // input data
+            })
+                .then(res => res.json()).then(result => {
+                    location.reload();
+                    alert("Tienda insertada correctamente");
+
+                })
+                .catch(error => console.error('Error status:', error));
+        } else {
+
+            alert("Ya existe un producto con ese nombre ");
+        }
+
+    }
+
+}
+
 
 
 function verProductos() {
@@ -335,66 +412,83 @@ function verProductos() {
 
     fetch(url, {
 
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        }
 
-        })
+    })
         .then(res => res.json()).then(result => {
 
             var myHtml = "";
-            var usuarios = result.list;
+            var productos = result.list;
 
-            for (let i = 0; i < usuarios.length; i++) {
 
-                if (usuario.admin == 0) {
-                    myHtml += "<div class='col-md-12' >" +
-                        "<div class='card  box-shadow' name='cardUsuario' id='card'>" +
-                        "<div class='card-body'  id='datosusuariocard'>" +
-                        "<p class='card-text '><u>Id</u>: " + usuarios[i].idUsuario + "</p>" +
-                        "<b><p class='card-text ' ><u>Nombre</u>: " + usuarios[i].nombreUsuario + "</p></b><br>" +
-                        "<p class='card-text '><u>Apellido</u>: " + usuarios[i].apellidos + "</p>" +
-                        "<p class='card-text '><u>Correo electrónico</u>: " + usuarios[i].correo + "</p>" +
-                        "<p class='card-text '><u>Contraseña</u>: " + usuarios[i].password + "</p>" +
-                        "<p class='card-text '><u>Administrador</u>: Tipo " + usuarios[i].admin + "</p>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>"
-                } else if (usuario.admin == 1) {
-                    myHtml += "<div class='col-md-12' >" +
-                        "<div class='card  box-shadow' name='cardUsuario' id='card'>" +
-                        "<div class='card-body' id='datosusuariocard'>" +
-                        "<p class='card-text' ><u>Id</u>: " + usuarios[i].idUsuario + "</p>" +
-                        "<b><p class='card-text'><u>Nombre</u>: " + usuarios[i].nombreUsuario + "</p></b><br>" +
-                        "<p class='card-text '><u>Apellido</u>: " + usuarios[i].apellidos + "</p>" +
-                        "<p class='card-text '><u>Correo electrónico</u>: " + usuarios[i].correo + "</p>" +
-                        "<p class='card-text '><u>Contraseña</u>: " + usuarios[i].password + "</p>" +
-                        "<p class='card-text '><u>Administrador</u>: Tipo " + usuarios[i].admin + "</p>" +
-                        "<div class='accionesUsuario'>" +
-                        "<button class='btn btn-danger borrarUser' data-id=" + usuarios[i].idUsuario + "><i class='fas fa-trash'></i></button>" +
-                        "<button class='btn btn-warning updateUser' data-id=" + usuarios[i].idUsuario + " data-nombre=" + usuarios[i].nombreUsuario +
-                        " data-apellido=" + usuarios[i].apellidos + " data-email=" + usuarios[i].correo + " data-contrasena=" + usuarios[i].password + " data-administrador=" + usuarios[i].admin + "><i class='fas fa-pen'></i></button>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>"
-                }
+            for (let i = 0; i < productos.length; i++) {
+
+                myHtml += "<div class='col-md-3 mb-4 ' >" +
+                    "<div class='card  box-shadow' id='cardProducto'>" +
+                    "<div class='imagenProducto'>" +
+                    "<img class='card-img-top' src='../img/productos/" + productos[i].foto + "'>" +
+                    "</div>" +
+                    "<div class='card-body'>" +
+                    "<p class='card-text nombre'><b>Id del producto: </b>" + productos[i].idProducto + "</p>" +
+                    "<p class='card-text nombre'><b>Nombre: </b>" + productos[i].nombreProducto + "</p>" +
+                    "<p class='card-text tipo'> <b>Tipo: </b>" + productos[i].tipo + "</p>" +
+                    "<button class='btn btn-cont modifyProduct'>Modificar <i class='fas fa-pen-alt'></i></button>" +
+                    "<button class='btn btn-cont deleteProduct' data-id='" + productos[i].idProducto + "'>Eliminar <i class='fa fa-trash-alt'></i></button>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
 
             }
 
+            $("#productos").html(myHtml);
+
+            //Eliminar producto
+
+            $(".deleteProduct").click(function () {
+
+                var idProducto = this.dataset.id;
+                deleteProducto(idProducto);
+            })
 
         })
         .catch(error => console.error('Error status:', error));
 
 
 }
+function deleteProducto(idProducto) {
+    var url = "../../controller/cDeleteProducto.php";
+    var data = {
+        'idProducto': idProducto
+    };
+
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        } // input data
+    })
+
+        .then(res => res.json()).then(result => {
+
+            console.log(result.error)
+            window.location.reload();
+            alert("Producto eliminado correctamente");
+        })
+        .catch(error => console.error('Error status:', error));
+}
+
 
 
 function loadTipoTienda(id) {
     fetch('../../controller/cTipoTiendas.php', {
-            method: 'GET'
-        }).then(result => result.json())
+        method: 'GET'
+    }).then(result => result.json())
         .then(response => {
             Array.from(response.answer).forEach(tipoTienda => {
                 let option = `<option value=${tipoTienda.idTipo}>${tipoTienda.nombre}</option>`;
@@ -410,8 +504,8 @@ function loadShops() {
     var url = "../../controller/cTiendas.php";
 
     fetch(url, {
-            method: 'GET',
-        })
+        method: 'GET',
+    })
         .then(res => res.json()).then(result => {
 
             console.log(result.list);
@@ -440,12 +534,12 @@ function loadShops() {
 
             });
 
-            /* $("#cmbShopsDelete").change(function () {
+             $("#cmbShopsDelete").change(function () {
 
-                var idTienda = $(this).children(":selected").attr("id");
+                var idTienda = $(this).val();;
                 deleteShop(idTienda);
 
-            }) */
+            }) 
 
         })
         .catch(error => console.error('Error status:', error));
@@ -457,18 +551,17 @@ function deleteShop(idTienda) {
     $("#deleteshop").click(function () {
 
         var url = "../../controller/cDeleteShop.php";
-        var idTienda = idTienda;
         var data = {
             'idTienda': idTienda
         };
 
         fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data), // data can be `string` or {object}!
-                headers: {
-                    'Content-Type': 'application/json'
-                } // input data
-            })
+            method: 'POST',
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            } // input data
+        })
 
             .then(res => res.json()).then(result => {
 
@@ -492,12 +585,12 @@ function updateShop(idTienda) {
     };
 
     fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
         .then(res => res.json()).then(result => {
 
             var tienda = result.list;
@@ -507,25 +600,23 @@ function updateShop(idTienda) {
 			<form>\
 			<div class='form-group'>\
 			  <label for='exampleInputEmail1'>Nombre de la tienda:<span class='text-danger'>*</span></label>\
-			  <input type='text' class='form-control' id='nombreTiendaUpdate'  placeholder='Nombre de la tienda'>\
+			  <input type='text'  id='nombreTiendaUpdate'  placeholder='Nombre de la tienda'>\
 			</div>\
 			<div class='form-group'>\
 			  <label for='exampleInputPassword1'>Dirección<span class='text-danger'>*</span></label>\
-			  <input type='text' class='form-control' id='direccionTiendaUpdate' placeholder='Dirección'>\
+			  <input type='text'  id='direccionTiendaUpdate' placeholder='Dirección'>\
 			</div>\
 			<div class='form-group'>\
 			<label for='exampleInputPassword1'>Teléfono<span class='text-danger'>*</span></label>\
-			<input type='text' class='form-control' id='telefonoTiendaUpdate' placeholder='Teléfono'>\
+			<input type='text'  id='telefonoTiendaUpdate' placeholder='Teléfono'>\
 		  </div>\
-		  <label for='exampleInputPassword1'>Tipo:<span class='text-danger'>*</span></label>\
-		  <input type='text' class='form-control' id='tipoTiendaUpdate' placeholder='Tipo de tienda'>\
 			 </div>\
 			 <label for='exampleInputPassword1'>Texto:<span class='text-danger'>*</span></label>\
-			 <input type='text' class='form-control' id='textoTiendaUpdate' placeholder='Texto'>\
+			 <input type='text'  id='textoTiendaUpdate' placeholder='Texto'>\
 			 </div>\
 			 <div class='form_row'>\
                     <label for='name'>Tipo tienda: <span class='text-danger'>*</span></label>\
-                    <input type='text' class='form-control' data-id='" + tienda[0].objEscaparate.idTipo + "'  value='" + tienda[0].objEscaparate.nombre + "' id='tipoTiendaUpdate' placeholder='Tipo tienda' disabled>\
+                    <input type='text' data-id='" + tienda[0].objEscaparate.idTipo + "'  value='" + tienda[0].objEscaparate.nombre + "' id='tipoTiendaUpdate' placeholder='Tipo tienda' disabled>\
                 </div>\
 		  <div class='form-group'>\
 		     <div class='col-lg-6 p-3 text-center' id='containerImagen'>\
@@ -536,8 +627,9 @@ function updateShop(idTienda) {
                     <img src='../img/logos/" + tienda[0].foto + "' id='fotoPerfilUpdate'>\
                 </div>\
 			</div>\
-			 </div>\
-	       <button  id='btnExecuteUpdateShop' class='btn btn-success'>Modificar tienda</button>\
+             </div>\
+             <button id='cancelarupdateTienda' onclick='volveraDatosPersonales()'>Cancelar</button>\
+	         <button  id='aceptarupdateTienda' >Modificar tienda</button>\
             </form>";
 
             $("#añadirForm").html(formulario);
@@ -551,7 +643,6 @@ function updateShop(idTienda) {
 
 
 
-
             //Update tienda imagen
             $("#imagenUpdate").change(changeImgUpdate);
 
@@ -559,8 +650,12 @@ function updateShop(idTienda) {
             loadTipoTienda("#tipotiendaUpdate");
 
             //Al hacer click ejecutamos el update
-            $("#btnExecuteUpdateShop").click(function () {
-                executeUpdateShop(tienda);
+            $("#aceptarupdateTienda").click(function () {
+
+                alert(idTienda);
+                idTienda = tienda[0].idTienda;
+                executeUpdateShop(idTienda);
+
             });
 
 
@@ -568,6 +663,50 @@ function updateShop(idTienda) {
         .catch(error => console.error('Error status:', error));
 
 }
+/*Modificar tienda*/
+
+function executeUpdateShop(idTienda) {
+
+    idTienda = this.val();
+    var nombreTienda = $('#nombreTiendaUpdate').val();
+    var direccionTienda = $("#direccionTiendaUpdate").val();
+    var telefonoTienda = $("#telefonoTiendaUpdate").val();
+    var tipoTienda = $("#tipoTiendaUpdate").val();
+    var textoTienda = $("#textoTiendaUpdate").val();
+    var imagenTienda = filename;
+
+
+    var url = "../../controller/cUpdateShop.php";
+    var data = {
+        'idTienda': idTienda,
+        'nombreTienda': nombreTienda,
+        'direccionTienda': direccionTienda,
+        'telefonoTienda': telefonoTienda,
+        'tipoTienda': tipoTienda,
+        'textoTienda': textoTienda,
+        'imagenTienda': imagenTienda,
+        'filename': filename,
+        'savedFileBase64': savedFileBase64,
+
+    }
+
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        } // input data
+    })
+
+        .then(res => res.json()).then(result => {
+
+            alert("Tienda actualizada correctamente");
+            // window.location.reload();
+
+        })
+        .catch(error => console.error('Error status:', error));
+}
+
 
 /*Insertar tienda función: ADMIN2 */
 
@@ -576,7 +715,7 @@ function insertarTienda() {
     var nombre = $("#nombreTienda").val();
     var direccion = $("#direccionTienda").val();
     var telefono = $("#telefonoTienda").val();
-
+    //  var tipo = $("#tipotiendaInsert").val();
     var texto = $("#textoTienda").val();
     var imagen = filename;
     var url = "../../controller/cTiendas.php";
@@ -584,6 +723,7 @@ function insertarTienda() {
     permitirInsertTienda = true;
     if (nombre == "" || direccion == "" || telefono == "" || texto == "" || imagen == "") {
 
+        permitirInsertTienda = false;
         alert("Campos vacios, no se ha podido insertar la nueva tienda");
     } else { //Si no hay datos vacios
 
@@ -596,23 +736,23 @@ function insertarTienda() {
                 'direccion': direccion,
                 'telefono': telefono,
                 'texto': texto,
+                //   'tipo': tipo,
                 'imagen': imagen,
                 'filename': filename,
                 'savedFileBase64': savedFileBase64,
-
             };
 
             //Llamada fetch
             fetch(url, {
-                    method: 'POST', // or 'POST'
-                    body: JSON.stringify(data), // data can be `string` or {object}!
-                    headers: {
-                        'Content-Type': 'application/json'
-                    } // input data
-                })
+                method: 'POST', // or 'POST'
+                body: JSON.stringify(data), // data can be `string` or {object}!
+                headers: {
+                    'Content-Type': 'application/json'
+                } // input data
+            })
                 .then(res => res.json()).then(result => {
                     location.reload();
-                    alert("Tienda insertada correctamente")
+                    alert("Tienda insertada correctamente");
 
                 })
                 .catch(error => console.error('Error status:', error));
@@ -625,9 +765,9 @@ function insertarTienda() {
 }
 
 //Cambia la foto de perfil que esta por defecto en el formulario por la introducida por el usuario
-function changeImgInsert() {
+function changeImgInsertUpdate() {
 
-    var file = $('#imagenInsert')[0].files[0];
+    var file = $('#imagenUpdateProducto')[0].files[0];
 
     filename = file.name.toLowerCase();
     filesize = file.size;
@@ -636,7 +776,7 @@ function changeImgInsert() {
 
     reader.onloadend = function () {
         savedFileBase64 = reader.result;
-        $('#fotoPerfilInsert').attr('src', savedFileBase64);
+        $('#fotoPerfilUpdateProducto').attr('src', savedFileBase64);
     }
 
     if (file) {
@@ -645,12 +785,36 @@ function changeImgInsert() {
 
     } else {
 
-        $('#fotoPerfilInsert').attr('src', '');
+        $('#fotoPerfilUpdateProducto').attr('src', '');
 
     }
 
 }
+function changeImgInsertProducto() {
 
+    var file = $('#imagenInsertProducto')[0].files[0];
+
+    filename = file.name.toLowerCase();
+    filesize = file.size;
+
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+        savedFileBase64 = reader.result;
+        $('#fotoPerfilInsertProducto').attr('src', savedFileBase64);
+    }
+
+    if (file) {
+
+        reader.readAsDataURL(file);
+
+    } else {
+
+        $('#fotoPerfilInsertProducto').attr('src', '');
+
+    }
+
+}
 //Cambia la foto de perfil que esta por defecto en el formulario por la introducida por el usuario
 function changeImgUpdate() {
 
@@ -678,7 +842,6 @@ function changeImgUpdate() {
     }
 
 }
-
 
 /*Función para buscar usuarios en el filtro*/
 function buscarUsuarios() {
@@ -714,12 +877,12 @@ function verUsuarios(usuario) {
 
     fetch(url, {
 
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        }
 
-        })
+    })
         .then(res => res.json()).then(result => {
 
             var myHtml = "";
@@ -813,12 +976,12 @@ function verComentarios(usuario) {
 
     fetch(url, {
 
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        }
 
-        })
+    })
         .then(res => res.json()).then(result => {
 
             var myHtml = "";
@@ -885,12 +1048,12 @@ function execUpdatepersonal() {
     }
 
     fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            } // input data
-        })
+        method: 'POST',
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        } // input data
+    })
 
         .then(res => res.json()).then(result => {
 
@@ -922,12 +1085,12 @@ function execUpdate() {
     }
 
     fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            } // input data
-        })
+        method: 'POST',
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        } // input data
+    })
 
         .then(res => res.json()).then(result => {
 
@@ -950,12 +1113,12 @@ function borrarComentario(idComentario) {
     if (confirm("¿Estás seguro de que deseas eliminar este comentario?")) {
 
         fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                } //input data
-            })
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            } //input data
+        })
             .then(res => res.json()).then(result => {
 
                 alert(result.error);
@@ -979,12 +1142,12 @@ function borrarUsuario(idUsuario) {
 
 
         fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                } //input data
-            })
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            } //input data
+        })
             .then(res => res.json()).then(result => {
 
                 alert(result.error);
@@ -1000,11 +1163,11 @@ function borrarUsuario(idUsuario) {
 function logout() {
     var url = "../../controller/cLogout.php";
     fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            } //input data
-        })
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        } //input data
+    })
         .then(res => res.json()).then(result => {
 
             console.log(result.error);
@@ -1013,6 +1176,9 @@ function logout() {
             $("#perfil").hide();
             $(".botonLogout").hide();
             $(".botonLogin").show();
+            $(".perfilsidebar").hide();
+
+
             sessionStorage.removeItem("carrito")
             alert("Has cerrado la sesión, esperamos tenerte de vuelta lo antes posible!");
             window.location.href = "../../index.html";

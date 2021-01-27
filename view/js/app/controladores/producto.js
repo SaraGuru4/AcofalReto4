@@ -23,15 +23,46 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                 
         });
     });
-        //Insertar en stock.
+    //Insertar en stock.
     function verInsert(producto){
         $('#idProducto2').val(producto);
         $('#idTienda2').val(location.search.substring(1, location.search.length));
-        $('.insertarStock').css("display","flex");
+        $('.insertar').css("display","flex");
+        $('.insertar').css("flex-direction","column");
     }
-    function insesrtarProducto(){
+    $scope.insertarStock=function(){
         //Meter aqui los valores del formulario y hacer un post a insertar
-    }
+        var idProducto=$('#idProducto2').val();
+        var idTienda=$('#idTienda2').val();
+        var precio =$scope.precio;//$('#precio').val();
+        var descuento= $scope.descuento;
+        var cantidad= $scope.cantidad;
+        var data={idProducto:idProducto,idTienda:idTienda,precio:precio,descuento:descuento,cantidad:cantidad};
+        alert(idProducto+"..."+precio);
+
+         $http({
+           method: 'POST',
+           url: '../../controller/cInsertStock.php',
+           data: JSON.stringify(data),
+           contentType: 'application/json',
+           dataType: 'JSON'
+           }).then(function successCallback(response) {
+                alert(response.data.error);
+                console.log(response.data.error);
+           }, function errorCallback(response) {
+                alert("Algo ha fallado al procesar el insert!");
+           });
+        }
+
+    //Borra los campos del formulario
+/*     $scope.quitar =function(){
+        $scope.idProducto2="";
+        $scope.idTienda2="";
+        $scope.precio="";
+        $scope.descuento= "";
+        $scope.cantidad= "";
+        //$('.insertar').css("display","none");
+    } */
 
     //Hacer una lista de tus productos y modificar y delete
 

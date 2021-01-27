@@ -34,9 +34,9 @@ class stockClass{
     /**
      * @return mixed
      */
-    public function getIdPrecio()
+    public function getPrecio()
     {
-        return $this->idPrecio;
+        return $this->precio;
     }
 
     /**
@@ -80,11 +80,11 @@ class stockClass{
     }
 
     /**
-     * @param mixed $idPrecio
+     * @param mixed $precio
      */
-    public function setIdPrecio($idPrecio)
+    public function setPrecio($precio)
     {
-        $this->idPrecio = $idPrecio;
+        $this->precio = $precio;
     }
 
     /**

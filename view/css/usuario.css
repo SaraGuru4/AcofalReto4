@@ -18,7 +18,9 @@
     display: none;
     margin-left: 200px;
 }
+
 /*Filtro que busca los usuarios*/
+
 #divFiltro {
     display: none;
     padding: 5px;
@@ -35,12 +37,14 @@
 }
 
 /*Da color rojo al botón de cerra filtro*/
+
 .cerrarfiltro:hover {
     color: red;
     text-decoration: none;
 }
 
 /*Colores azules a los botones del nav*/
+
 .botonesAcciones a {
     color: #0255A5;
     font-weight: 600;
@@ -49,12 +53,15 @@
     padding-bottom: 1em;
     margin-left: 30px;
 }
+
 /*Al hacer hover en los botones del nav*/
+
 .botonesAcciones a:hover {
     border-bottom: 3px solid #0255A5;
 }
 
 /*header del container de datos de usuario*/
+
 .header {
     text-align: center;
     height: 600px;
@@ -75,6 +82,7 @@
 }
 
 /*imagen usuario*/
+
 .avatar {
     height: 140px !important;
     width: 140px !important;
@@ -101,7 +109,9 @@
 }
 
 /* Apartado de usuarios Usuarios*/
+
 /*Div general de usuarios*/
+
 #usuarios {
     width: 100%;
     margin: auto;
@@ -109,7 +119,9 @@
     background-color: #e9ecef;
     height: auto;
 }
+
 /*Card de cada usuario*/
+
 #usuarios #card {
     height: 100px;
     width: 100%;
@@ -131,7 +143,7 @@
     text-align: center;
 }
 
-.card-body button {
+ .card-body button {
     margin: 10px;
     padding: 10px;
     height: 40px;
@@ -147,7 +159,7 @@ input {
     line-height: normal;
 }
 
-#formUpdate, #formUpdateDatosPersonales {
+#formUpdate, #formUpdateDatosPersonales, #formNuevoPorducto {
     border: solid 3px #474544;
     width: 95%;
     margin: 60px auto;
@@ -198,7 +210,7 @@ form {
 
 /*No queremos actualizar el admin ni el id, ponemos el input más oscuro*/
 
-input[id='admin_input'], input[id='id_input'], input[id='id_inputpersonal'], input[id='admin_inputpersonal'] {
+input[id='admin_input'], input[id='id_input'], input[id='id_inputpersonal'], input[id='admin_inputpersonal'], input[id="tipoTiendaUpdate"] {
     opacity: 0.5;
     border: none;
     border-bottom: solid 2px #474544;
@@ -244,7 +256,7 @@ input[type='text']:focus, [type='email']:focus, [type='number']:focus {
 
 /*Boton cancelar update form*/
 
-#cancelarUpdate, #cancelarInsertTienda {
+#cancelarUpdate, #cancelarInsertTienda, #cancelarupdateTienda {
     background: none;
     border: solid 2px #474544;
     color: #474544;
@@ -261,7 +273,7 @@ input[type='text']:focus, [type='email']:focus, [type='number']:focus {
 
 /*botón  aceptar update form y el de datos generales */
 
-#aceptarUpdate, #aceptarPersonal, #aceptarinsertTienda {
+#aceptarUpdate, #aceptarPersonal, #aceptarinsertTienda, #aceptarupdateTienda {
     background: none;
     border: solid 2px #474544;
     color: #474544;
@@ -278,12 +290,12 @@ input[type='text']:focus, [type='email']:focus, [type='number']:focus {
     margin: 10px;
 }
 
-#aceptarUpdate:hover, #aceptarPersonal:hover, #aceptarinsertTienda:hover {
+#aceptarUpdate:hover, #aceptarPersonal:hover, #aceptarinsertTienda:hover, #aceptarupdateTienda:hover {
     background: green;
     color: #F2F3EB;
 }
 
-#cancelarUpdate:hover, #cancelarInsertTienda:hover {
+#cancelarUpdate:hover, #cancelarInsertTienda:hover, #cancelarupdateTienda:hover {
     background: red;
     color: #F2F3EB;
 }
@@ -296,25 +308,167 @@ input[type='text']:focus, [type='email']:focus, [type='number']:focus {
     margin: 5px auto;
     position: relative;
     display: none;
-    
 }
 
-#fotoPerfil {
-    height: 200px;
-    width: 200px;
-    margin: 2px solid black;
-
+#formNuevaTienda h1 {
+    font-size: 42px;
+    font-weight: 600;
+    letter-spacing: 3px;
 }
 
 /*Combo box*/
-.modificartienda, .eliminartienda{
 
+.modificartienda, .eliminartienda {
     text-align: center;
 }
 
+
+
+/*Foto de perfil en los formularios de insert y delete*/
+
+#fotoPerfilInsert, #fotoPerfilInsertProducto {
+    height: 200px;
+    width: 200px;
+    margin-left: 450px;
+    border: 2px solid black;
+    margin-top: -150px;
+    position: absolute;
+    object-fit: cover;
+}
+
+#fotoPerfilUpdate, #fotoPerfilUpdateProducto {
+    height: 200px;
+    width: 200px;
+    margin-left: 450px;
+    border: 2px solid black;
+    margin-top: -75px;
+    position: absolute;
+    object-fit: cover;
+}
+
 /*Productos*/
+#productos {
+    display: flex;
+    margin-top: 30px !important;
+    width: 95%;
+    margin: 0 auto;
+}
 
-#productos{
+#cardProducto {
+    height: auto;
+}
 
-    display: none;
+#cardProducto .card-body {
+    display: grid;
+    flex-wrap: wrap;
+    background-color: whitesmoke;
+
+}
+
+.nombreTienda {
+    font-size: 48px;
+    margin-bottom: 100px;
+    text-align: center;
+    font-weight: 400 !important;
+}
+
+/*Boton de eliminar con efecto hover*/
+
+.deleteProduct {
+    border-radius: 2px;
+    border: 3px solid #333;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    border: 2px solid black;
+    color: white;
+}
+
+.deleteProduct:hover, button:hover {
+    outline: 0;
+    color: white;
+}
+
+.deleteProduct:active, button:active {
+    outline: 0;
+    color: white;
+}
+
+.deleteProduct {
+    padding: 1.5em 1.5em;
+    border: 1px solid black;
+    color: white;
+    background: linear-gradient(to left,  rgb(209, 52, 52) 50%,  red 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+}
+
+.deleteProduct:hover {
+    background-position: left bottom;
+}
+
+/*Boton de eliminar con efecto hover*/
+
+/*Boton de update con efecto hover*/
+
+.modifyProduct {
+    border-radius: 2px;
+    border: 3px solid #333;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    border: 2px solid black;
+    color: white;
+    margin-top: -200px;
+    
+}
+
+.modifyProduct:hover {
+    outline: 0;
+    color: white;
+}
+
+.modifyProduct:active {
+    outline: 0;
+    color: white;
+}
+
+.modifyProduct {
+    padding: 1.5em 1.5em;
+    border: 1px solid black;
+    color: white;
+    background: linear-gradient(to left, rgb(223, 102, 21) 50%,orange 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    margin-top: -200px;
+}
+
+.modifyProduct:hover {
+    background-position: left bottom;
+}
+
+/*Boton de update con efecto hover fin*/
+
+
+@media screen and (max-width:900px) {
+    .botonesAcciones {
+        display: none;
+    }
+    #zonaUsuario .header {
+        height: auto;
+    }
+    /*Botones enviar y cancelar form*/
+    .submit {
+        margin-left: 100px !important;
+    }
+    /*Botones acciones para cada usuario*/
+    .botonesAcciones2:not(h3) {
+        display: grid;
+        grid-gap: 10px;
+        margin-bottom: 10px;
+        margin-top: 40px;
+        width: 200px;
+        margin-bottom: 10px;
+    }
+    .botonesAcciones2 h3 {
+        font-size: 18px;
+    }
 }

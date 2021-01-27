@@ -63,6 +63,105 @@ a:hover {
 }
 
 
+  /* Escaparate */
+  #description {
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+  }
+  
+  /* TITULO Y TEXTO */
+  h2 {
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .texto, h2, a{
+    color: black;
+  }
+  .texto-light{
+    color: black;
+  }
+  #img_hist{
+    min-width: 40vw;
+    max-width: 50vw;
+    min-height: 40vh;
+    max-height: 50vh;
+    object-fit: cover;
+  }
+
+/* Nombre Tienda*/
+.nom-tienda{
+    margin-top: 90px;
+    width: 100%;
+    height: 120%;
+    font-style: italic;
+    text-align: center;
+}
+
+.texto1{
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: large;
+  text-align: justify;
+  line-height : 30px;
+  text-indent: 50px;
+}
+  
+
+/* Productos carrito */
+
+
+.card-prod {
+  background-color: #f1efef;
+  width: calc( ( 100% / 3 ) - 5rem ) !important;
+  margin: 50px auto;
+  color: black;
+  border-radius: 0 !important;
+  border: transparent;
+  padding: 25px;
+}
+
+.card-prod:hover {
+  transform: scale(1.03);
+  transition: 0.5s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.carta-prod .texto{
+  margin-top: 70px;
+  font-size: large;
+}
+.card-prod .titulo {
+  cursor: pointer;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 18px !important;
+  color: #474747;
+}
+
+.card-prod .titulo:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.card-prod .texto {
+  font-weight: 200;
+  font-style: normal;
+  font-size: 14px !important;
+  line-height: 1.7em;
+  color: #000;
+}
+
+.card-prod .imagen {
+  background-position: center center;
+  background-size: 250px 300px;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 200xp;
+
+}
+
+
     
 .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-close {
   float: right;

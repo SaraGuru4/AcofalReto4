@@ -151,10 +151,13 @@
           <a href="#" onclick="closeMenuIndex()"><i class="fas fa-users"></i>&nbsp;Ciudadanía </a>
           <a href="view/pages/contacto.html" onclick="closeMenuIndex()"><i
               class="fas fa-address-book"></i>&nbsp;Contacto </a>
-          <a href="../pages/usuario.html" onclick="closeMenuPerfil()" id="perfilsidebar"><i
-              class="fas fa-user"></i>&nbsp;Perfil
-          </a>
-          <a href="#" onclick="abrirLoginIndex()"><i class="fas fa-user"></i> &nbsp;Login</a>
+
+          <a href="view/pages/usuario.html" onclick="closeMenuIndex()"  class="perfilsidebar"><i
+              class="fas fa-user"></i>&nbsp;Perfil </a>
+
+          <a href="#" onclick="abrirLoginIndex()" onclick="closeMenuIndex()" class="loginsidebar"><i class="fas fa-sign-in-alt"></i> &nbsp;Login</a>
+          
+          <a href="#" onclick="logout()" class="logoutsidebar"><i class="fas fa-sign-out-alt"></i> &nbsp;Logout</a>
         </div>
         <a href="#" class="closebtn" onclick="closeMenuIndex()">&times;</a>
 

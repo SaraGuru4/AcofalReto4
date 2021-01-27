@@ -41,18 +41,20 @@
             <option value=''>Selecciona un Producto</option>
             <option  ng-repeat="item in productos" ng-value='item.idProducto'>{{item.nombreProducto}}</option>
         </select>
-
-        <div class="insertarStock">
-            <h2>INSERTAR PRODUCTO</h2>
-            <form action="#">
-                Id Producto<input type="text" ng-model="idProducto2" id="idProducto2" class="lectura" disabled></br>
-                Id Tienda<input type="text" ng-model="idTienda2" id="idTienda2" class="lectura" disabled></br>
-                Precio<input type="number" ng-model="precio" id="precio"></br>
-                Descuento<input type="number" ng-model="descuento" id="descuento"></br>
-                Cantidad<input type="number"ng-model="cantidad" id="cantidad"></br>
-                <input type="submit" value="Insertar" ng-click="insert()">
-                <input type="reset" value="Cancelar" ng-click="quitar()">
-            </form>
+        <div class="insertar">
+            <h2>INSERTAR PRODUCTO EN TIENDA</h2>
+            <div class="insertarStock">
+                
+                <form action="#">
+                    Id Producto<input type="text" ng-model="idProducto2" id="idProducto2" class="lectura" disabled></br>
+                    Id Tienda<input type="text" ng-model="idTienda2" id="idTienda2" class="lectura" disabled></br>
+                    Precio<input type="number" ng-model="precio" id="precio"></br>
+                    Descuento<input type="number" ng-model="descuento" id="descuento"></br>
+                    Cantidad<input type="number"ng-model="cantidad" id="cantidad"></br>
+                    <input type="button-green" value="Insertar" ng-click="insertarStock()">
+                    <input type="reset" value="Cancelar" ng-click="quitar()">
+                </form>
+            </div>
         </div>
     </div>
 

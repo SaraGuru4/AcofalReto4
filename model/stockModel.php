@@ -1,4 +1,19 @@
 <?php
+	
+	if ( !defined( 'isLocal' ) ) {
+		
+		/**
+		 * isLocal nos indica si estamos en un servidor local (True) o no (False)
+		 */
+		define( 'isLocal', !( $_SERVER[ 'HTTP_HOST' ] == "grupo1.zerbitzaria.net" ) );
+		
+	}
+	
+	if ( isLocal ) {
+		
+		include_once( "connect_data.php" );
+	} else include_once( "connect_data_remote.php" );
+	
 	require_once 'connect_data.php';
 	require_once 'stockClass.php';
 	require_once 'productoModel.php';
@@ -45,7 +60,7 @@
 				$new->descuento = $row[ 'descuento' ];
 				$new->cantidad = $row[ 'cantidad' ];
 				
-				//Buscar el objProducto y añadirlo
+				//Buscar el objProducto y aï¿½adirlo
 				$newProducto = new productoModel();
 				$newProducto->setIdProducto( $row[ 'idProducto' ] );
 				$newProducto->getProductoById();
@@ -67,6 +82,27 @@
 			$sql = "CALL spReducirStock( '$idStock', '$cantidad' )";
 			
 			if ( $this->link->query( $sql ) ) return true;
-			else return  false;
+			else return false;
+		}
+		
+		public function insertStock() {
+			$this->OpenConnect();
+			
+			$idTienda = $this->getIdTienda();
+			$idProducto = $this->getIdProducto();
+			$precio = $this->getPrecio();
+			$descuento = $this->getDescuento();
+			$cantidad = $this->getCantidad();
+			
+			$sql = "CALL spInsertStock($idTienda,$idProducto,$precio,$descuento,$cantidad)";
+			
+			if ( $this->link->query( $sql ) ) {
+				$returnString = "Producto adquirido correctamente en su tienda";
+				$this->CloseConnect();
+				return $returnString;
+			} else {
+				$this->CloseConnect();
+				return $sql . "Error al insertar";
+			}
 		}
 	}

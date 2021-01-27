@@ -1,5 +1,19 @@
 <?php
 	
+	if ( !defined( 'isLocal' ) ) {
+		
+		/**
+		 * isLocal nos indica si estamos en un servidor local (True) o no (False)
+		 */
+		define( 'isLocal', !( $_SERVER[ 'HTTP_HOST' ] == "grupo1.zerbitzaria.net" ) );
+		
+	}
+	
+	if ( isLocal ) {
+		
+		include_once( "connect_data.php" );
+	} else include_once( "connect_data_remote.php" );
+	
 	require_once 'connect_data.php';
 	require_once 'ventasClass.php';
 	
