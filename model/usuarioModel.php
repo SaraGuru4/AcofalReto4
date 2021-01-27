@@ -59,7 +59,6 @@
 			$success = false;
 			
 			if ( $row = mysqli_fetch_array( $result, MYSQLI_ASSOC ) ) {
-				var_dump($row);
 				if ( $this->password === $row[ 'password' ] ) {
 					$this->admin = $row[ 'admin' ];
 					$this->nombreUsuario = $row[ 'nombreUsuario' ];

@@ -12,7 +12,9 @@
 		$user->setCorreo($correo);
 		$user->setPassword($password);
 
-		if ( $user->findUserByEmail() ) // si es correcto el userName y el password
+		$isValid = $user->findUserByEmail();
+		
+		if ( $isValid ) // si es correcto el userName y el password
 		{
 			session_start();
 
@@ -33,6 +35,9 @@
 		
 		$response[ 'error' ] = "Campos de usuario y contraseña vacíos";      // not filled user or password
 	}
+	
+	$response['user'] = $user->objVars();
+	$response['isValid'] = $isValid;
 	
 	echo json_encode( $response );
 	
