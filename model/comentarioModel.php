@@ -14,7 +14,6 @@
 		include_once( "connect_data.php" );
 	} else include_once( "connect_data_remote.php" );
 	
-	include_once 'connect_data.php';
 	include_once 'comentarioClass.php';
 	include_once 'comentarioModel.php';
 	

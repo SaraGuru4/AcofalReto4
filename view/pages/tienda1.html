@@ -24,7 +24,7 @@
     <header id="header">
         <!-- Main Nav -->
         <nav class="main_nav w-100">
-            <div class="container">
+            <div class="container mac">
                 <div class="row">
                     <div class="col">
                         <div class="main_nav_content d-flex flex-row">
@@ -56,14 +56,14 @@
             </div>
         </nav>
         <!-- Banner -->
-        <div class="banner">
+        <div class="banner mac">
             <div class="banner_background" style="background-image:url(../img/tienda/otros/tienda1/banner_background.jpg)"></div>
             <div class="container fill_height">
                 <div class="row fill_height">
                     <div class="banner_product_image"><img src="../img/tienda/otros/tienda1/banner.png" alt=""></div>
                     <div class="col-lg-5 offset-lg-4 fill_height">
                         <div class="banner_content">
-                            <h1 class="banner_text">new era of smartphones</h1>
+                            <h1 class="banner_text ">new era of smartphones</h1>
                             <div class="banner_price"><span>$530</span>$460</div>
                             <div class="banner_product_name">Apple Iphone 6s</div>
                             <div class="button banner_button"><a href="#shop">Shop Now</a></div>
@@ -243,7 +243,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-8 col-md-6 fill_height">
+                                                <div class="col-lg-8 col-md-6 fill_height mac">
                                                     <div class="banner_2_image_container">
                                                         <div class="banner_2_image"><img
                                                                 src="../img/tienda/otros/tienda1/banner_2_product.png" alt=""></div>
@@ -346,7 +346,7 @@
             <div class="carousel-inner c2">
                 <div class="carousel-item" ng-class="{'active': $first}" ng-repeat="tab in stock">
                     <div class="row productos p-4 m-3">
-                        <div class="card" ng-repeat="producto in tab">
+                        <div class="card col-12 col-md-3" ng-repeat="producto in tab">
                             <div class="imagen"
                                 style="background-image: url('../img/productos/{{producto.objProducto.foto}}');"></div>
                             <div class="card-body d-flex flex-column justify-content-between">
@@ -425,5 +425,9 @@
 <script src="../js/app/app.js"></script>
 <script src="../js/app/controladores/carrito.js"></script>
 <script src="../js/app/controladores/tienda.js"></script>
+
+<script src="../js/login.js"></script>
+<script src="../js/registro.js"></script>
+
 </body>
 </html>

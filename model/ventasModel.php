@@ -14,7 +14,6 @@
 		include_once( "connect_data.php" );
 	} else include_once( "connect_data_remote.php" );
 	
-	require_once 'connect_data.php';
 	require_once 'ventasClass.php';
 	
 	class ventasModel extends ventasClass {

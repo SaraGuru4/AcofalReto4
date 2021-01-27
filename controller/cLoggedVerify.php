@@ -29,6 +29,6 @@
 	} else {
 		$response[ 'error' ] = "no user logged";
 	}
-	$response['server'] = $_SERVER[ 'HTTP_HOST' ];
+	
 	echo json_encode( $response );
 	unset( $response );

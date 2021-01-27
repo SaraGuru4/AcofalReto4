@@ -359,50 +359,35 @@ function insertProducto() {
     var direccion = $("#tipoProducto").val();
     var descripcion = $("#descripcionProducto").val();
     var imagen = filename;
-    var url = "../../controller/cProductos.php";
 
-    permitirInsertProducto = true;
-    if (nombre == "" || direccion == "" || descripcion == "") {
+    var url = "../../controller/cInsertProducto.php";
+    var data = {
+        'nombre': nombre,
+        'direccion': direccion,
+        'descripcion': descripcion,
+        //   'tipo': tipo,
+        'imagen': imagen,
+        'filename': filename,
+        'savedFileBase64': savedFileBase64,
+    };
 
-        permitirInsertTienda = false;
-        alert("Campos vacios, no se ha podido insertar el nuevo producto");
-    } else { //Si no hay datos vacios
+    //Llamada fetch
+    fetch(url, {
+            method: 'POST', // or 'POST'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            } // input data
+        })
+        .then(res => res.json()).then(result => {
+            location.reload();
+            alert("Tienda insertada correctamente");
 
-
-        if (permitirInsertProducto = true) {
-
-            var url = "../../controller/cInsertProducto.php";
-            var data = {
-                'nombre': nombre,
-                'direccion': direccion,
-                'descripcion': descripcion,
-                //   'tipo': tipo,
-                'imagen': imagen,
-                'filename': filename,
-                'savedFileBase64': savedFileBase64,
-            };
-
-            //Llamada fetch
-            fetch(url, {
-                    method: 'POST', // or 'POST'
-                    body: JSON.stringify(data), // data can be `string` or {object}!
-                    headers: {
-                        'Content-Type': 'application/json'
-                    } // input data
-                })
-                .then(res => res.json()).then(result => {
-                    location.reload();
-                    alert("Tienda insertada correctamente");
-
-                })
-                .catch(error => console.error('Error status:', error));
-        } else {
-
-            alert("Ya existe un producto con ese nombre ");
-        }
-
-    }
+        })
+        .catch(error => console.error('Error status:', error));
 }
+
+
 
 function verProductos() {
     var url = "../../controller/cProductos.php";
@@ -432,7 +417,7 @@ function verProductos() {
                     "<p class='card-text nombre'><b>Id del producto: </b>" + productos[i].idProducto + "</p>" +
                     "<p class='card-text nombre'><b>Nombre: </b>" + productos[i].nombreProducto + "</p>" +
                     "<p class='card-text tipo'> <b>Tipo: </b>" + productos[i].tipo + "</p>" +
-                    "<button class='btn btn-cont modifyProduct'  data-id='" + productos[i].idProducto + "'  data-nombre='" + productos[i].nombreProducto + "'   data-tipo='" + productos[i].tipo + "'  data-foto='" + productos[i].foto + "' >Modificar <i class='fas fa-pen-alt'></i></button>" +
+                    "<button class='btn btn-cont modifyProduct'  data-id='" + productos[i].idProducto + "'  data-nombre='" + productos[i].nombreProducto + "'   data-tipo='" + productos[i].tipo + "'  data-foto='../img/productos/" + productos[i].foto + "' >Modificar <i class='fas fa-pen-alt'></i></button>" +
                     "<button class='btn btn-cont deleteProduct' data-id='" + productos[i].idProducto + "'>Eliminar <i class='fa fa-trash-alt'></i></button>" +
                     "</div>" +
                     "</div>" +
@@ -455,7 +440,7 @@ function verProductos() {
             $(".modifyProduct").click(function () {
 
                 $("#zonaUsuario").hide();
-
+                $("#formUpdateProducto").show();
 
                 $('#idproductoUpdate').val(this.dataset.id);
                 $('#nombreProductoUpdate').val(this.dataset.nombre);
@@ -470,6 +455,13 @@ function verProductos() {
 
 
 }
+
+
+
+
+
+
+
 
 function deleteProducto(idProducto) {
     var url = "../../controller/cDeleteProducto.php";

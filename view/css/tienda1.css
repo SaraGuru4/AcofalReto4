@@ -534,6 +534,12 @@ div
 	line-height: 1.5;
 	margin-top: 9px;
 }
+
+@media screen and (max-width:600px) {
+	.mac{
+		display: none;
+	}	
+	}
 /*********************************
 8. Brands
 *********************************/

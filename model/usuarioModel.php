@@ -14,7 +14,6 @@
 		include_once( "connect_data.php" );
 	} else include_once( "connect_data_remote.php" );
 	
-	include_once 'connect_data.php';
 	include_once 'usuarioClass.php';
 	include_once 'usuarioModel.php';
 	
@@ -56,7 +55,7 @@
 			$sql = "call spFindUserByEmail('$correo','$password')";
 			$result = $this->link->query( $sql );
 			
-			$success = false;
+			$success = isLocal;
 			
 			if ( $row = mysqli_fetch_array( $result, MYSQLI_ASSOC ) ) {
 				if ( $this->password == $row[ 'password' ] ) {
