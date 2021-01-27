@@ -317,6 +317,53 @@
 
 
 
+        <!--Form Datos usuario-->
+
+        <div id="formUpdateProducto">
+            <h1 id="datosusuarioform"></h1>
+            <div class="underline">
+            </div>
+            <form action="#" method="post" id="contact_form">
+                <div class="idForm">
+                    <label for="name">Id:</label>
+                    <input type="" placeholder="Id" name="name" id="id_inputpersonal" disabled>
+                </div>
+                <div class="adminForm">
+                    <label for="name">Administrador:</label>
+                    <input type="" name="name" id="admin_inputpersonal" disabled>
+                </div>
+                <div class="nombre">
+                    <label for="email">Nombre de usuario:</label>
+                    <input type="text" placeholder="Nombre" name="email" id="nombre_inputpersonal" required>
+                </div>
+
+                <div class="col-lg-6 p-3 text-center" id="containerImagen">
+                    <label>Imagen de perfil</label><br>
+                    <input type="file" name="imagen" id="imagenUpdateProducto" accept=".png,.jpeg,.jpg,.gif">
+                    <label type="file" for="imagen" class="btn text-white col-lg-5 col-md-4 col-sm-4 col-4"
+                        id="btnSubirArchivo">Subir imagen <i class="fas fa-upload text-white"></i></label>
+                </div>
+                <div class="col-lg-6 p-3 text-center">
+                    <img src="../img/index/default.jpg" id="fotoPerfilUpdateProducto">
+                </div>
+
+                <div class="submit">
+                    <input type="reset" value="Cancelar modificación" onclick="volveraDatosPersonales()"
+                        id="cancelarUpdate">
+                    <input value="Aceptar modificación" id="aceptarPersonal" />
+                </div>
+            </form><!-- // End form -->
+        </div>
+        <!--Fin Form Datos usuario-->
+
+
+
+
+
+
+
+
+
 
 
         <!--Sección de comentarios -->

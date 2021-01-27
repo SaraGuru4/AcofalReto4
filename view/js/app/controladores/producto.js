@@ -27,7 +27,7 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     //Trae los datos de los productos de esa tienda
     $http({
         method: 'GET',
-        url: '../../controller/cUpdateStock.php'
+        url: '../../controller/cStockByIdTienda.php'
     }).then(function successCallback(response) {
         $scope.productosTienda = response.data.list;
         console.log(response.data.list)

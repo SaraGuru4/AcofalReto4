@@ -27,7 +27,7 @@
 		$response[ 'error' ] = "no error";
 		
 	} else {
-		$response[ 'error' ] = "no user logged";
+		$response[ 'error' ] = "not logged";
 	}
 	
 	$response['version'] = phpversion();

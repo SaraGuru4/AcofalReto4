@@ -460,7 +460,6 @@ function verProductos() {
                 $('#idproductoUpdate').val(this.dataset.id);
                 $('#nombreProductoUpdate').val(this.dataset.nombre);
                 $('#tipoProductoUpdate').val(this.dataset.tipo);
-                $('#apellido_input').val(this.dataset.apellido);
                 $('#fotoProductoUpdate').val(this.dataset.foto);
 
                 updateProducto();
