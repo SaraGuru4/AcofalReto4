@@ -103,7 +103,26 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         $scope.descuento3= "";
         $scope.cantidad3= "";
         $('.update').css("display","none");
-    } 
+    }
+    //Eliminar Stock/Producto en tienda
+    $scope.eliminarStock = function(idStock){
+        var data={idStock:idStock};
+        alert(idStock);
+         $http({
+           method: 'POST',
+           url: '../../controller/cDeleteStock.php',
+           data: JSON.stringify(data),
+           contentType: 'application/json',
+           dataType: 'JSON'
+           }).then(function successCallback(response) {
+                alert(response.data.error);
+                console.log(response.data.error);
+           }, function errorCallback(response) {
+                alert("Algo ha fallado al procesar el delete!");
+           });
+           $scope.quitar();
+        }
+    }
 
     //Hacer una lista de tus productos y modificar y delete
 

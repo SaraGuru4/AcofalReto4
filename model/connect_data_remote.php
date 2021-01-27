@@ -1,6 +1,6 @@
 <?php
 	
-	class connect_data_remote {
+	class connect_data {
 		public $host = 'localhost';
 		public $userbbdd = 'grupo1ze';
 		public $passbbdd = 'Grup0-A-@';
