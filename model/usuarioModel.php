@@ -55,7 +55,7 @@
 			$sql = "call spFindUserByEmail('$correo','$password')";
 			$result = $this->link->query( $sql );
 			
-			$success = isLocal;
+			$success = false;
 			
 			if ( $row = mysqli_fetch_array( $result, MYSQLI_ASSOC ) ) {
 				if ( $this->password == $row[ 'password' ] ) {
