@@ -6,7 +6,7 @@ $data=json_decode(file_get_contents("php://input"),true);
 
 $nombreInsert=$data['nombreInsert'];
 $emailInsert=$data['emailInsert'];
-$passwordInsert=$data['emailInsert'];
+$passwordInsert=$data['passwordInsert'];
 $adminInsert=$data['adminInsert'];
 
 $nuevoUsuario=new usuarioModel();

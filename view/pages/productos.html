@@ -51,8 +51,8 @@
                     Precio<input type="number" ng-model="precio" id="precio"></br>
                     Descuento<input type="number" ng-model="descuento" id="descuento"></br>
                     Cantidad<input type="number"ng-model="cantidad" id="cantidad"></br>
-                    <input type="button-green" value="Insertar" ng-click="insertarStock()">
-                    <input type="reset" value="Cancelar" ng-click="quitar()">
+                    <input type="button-green" value="Insertar" ng-click="insertarStock()" style="-moz-user-select: none;">
+                    <input type="reset" value="Cancelar" ng-click="quitar()" style="-moz-user-select: none;">
                 </form>
             </div>
         </div>
@@ -73,9 +73,9 @@
                 Precio<input type="number" ng-model="precio3" id="precio3" ng-value="{{item.precio}}"></br>
                 Descuento<input type="number" ng-model="descuento3" id="descuento3" ng-value="{{item.descuento}}"></br>
                 Cantidad<input type="number"ng-model="cantidad3" id="cantidad3" ng-value="{{item.cantidad}}"></br>
-                <input type="button-green" value="Modificar" ng-click="modificarStock(item.idStock)">
-                <input type="button-elim" value="Eliminar" ng-click="eliminarStock(item.idStock)">
-                <input type="reset" value="Cancelar" ng-click="quitar()">
+                <input type="button-green" value="Modificar" ng-click="modificarStock(item.idStock)" style="-moz-user-select: none;">
+                <input type="button-elim" value="Eliminar" ng-click="eliminarStock(item.idStock)" style="-moz-user-select: none;">
+                <input type="reset" value="Cancelar" ng-click="quitar()" style="-moz-user-select: none;">
             </form>
             </div>
         </div>

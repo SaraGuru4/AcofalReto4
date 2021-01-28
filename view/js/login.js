@@ -42,7 +42,7 @@ function loggedVerify() {
 
 
             //Si es el administrador de tienda puede ver el botón de administración de la tienda
-            if ((usuario.admin !== idTienda || idTienda === '') && usuario.admin !== "1") $('.adminProductos').show();
+            if (usuario.admin === idTienda) $('.adminProductos').show();
 
             //Si es admin 0 ó 1 redirecciona al index.html si intentan entrar en las páginas especificadas
             if ( ["0", "1"].includes(usuario.admin) && location.href.match(/(factura\.html|productos\.html)/i) !== null) location.href = '../../index.html';
