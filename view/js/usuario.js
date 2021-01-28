@@ -4,6 +4,8 @@ savedFileBase64 = "";
 
 $(document).ready(function () {
 
+    $('#formUpdateProducto').hide();
+
     loggedVerify();
     //Logout
     $("#logout").click(logout);
@@ -21,6 +23,11 @@ $(document).ready(function () {
             scrollTop: $("#comentarios").offset().top - 200
         }, 1000);
     });
+
+    $('.volveraDatos').click(function () {
+        $('#zonaUsuario').show();
+        $(".modificartienda, .eliminartienda, #formUpdateProducto, #añadirForm, #formNuevoPorducto, #formNuevaTienda, #productos").hide();
+    }).show();
 
 })
 
@@ -67,10 +74,10 @@ function volveraDatosPersonales() {
 
     $("#usuarios").hide();
     $("#zonaUsuario").show();
-    $(".volveraDatos").hide();
+    //$(".volveraDatos").hide();
     $("#formUpdate").hide();
-    $("#btnVerUsuarios").show();
-    $("#btnVerComentarios").show();
+    //$("#btnVerUsuarios").show();
+    //$("#btnVerComentarios").show();
     $("#comentarios").hide();
     $("#btnBuscarUsuario").hide();
     $("#formUpdateDatosPersonales").hide();
@@ -133,9 +140,9 @@ function loggedVerify() {
                 $("#btnVerUsuarios").click(function () {
                     verUsuarios(usuario);
                     //Botónes nav
-                    $("#btnVerUsuarios").hide();
-                    $(".volveraDatos").show();
-                    $("#btnVerComentarios").show();
+                    //$("#btnVerUsuarios").hide();
+                    //$(".volveraDatos").show();
+                    //$("#btnVerComentarios").show();
                     $("#btnBuscarUsuario").show();
                     $("#btnUpdateUser").show();
 
@@ -154,13 +161,13 @@ function loggedVerify() {
 
                 $('#btnVerComentarios').click(function () {
                     //Boton nav comentarios
-                    $("#btnVerComentarios").hide();
-                    $("#btnVerUsuarios").show();
+                    //$("#btnVerComentarios").hide();
+                    //$("#btnVerUsuarios").show();
                     $("#btnBuscarUsuario").hide();
                     $("#btnUpdateUser").show();
                     $("#formUpdateDatosPersonales").hide();
 
-                    $(".volveraDatos").show();
+                    //$(".volveraDatos").show();
                     $("#zonaUsuario").hide();
                     $("#usuarios").hide();
                     $("#comentarios").show();
@@ -173,8 +180,8 @@ function loggedVerify() {
 
                 $("#btnUpdateUser").click(function () {
                     //Boton nav comentarios
-                    $("#btnVerComentarios").show();
-                    $("#btnVerUsuarios").show();
+                    //$("#btnVerComentarios").show();
+                    //$("#btnVerUsuarios").show();
                     $("#btnBuscarUsuario").hide();
                     $("#btnUpdateUser").hide();
 
@@ -250,11 +257,8 @@ function zonaAdminTienda(usuario, tiendas) {
     if (usuario.admin == 1) {
         usuarioDatos = `<div class='botonesAcciones2'>
             <h3>Elija la operación que desea realizar:</h3>
-              <button class='btn btn-success' id='insertartienda'>Insertar tienda</button>
-              <button class='btn btn-warning' id='actualizartienda'>Actualizar tienda</button>
               <button class='btn btn-danger' id='eliminartienda'>Eliminar tienda</button>
               <button class='btn btn-primary' id='verproductos'>Ver productos</button>
-              <button class='btn btn-light' id='insertarproductos'>Insertar productos</button>
              </div><div class='col-12'>
             <div class='header'>
               <h1 class='nombreUsuario'>Tu cuenta, ${usuario.nombreUsuario}&nbsp${usuario.nombreUsuario}<h1>
@@ -286,6 +290,8 @@ function zonaAdminTienda(usuario, tiendas) {
 		 </ul>
 	   </div>
 	 </div>`;
+
+        $("#btnVerUsuarios, #btnVerComentarios").hide();
     }
 
 
@@ -294,8 +300,8 @@ function zonaAdminTienda(usuario, tiendas) {
     $(".eliminartienda").hide();
 
 
-    $("#btnVerUsuarios").hide();
-    $("#btnVerComentarios").hide();
+    //$("#btnVerUsuarios").hide();
+    //$("#btnVerComentarios").hide();
 
 
     //-------------------ACCIONES DEL ADMINISTRADOR 1---------------------
@@ -409,7 +415,7 @@ function verProductos() {
 
         for (let i = 0; i < productos.length; i++) {
 
-            myHtml += "<div class='col-md-3 mb-4 ' >" +
+            myHtml += "<div class='col-md-3 mb-4 cardProducto' >" +
                 "<div class='card  box-shadow' id='cardProducto'>" +
                 "<div class='imagenProducto'>" +
                 "<img class='card-img-top' src='../img/productos/" + productos[i].foto + "'>" +
@@ -418,8 +424,8 @@ function verProductos() {
                 "<p class='card-text nombre'><b>Id del producto: </b>" + productos[i].idProducto + "</p>" +
                 "<p class='card-text nombre'><b>Nombre: </b>" + productos[i].nombreProducto + "</p>" +
                 "<p class='card-text tipo'> <b>Tipo: </b>" + productos[i].tipo + "</p>" +
-                "<button class='btn btn-cont modifyProduct'  data-id='" + productos[i].idProducto + "'  data-nombre='" + productos[i].nombreProducto + "'   data-tipo='" + productos[i].tipo + "'  data-foto='../img/productos/" + productos[i].foto + "' >Modificar <i class='fas fa-pen-alt'></i></button>" +
-                "<button class='btn btn-cont deleteProduct' data-id='" + productos[i].idProducto + "'>Eliminar <i class='fa fa-trash-alt'></i></button>" +
+                //"<button class='btn btn-cont modifyProduct'  data-id='" + productos[i].idProducto + "'  data-nombre='" + productos[i].nombreProducto + "'   data-tipo='" + productos[i].tipo + "'  data-foto='../img/productos/" + productos[i].foto + "' >Modificar <i class='fas fa-pen-alt'></i></button>" +
+                //"<button class='btn btn-cont deleteProduct' data-id='" + productos[i].idProducto + "'>Eliminar <i class='fa fa-trash-alt'></i></button>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +
@@ -966,7 +972,7 @@ function verUsuarios(usuario) {
             $("#formUpdate").show();
             $("#usuarios").hide();
             $("#zonaUsuario").hide();
-            $("#btnVerComentarios").show();
+            //$("#btnVerComentarios").show();
             $("#btnBuscarUsuario").hide();
             $("#formUpdateDatosPersonales").hide();
 

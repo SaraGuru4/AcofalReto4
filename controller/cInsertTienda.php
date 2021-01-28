@@ -4,7 +4,7 @@
 	
 	$data = json_decode( file_get_contents( "php://input" ), true );
 	
-	$idUsuario = 1;//$data['idUsuario'];
+	$idUsuario = $data['idUsuario'];
 	$nombre = $data[ 'nombre' ];
 	$direccion = $data[ 'direccion' ];
 	$descripcion = $data[ 'texto' ];

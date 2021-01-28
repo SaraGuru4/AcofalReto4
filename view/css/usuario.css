@@ -358,15 +358,34 @@ input[type='text']:focus, [type='email']:focus, [type='number']:focus {
     margin: 0 auto;
 }
 
-#cardProducto {
-    height: auto;
+.card, .card-body {
+    background-color: #d4d4d4;
+    border-radius: 0.25rem;
+}
+
+.cardProducto {
+    height: 300px !important;
+}
+
+.cardProducto:not(:nth-child(-n+4)) {
+    margin: 100px 0;
+}
+
+.cardProducto .card-img-top {
+    height: 150px;
+    width: 200px;
+    margin: 10px 0;
+    border-radius: 0.25rem;
+}
+
+.cardProducto .card-img-top:hover {
+    transform: none;
+    object-fit: initial;
 }
 
 #cardProducto .card-body {
     display: grid;
     flex-wrap: wrap;
-    background-color: whitesmoke;
-
 }
 
 .nombreTienda {
