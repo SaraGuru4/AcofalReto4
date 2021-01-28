@@ -93,3 +93,25 @@ H1{
     width:calc( ( 100% / 4 ) - 5rem );
     height: 250px;
 }
+@media (max-width: 1000px) {
+    .parte1 {
+      display: flex;
+      flex-direction:column;
+      align-items: center;
+    }
+    .parte2{
+      display: flex;
+      flex-direction:column;
+      align-items: center;
+    }
+    .parte3{
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+    }
+    .parte4{
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+    }
+  }

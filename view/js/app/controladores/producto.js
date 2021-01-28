@@ -36,7 +36,7 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                 $scope.idStock = $('.sel2').val();
                 verUpdate($scope.idStock);
             });
-
+            $scope.enlace= location.search.substring(1, location.search.length);
             $http({
                 method: 'GET',
                 url: '../../controller/cProductos.php'

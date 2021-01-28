@@ -74,3 +74,22 @@ transform: rotate(360deg);
 .listaTiendas li p, .nombreTienda{
     margin-left: 30px;
 }
+@media (max-width: 1000px) {
+    .imagen {
+      display: none;
+    }
+    .principal{
+        display: flex;
+        flex-direction: column;
+    }
+    .listaTiendas{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .escaparate{
+        display: none;
+    }
+
+  }

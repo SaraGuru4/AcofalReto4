@@ -364,11 +364,7 @@ input[type='text']:focus, [type='email']:focus, [type='number']:focus {
 }
 
 .cardProducto {
-    height: 300px !important;
-}
-
-.cardProducto:not(:nth-child(-n+4)) {
-    margin: 100px 0;
+    height: 450px !important;
 }
 
 .cardProducto .card-img-top {

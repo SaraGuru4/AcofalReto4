@@ -114,7 +114,7 @@ function enviarComentario() {
         })
             .then(res => res.json()).then(result => {
 
-            alert("Comentario enviado correctamente.");
+            console.log("Comentario enviado correctamente.");
             location.reload();
         })
             .catch(error => console.error('Error status:', error));
@@ -150,12 +150,12 @@ function loggedVerify() {
             document.getElementById("usuario").innerHTML = "Hola, " + usuario.nombreUsuario;
 
             if (usuario.admin == 0) {
-                alert("Bienvenido de nuevo, " + usuario.nombreUsuario);
+                console.log("Bienvenido de nuevo, " + usuario.nombreUsuario);
             } else if (usuario.admin == 1) {
-                alert("Bienvenido, " + usuario.nombreUsuario + " eres admnistrador número " +
+                console.log("Bienvenido, " + usuario.nombreUsuario + " eres admnistrador número " +
                     usuario.admin);
             } else {
-                alert("Hola de nuevo, " + usuario.nombreUsuario + " eres administrador número " +
+                console.log("Hola de nuevo, " + usuario.nombreUsuario + " eres administrador número " +
                     usuario.admin)
             }
         }
@@ -181,7 +181,7 @@ function login() {
         } //input data
     })
         .then(res => res.json()).then(result => {
-        //	alert(result.error);
+        //	console.log(result.error);
         console.log(result.error);
 
         // Actualiza la página solo en caso de que el mensaje sea no error
@@ -191,7 +191,7 @@ function login() {
             document.getElementById("password2").value = "";
 
         } else {
-            alert(result.error);
+            console.log(result.error);
         }
 
     })
@@ -216,7 +216,7 @@ function logout() {
         $(".botonLogout").hide();
         $(".botonLogin").show();
         sessionStorage.removeItem("carrito")
-        alert("Has cerrado la sesión, esperamos tenerte de vuelta lo antes posible");
+        //console.log("Has cerrado la sesión, esperamos tenerte de vuelta lo antes posible");
         window.location.href = "../../index.html";
 
     })

@@ -257,8 +257,9 @@ function zonaAdminTienda(usuario, tiendas) {
     if (usuario.admin == 1) {
         usuarioDatos = `<div class='botonesAcciones2'>
             <h3>Elija la operación que desea realizar:</h3>
-              <button class='btn btn-danger' id='eliminartienda'>Eliminar tienda</button>
-              <button class='btn btn-primary' id='verproductos'>Ver productos</button>
+              <button class='btn btn-success mt-2 mb-2' id='insertartienda'>Insertar tienda</button>
+              <button class='btn btn-danger mt-2 mb-2' id='eliminartienda'>Eliminar tienda</button>
+              <button class='btn btn-primary mt-2 mb-2' id='verproductos'>Ver productos</button>
              </div><div class='col-12'>
             <div class='header'>
               <h1 class='nombreUsuario'>Tu cuenta, ${usuario.nombreUsuario}&nbsp${usuario.nombreUsuario}<h1>
@@ -389,7 +390,7 @@ function insertProducto() {
     })
         .then(res => res.json()).then(result => {
         location.reload();
-        alert("Tienda insertada correctamente");
+        console.log("Tienda insertada correctamente");
 
     })
         .catch(error => console.error('Error status:', error));
@@ -482,7 +483,7 @@ function deleteProducto(idProducto) {
 
         console.log(result.error)
         window.location.reload();
-        alert("Producto eliminado correctamente");
+        console.log("Producto eliminado correctamente");
     })
         .catch(error => console.error('Error status:', error));
 }
@@ -573,7 +574,7 @@ function deleteShop(idTienda) {
             console.log(result.error)
 
             window.location.reload();
-            alert("Tienda eliminada correctamente");
+            console.log("Tienda eliminada correctamente");
         })
             .catch(error => console.error('Error status:', error));
 
@@ -656,7 +657,7 @@ function updateShop(idTienda) {
         //Al hacer click ejecutamos el update
         $("#aceptarupdateTienda").click(function () {
 
-            alert(idTienda);
+            console.log(idTienda);
             idTienda = tienda[0].idTienda;
             executeUpdateShop(idTienda);
 
@@ -705,7 +706,7 @@ function executeUpdateShop(idTienda) {
 
         .then(res => res.json()).then(result => {
 
-        alert("Tienda actualizada correctamente");
+        console.log("Tienda actualizada correctamente");
         // window.location.reload();
 
     })
@@ -728,7 +729,7 @@ function insertarTienda() {
     if (nombre == "" || direccion == "" || telefono == "" || texto == "" || tipo == "" || imagen == "") {
 
         permitirInsertTienda = false;
-        alert("Campos vacios, no se ha podido insertar la nueva tienda");
+        console.log("Campos vacios, no se ha podido insertar la nueva tienda");
     } else { //Si no hay datos vacios
 
 
@@ -755,14 +756,14 @@ function insertarTienda() {
             })
                 .then(res => res.json()).then(result => {
                 console.log(result)
-                alert("Tienda insertada correctamente");
+                console.log("Tienda insertada correctamente");
                 location.reload();
 
             })
                 .catch(error => console.error('Error status:', error));
         } else {
 
-            alert("Ya existe una tienda con ese nombre o ese teléfono");
+            console.log("Ya existe una tienda con ese nombre o ese teléfono");
         }
 
     }
@@ -1090,7 +1091,7 @@ function execUpdatepersonal() {
 
         .then(res => res.json()).then(result => {
 
-        alert("Información actualizada correctamente");
+        console.log("Información actualizada correctamente");
         window.location.reload();
 
     })
@@ -1127,7 +1128,7 @@ function execUpdate() {
 
         .then(res => res.json()).then(result => {
 
-        alert("Información actualizada correctamente");
+        console.log("Información actualizada correctamente");
         window.location.reload();
 
     })
@@ -1154,7 +1155,7 @@ function borrarComentario(idComentario) {
         })
             .then(res => res.json()).then(result => {
 
-            alert(result.error);
+            console.log(result.error);
             location.reload();
 
         })
@@ -1183,7 +1184,7 @@ function borrarUsuario(idUsuario) {
         })
             .then(res => res.json()).then(result => {
 
-            alert(result.error);
+            console.log(result.error);
             location.reload();
 
 
@@ -1213,7 +1214,7 @@ function logout() {
 
 
         sessionStorage.removeItem("carrito")
-        alert("Has cerrado la sesión, esperamos tenerte de vuelta lo antes posible!");
+        console.log("Has cerrado la sesión, esperamos tenerte de vuelta lo antes posible!");
         window.location.href = "../../index.html";
 
     })

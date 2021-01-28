@@ -95,7 +95,7 @@ function login() {
             location.reload();
 
         } else {
-            alert(result.error);
+            console.log(result.error);
         }
 
     })
@@ -128,7 +128,7 @@ function logout() {
         $(".botonLogout").hide();
         $(".botonLogin").show();
         sessionStorage.removeItem("carrito")
-        alert("Has cerrado la sesión, esperamos tenerte de vuelta lo antes posible");
+        console.log("Has cerrado la sesión, esperamos tenerte de vuelta lo antes posible");
         location.href=redireccion;
 
     })

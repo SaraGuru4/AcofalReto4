@@ -114,6 +114,32 @@
           </div>
         </div>
       </div>
+   <!--Botón para abrir el menú lateral-->
+   <div id="mainbox" onclick="openMenu()">&#9776; &nbsp; MENÚ</div>
+  </div>
+  <!--Menú Lateral-->
+
+  <div id="menu" style="overflow: scroll;" class="sidemenu">
+      <div class="enlaces">
+          <a href="../../index.html"><i class="fas fa-home"></i>&nbsp;Home</a>
+          <a href="../../index.html#noticiassection" onclick="closeMenu()"><i
+                  class="fas fa-newspaper"></i>&nbsp;Noticias</a>
+          <a href="../pages/escaparate.html" onclick="closeMenuContacto()"><i class="fas fa-hotel"></i>&nbsp;
+              Escaparate local </a>
+          <a href="#" onclick="closeMenuIndex()"><i class="fas fa-video"></i>&nbsp;Vídeos </a>
+          <a href="#" onclick="closeMenuIndex()"><i class="fas fa-users"></i>&nbsp;Ciudadanía </a>
+          <a href="../pages/contacto.html" class="active" onclick="closeMenuContacto()"><i
+                  class="fas fa-address-book"></i>&nbsp;Contacto
+          </a>
+          <a href="../pages/usuario.html" onclick="closeMenuPerfil()" id="perfilsidebar"><i
+                  class="fas fa-address-book"></i>&nbsp;Perfil
+          </a>
+          <a href="#" onclick="abrirLoginContacto()"><i class="fas fa-user"></i> &nbsp;Login</a>
+      </div>
+      <a href="#" class="closebtn" onclick="closeMenuContacto()">&times;</a>
+  </div>
+  
+
 <!--CARDS-->
 <div class="tittle">
     <h1 class="text-center">Escaparate Local</h1>
@@ -187,6 +213,7 @@
   <script src="../js/login.js"></script>
   <script src="../js/index.js"></script>
   <script src="../js/registro.js"></script>
+  <script src="../js/contacto.js"></script>
 
 
 </body>

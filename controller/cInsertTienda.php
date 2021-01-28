@@ -4,10 +4,11 @@
 	
 	$data = json_decode( file_get_contents( "php://input" ), true );
 	
-	$idUsuario = $data['idUsuario'];
+	$idUsuario = 1;//$data['idUsuario'];
 	$nombre = $data[ 'nombre' ];
 	$direccion = $data[ 'direccion' ];
 	$descripcion = $data[ 'texto' ];
+	$telefono = $data['telefono'];
 	$imagen = $data[ 'imagen' ];
 	$tipo = $data[ 'tipo' ];
 	$tipoWeb = 1;
@@ -17,6 +18,7 @@
 	
 	$nuevaTienda->setIdUsuario( $idUsuario );
 	$nuevaTienda->setNombreTienda( $nombre );
+	$nuevaTienda->setTelefono( $telefono );
 	$nuevaTienda->setDireccion( $direccion );
 	$nuevaTienda->setTexto( $descripcion );
 	$nuevaTienda->setIdTipo( $tipo );
