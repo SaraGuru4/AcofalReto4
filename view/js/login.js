@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    //Ocultar administración de productos
-    $('.deleteProducto, .updateProducto, .adminProductos').hide();
 
     loggedVerify();
     //Login(Botón del modal)
@@ -42,7 +40,7 @@ function loggedVerify() {
 
 
             //Si es el administrador de tienda puede ver el botón de administración de la tienda
-            if (usuario.admin === idTienda) $('.adminProductos').show();
+            if (usuario.admin === idTienda) $('.adminProductos').css("display","block");
 
             //Si es admin 0 ó 1 redirecciona al index.html si intentan entrar en las páginas especificadas
             if ( ["0", "1"].includes(usuario.admin) && location.href.match(/(factura\.html|productos\.html)/i) !== null) location.href = '../../index.html';
@@ -51,7 +49,6 @@ function loggedVerify() {
                 console.log("Bienvenido de nuevo, " + usuario.nombreUsuario);
             } else if (usuario.admin == 1) {
                 console.log("Hola de nuevo, " + usuario.nombreUsuario + " eres administrador número " + usuario.admin + ". Eres administrador de la tiendas");
-                $('.deleteProducto, .updateProducto').show();
             } else {
                 console.log("Hola de nuevo, " + usuario.nombreUsuario + " eres administrador de la tienda número " +
                     usuario.admin)
@@ -107,8 +104,15 @@ function login() {
 
 function logout() {
     var url;
-
-    location.href.match(/\/view/i) !== null ? url = "../../controller/cLogout.php" : url = "controller/cLogout.php";
+    var redireccion;
+   if(location.href.match(/\/view/i) !== null ){
+    url = "../../controller/cLogout.php";
+    redireccion='../../index.html';
+     
+   }else{
+    url = "controller/cLogout.php";
+    redireccion='index.html';
+   }
     fetch(url, {
         method: 'GET',
         headers: {
@@ -125,7 +129,7 @@ function logout() {
         $(".botonLogin").show();
         sessionStorage.removeItem("carrito")
         alert("Has cerrado la sesión, esperamos tenerte de vuelta lo antes posible");
-        location.reload();
+        location.href=redireccion;
 
     })
         .catch(error => console.error('Error status:', error));

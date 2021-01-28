@@ -111,7 +111,7 @@ function closeMenuIndex() {
 
 //Cargar las noticias de la página principal con json
 function cargarNoticias() {
-
+    if(location.href.match(/\/view/i) !== null) return false;
     var url = "view/json/noticias.json";
 
     fetch(url, {

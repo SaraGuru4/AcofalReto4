@@ -1,4 +1,7 @@
 
+  .adminProductos{
+    display: none;
+  }
   .linea {
     border-bottom: solid 7px rgb(235, 52, 52);
     margin: 1em auto;

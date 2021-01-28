@@ -1,3 +1,6 @@
+.adminProductos{
+    display: none;
+}
 #description {
     padding: 20px;
     width: 80%;

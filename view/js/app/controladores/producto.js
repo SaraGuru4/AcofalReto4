@@ -4,32 +4,7 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     $scope.productosTienda = [];
     $scope.update = [];
 
-    $http({
-        method: 'GET',
-        url: '../../controller/cProductos.php'
-    }).then(function successCallback(response) {
-        $scope.productos = response.data.list;
-        console.log(response.data.list);
-    }, function errorCallback(response) {
-        alert(response.error);
-    });
-
-
-    //Trae los datos de los productos de esa tienda (Falta php) Revisar
-    var idTienda = location.search.substring(1, location.search.length);
-    var data = {idTienda: idTienda};
-    $http({
-        method: 'POST',
-        url: '../../controller/cStockByIdTienda.php',
-        data: JSON.stringify(data),
-        contentType: 'application/json',
-        dataType: 'JSON'
-    }).then(function successCallback(response) {
-        $scope.productosTienda = response.data.list;
-        console.log(response.data.list);
-    }, function errorCallback(response) {
-        alert(response.error);
-    });
+    
     //Borra los campos del formulario
     $scope.quitar = function () {
         $scope.idProducto2 = "";
@@ -62,6 +37,33 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                 verUpdate($scope.idStock);
             });
 
+            $http({
+                method: 'GET',
+                url: '../../controller/cProductos.php'
+            }).then(function successCallback(response) {
+                $scope.productos = response.data.list;
+                console.log(response.data.list);
+            }, function errorCallback(response) {
+                alert(response.error);
+            });
+        
+        
+            //Trae los datos de los productos de esa tienda Revisar
+            var idTienda = location.search.substring(1, location.search.length);
+            var data = {idTienda: idTienda};
+            $http({
+                method: 'POST',
+                url: '../../controller/cStockByIdTienda.php',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                dataType: 'JSON'
+            }).then(function successCallback(response) {
+                $scope.productosTienda = response.data.list;
+                console.log(response.data.list);
+            }, function errorCallback(response) {
+                alert(response.error);
+            });
+
         });
     });
 
@@ -73,7 +75,7 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         $('.insertar').css("flex-direction", "column");
     }
 
-    //Mostramos el formulario update (Mirar si rellenar con Angular o con val())
+    //Mostramos el formulario update
     function verUpdate(idStock) {
         var data = {idStock: idStock};
         $http({
@@ -153,7 +155,6 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     //Eliminar Stock/Producto en tienda
     $scope.eliminarStock = function (idStock) {
         var data = {idStock: idStock};
-        alert(idStock);
         $http({
             method: 'POST',
             url: '../../controller/cDeleteStock.php',
@@ -163,6 +164,7 @@ miApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         }).then(function successCallback(response) {
             alert(response.data.error);
             console.log(response.data.error);
+            window.location.reload(true);
         }, function errorCallback(response) {
             alert("Algo ha fallado al procesar el delete!");
         });

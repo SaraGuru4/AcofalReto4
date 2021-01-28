@@ -129,6 +129,10 @@
     margin-top: 20px;
 }
 
+.card {
+    min-height: auto !important;
+}
+
 .card-body {
     display: flex;
 }
